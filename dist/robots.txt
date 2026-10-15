@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://vatsal-jain-portfolio.windygoose17.chatgpt.site/sitemap.xml

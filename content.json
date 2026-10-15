@@ -1,0 +1,137 @@
+{
+  "name": "Vatsal Jain",
+  "title": "Applied AI, built around real work.",
+  "description": "Vatsal Jain builds applied AI systems and helps teams adopt them. Explore agent pipelines, real estate products, and AI enablement work.",
+  "email": "vatsaljain27@gmail.com",
+  "location": "Greater Vancouver, BC",
+  "linkedin": "https://www.linkedin.com/in/vatsal-jain27/",
+  "youtube": "https://www.youtube.com/@vatsal-tryclarityworks",
+  "business": "https://www.tryclarityworks.com/",
+  "projects": [
+    {
+      "slug": "intent-signals",
+      "name": "Finding intent in the conversation",
+      "product": "Real estate intent engine",
+      "category": "systems",
+      "status": "Live pilot",
+      "summary": "An LLM-powered system that finds buying and selling signals in communication streams, then alerts the agent when a prospect needs help.",
+      "context": "Real estate · Intent extraction",
+      "role": "Founder & builder, Clarity Works",
+      "outcome": "Currently in pilot testing",
+      "stack": ["LLM reasoning", "API orchestration", "Workflow design"],
+      "flow": ["Communication streams", "Intent extraction", "Agent alert"],
+      "sections": [
+        {"title": "The problem", "paragraphs": ["A prospect’s next move can be buried in an ordinary reply. Real estate teams need a way to notice those signals across newsletters, drip campaigns, and ongoing conversations."]},
+        {"title": "What I built", "paragraphs": ["The system ingests communication streams and uses LLM reasoning to extract explicit and implicit buying or selling intent. It sends real-time alerts to agents when a prospect needs assistance.", "This is the current main product at Clarity Works. It brings together the work I enjoy most: understanding the operational problem and translating it into a working AI pipeline."]},
+        {"title": "Where it stands", "paragraphs": ["The product is live in pilot testing. I’m keeping that distinction clear: a deployed pilot is an important step, and its broader business impact still needs to be measured."]},
+        {"title": "The design question", "paragraphs": ["How do you distinguish a useful signal from a plausible interpretation? For an intent system, that question matters as much as the extraction itself. It is the part of the work I want to make visible as the pilot develops."]}
+      ]
+    },
+    {
+      "slug": "outbound-engine",
+      "name": "A small team’s outbound engine",
+      "product": "Clarity Works outbound pipeline",
+      "category": "systems",
+      "status": "Built & used",
+      "summary": "Seven stages, three LLM agents, and deterministic checks around the work. Personalized outreach grew from about 10 to 60+ messages per day.",
+      "context": "GTM · Multi-agent orchestration",
+      "role": "Founder & builder, Clarity Works",
+      "outcome": "~10 → 60+ personalized messages / day",
+      "stack": ["Python", "Claude / OpenRouter", "Apify", "Instantly", "Google Sheets"],
+      "flow": ["Lead research", "Enrich · Route · Draft", "Human review"],
+      "sections": [
+        {"title": "The problem", "paragraphs": ["As a solo founder, researching accounts and writing relevant first messages competed with the time needed to build and deliver. I wanted more throughput while preserving account-specific context."]},
+        {"title": "What I built", "paragraphs": ["I built a seven-stage Python pipeline covering lead scraping, enrichment, routing, personalized drafting, and upload to Instantly. Three LLM agents handle enrichment, routing, and drafting, calling Claude through OpenRouter. Apify and Google Sheets connect the research and operating workflow.", "The cold-email infrastructure is part of this system: the value comes from connecting those stages into an end-to-end process."]},
+        {"title": "The checks around the model", "paragraphs": ["Do-not-contact checks run at three stages. Email verification happens before sending, a cross-channel reply-stop prevents continued follow-up, and a human approval gate sits before messages ship. These controls live in the workflow and code."]},
+        {"title": "The result", "paragraphs": ["Personalized outreach increased from roughly 10 to more than 60 messages per day. That is a throughput result from my own operation; it is not a claim about response rates or revenue."]}
+      ]
+    },
+    {
+      "slug": "leadpulse",
+      "name": "Closing the lead-to-response gap",
+      "product": "LeadPulse",
+      "category": "systems",
+      "status": "Shipped",
+      "summary": "A B2B SaaS that sends automated SMS alerts for inbound real estate leads within five minutes, with failover logic.",
+      "context": "Real estate · B2B SaaS",
+      "role": "Builder",
+      "outcome": "Built and shipped",
+      "stack": ["Twilio", "SMS workflows", "Failover logic"],
+      "flow": ["Inbound lead", "SMS alert", "Agent response"],
+      "sections": [
+        {"title": "The problem", "paragraphs": ["An inbound lead is only useful if someone notices it in time. LeadPulse focused on the handoff between a new enquiry and the agent who needs to respond."]},
+        {"title": "What I built", "paragraphs": ["I built and shipped a B2B SaaS providing automated SMS lead alerts within five minutes, with failover logic. The system was designed around a clear operational action: get the lead in front of an agent."]},
+        {"title": "Beyond the happy path", "paragraphs": ["Shipping included navigating Twilio A2P 10DLC registration and CASL requirements. Messaging infrastructure and the practical conditions for operating it were part of the product work."]},
+        {"title": "What this work demonstrates", "paragraphs": ["A bounded product with a concrete user, a time-sensitive workflow, and delivery concerns beyond the UI. I’m describing the shipped capability here; adoption and conversion results are not yet part of the public case study."]}
+      ]
+    },
+    {
+      "slug": "content-pipeline",
+      "name": "One idea, a connected content workflow",
+      "product": "Clarity Works content pipeline",
+      "category": "systems",
+      "status": "In use",
+      "summary": "An AI-assisted production workflow connecting ideation, scripts, recording, editing, publishing, and repurposing for a one-person studio.",
+      "context": "Media · Workflow orchestration",
+      "role": "Builder & creator, Clarity Works",
+      "outcome": "A public body of educational work",
+      "stack": ["Claude", "Descript", "ElevenLabs", "YouTube"],
+      "flow": ["Idea & script", "Record & edit", "Publish & repurpose"],
+      "link": {"label": "Watch the published work", "url": "https://www.youtube.com/@vatsal-tryclarityworks"},
+      "sections": [
+        {"title": "The problem", "paragraphs": ["Running a one-person studio means carrying every handoff yourself. Ideas, scripts, recordings, edits, and derivatives need a repeatable path if publishing is going to fit alongside client work."]},
+        {"title": "What I built", "paragraphs": ["A seven-stage AI-assisted pipeline connects ideation and scripting in Claude, recording and editing in Descript, voiceover with ElevenLabs, and publishing and repurposing into short-form video, LinkedIn posts, and carousels.", "The workflow includes automation and editing triggers, while recording and editorial judgment remain part of my work."]},
+        {"title": "Why it matters", "paragraphs": ["The resulting videos are also reusable teaching material for Clarity Works. The production system supports both public education and the work of helping clients build their own AI capability."]},
+        {"title": "See it in use", "paragraphs": ["The Clarity Works YouTube channel is the public output of this workflow. It is the clearest way to see both the educational approach and the content being produced."]}
+      ]
+    },
+    {
+      "slug": "ai-capability",
+      "name": "Helping teams own the next workflow",
+      "product": "AI Capability Ladder",
+      "category": "enablement",
+      "status": "Advisory practice",
+      "summary": "A structured approach to AI adoption: fluency, workflow mapping, SOP improvement, assisted builds, and capability transfer.",
+      "context": "Enablement · Client delivery",
+      "role": "Founder & advisor, Clarity Works",
+      "outcome": "Reusable playbooks & hands-on delivery",
+      "stack": ["Client discovery", "Workflow mapping", "SOPs", "Training"],
+      "flow": ["Understand the work", "Improve & build", "Transfer capability"],
+      "link": {"label": "Explore Clarity Works", "url": "https://www.tryclarityworks.com/"},
+      "sections": [
+        {"title": "The problem", "paragraphs": ["Knowing that AI is useful is different from knowing how to use it in the work a team already does. The gap includes process clarity, confidence, and ownership."]},
+        {"title": "The approach", "paragraphs": ["I created the AI Capability Ladder: AI fluency, workflow mapping, SOP improvement, AI-assisted building, and handoff. Clarity Works delivers this through a 30-day Sprint and a longer Partner Program.", "I run discovery with business owners, translate the operational pain into a practical plan, and build function-specific prompt libraries, guides, exercises, and SOPs. The aim is to leave the team able to keep going."]},
+        {"title": "The builder’s perspective", "paragraphs": ["Building systems myself helps me teach from application. It also gives the engagement a practical constraint: the workflow must be understandable and usable by the people who will own it."]},
+        {"title": "The next proof point", "paragraphs": ["The method and learning assets are established parts of the practice. A fuller case study will benefit from client-approved examples and measured adoption over time."]}
+      ]
+    }
+  ],
+  "notes": [
+    {
+      "slug": "sop-as-architecture",
+      "title": "The SOP is part of the architecture",
+      "tag": "Workflow design",
+      "summary": "Before choosing the agent, understand the decisions, handoffs, and exceptions in the work.",
+      "paragraphs": [
+        "When a team asks for an AI workflow, my first question is about the work itself. What starts it? Who makes the decision? What information do they need? Where does the process stall?",
+        "Those questions are architectural. A model can help interpret an input, but the surrounding workflow still needs clear ownership, inputs, outputs, and a useful next action. An undocumented process makes those decisions harder to see.",
+        "That is why workflow mapping and SOP improvement come before the assisted build in the AI Capability Ladder I use at Clarity Works. The process gives the build its shape. It also gives the team something concrete to question and improve.",
+        "I want a working session to leave behind more than a promising demo. The team should be able to explain what the workflow does, recognize when it needs human judgment, and maintain the process as the work changes.",
+        "For me, discovery and engineering belong in the same conversation. Understanding the process is how I decide what is worth building."
+      ]
+    },
+    {
+      "slug": "checks-around-the-model",
+      "title": "Build the checks around the model",
+      "tag": "AI reliability",
+      "summary": "What my outbound pipeline taught me about putting operational rules in code.",
+      "paragraphs": [
+        "My outbound pipeline uses three LLM agents for enrichment, routing, and drafting. Those are useful places for contextual reasoning. The operating rules around them need a different treatment.",
+        "A do-not-contact record needs to stop the workflow. A reply needs to stop follow-up. An unverified email needs to be checked before sending. These rules should be explicit in the system that runs the work.",
+        "In the pipeline, do-not-contact checks run at three stages, verification happens before send, and a cross-channel reply-stop prevents continued follow-up. There is also a human approval gate before a message ships.",
+        "The distinction shapes how I think about applied AI: use the model where interpretation helps, and make the boundaries around its output inspectable. A well-written prompt is one part of that design.",
+        "The result I can point to today is throughput: personalized outreach grew from about ten to more than sixty messages a day. To tell the full business story, response quality and downstream outcomes need their own measurement."
+      ]
+    }
+  ]
+}
