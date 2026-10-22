@@ -1,0 +1,11 @@
+# Upload only the public website build sources, never the parent workspace.
+**
+!build.py
+!check.py
+!content.json
+!package.json
+!vercel.json
+!templates/
+!templates/**
+!static/
+!static/**

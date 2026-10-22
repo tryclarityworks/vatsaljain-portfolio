@@ -2,7 +2,9 @@ __pycache__/
 .DS_Store
 .env
 .env.*
-.openai/*.local.json
+.openai/
 *.tar.gz
 *.tgz
 node_modules/
+.vercel/
+dist/

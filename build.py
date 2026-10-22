@@ -11,7 +11,8 @@ import shutil
 ROOT = Path(__file__).resolve().parent
 OUT = ROOT / 'dist'
 DATA = json.loads((ROOT / 'content.json').read_text())
-ORIGIN = os.environ.get('PORTFOLIO_ORIGIN', 'https://vatsal-jain-portfolio.windygoose17.chatgpt.site').rstrip('/')
+ORIGIN = os.environ.get('PORTFOLIO_ORIGIN', DATA['production_origin']).rstrip('/')
+PREVIEW = os.environ.get('VERCEL_ENV') in ('preview', 'development')
 if urlsplit(ORIGIN).scheme not in ('http', 'https') or not urlsplit(ORIGIN).netloc:
     raise SystemExit('PORTFOLIO_ORIGIN must be an absolute HTTP(S) URL')
 
@@ -33,7 +34,9 @@ def shell(title, description, body, path='/'):
               'alumniOf':{'@type':'CollegeOrUniversity','name':'University of British Columbia'},
               'knowsAbout':['Applied AI','Workflow design','AI enablement','Python']}
     values = dict(DATA, title=e(title), description=e(description), body=body,
-                  origin=e(ORIGIN), canonical=e(ORIGIN+path), schema=json.dumps(schema).replace('<','\\u003c'))
+                  origin=e(ORIGIN), canonical=e(ORIGIN+path),
+                  robots='<meta name="robots" content="noindex, nofollow">' if PREVIEW else '',
+                  schema=json.dumps(schema).replace('<','\\u003c'))
     return re.sub(r'\{\{([a-z_]+)\}\}', lambda m:str(values[m.group(1)]), template)
 
 def write(path, content):
@@ -52,29 +55,45 @@ def project_card(p, i):
 def home():
     projects=''.join(project_card(p,i+1) for i,p in enumerate(DATA['projects']))
     notes=''.join(f'''<a class="note" href="/notes/{e(n['slug'])}/"><span class="eyebrow">{e(n['tag'])}</span><h3>{e(n['title'])}<span aria-hidden="true">↗</span></h3><p>{e(n['summary'])}</p><span class="note-read">Read note →</span></a>''' for n in DATA['notes'])
+    method=''.join(f'''<div><span>{i+1:02d} — {e(item['label'])}</span><h3>{e(item['heading'])}</h3><p>{e(item['description'])}</p></div>''' for i,item in enumerate(DATA['method']))
+    videos=''.join(f'''<a class="video-link" href="{e(v['url'])}"><div class="video-image"><img src="{e(v['thumbnail'])}" width="480" height="360" alt="" loading="lazy"><span class="play-mark" aria-hidden="true">↗</span></div><div><span class="eyebrow">{e(v['tag'])}</span><h3>{e(v['title'])}</h3><p>{e(v['description'])}</p><span class="note-read">Watch on YouTube ↗</span></div></a>''' for v in DATA['videos'])
+    filters=''.join(f'<button type="button" aria-pressed="{str(category=="all").lower()}" data-filter="{category}">{label} <span>{sum(category=="all" or p["category"]==category for p in DATA["projects"]):02d}</span></button>' for category,label in [('all','All work'),('systems','AI systems'),('enablement','Enablement')])
     return f'''
     <section class="hero wrap">
-      <div class="hero-copy"><p class="eyebrow"><span class="blue-line"></span>Applied AI · Systems · Enablement</p>
+      <div class="hero-copy"><p class="eyebrow"><span class="accent-line"></span>Applied AI · Systems · Enablement</p>
       <h1>I turn messy workflows into <em>working AI systems.</em></h1>
-      <p class="hero-description">I’m Vatsal — a founder and hands-on builder. I connect client discovery, code, and capability transfer to make AI useful in the work people already do.</p>
+      <p class="hero-description">{e(DATA['hero_description'])}</p>
       <div class="hero-actions"><a class="button" href="#work">Explore my work <span aria-hidden="true">↓</span></a><a class="text-link" href="mailto:{e(DATA['email'])}">Get in touch ↗</a></div>
       <p class="hero-location"><span class="location-mark" aria-hidden="true">⌖</span> Greater Vancouver, BC <span> / </span> Open to remote & US opportunities</p></div>
       <div class="hero-side"><div class="portrait-frame"><img src="/assets/vatsal.jpg" width="1200" height="1600" alt="Vatsal Jain" fetchpriority="high"><span class="portrait-corner" aria-hidden="true">+</span><div class="portrait-caption"><span>Vatsal Jain</span><span>Founder, Clarity Works</span></div></div><div class="field-note"><span class="eyebrow">The through line</span><p>Understand the work.<br>Build the system.<br>Leave the team capable.</p><span class="field-note-arrow" aria-hidden="true">↙</span></div></div>
     </section>
     <div class="proof-strip wrap"><span>Business context.<br><strong>Technical execution.</strong></span><div><b>7</b><span>stages in the<br>outbound pipeline</span></div><div><b>3</b><span>LLM agents<br>working together</span></div><div><b>60+</b><span>personalized outreach<br>messages per day</span></div></div>
     <section class="work-section wrap" id="work"><div class="section-heading"><div><p class="eyebrow">01 / Selected work</p><h2>From an operational problem<br>to something people can use.</h2></div><span class="section-aside">Built, shipped, and learning.</span></div>
-      <div class="work-toolbar"><div class="filters" role="group" aria-label="Filter projects"><button type="button" aria-pressed="true" data-filter="all">All work <span>05</span></button><button type="button" aria-pressed="false" data-filter="systems">AI systems <span>04</span></button><button type="button" aria-pressed="false" data-filter="enablement">Enablement <span>01</span></button></div><span id="project-count" aria-live="polite">5 projects</span></div>{projects}
+      <div class="work-toolbar"><div class="filters" role="group" aria-label="Filter projects">{filters}</div><span id="project-count" aria-live="polite">{len(DATA['projects'])} projects</span></div>{projects}
     </section>
-    <section class="approach-section" id="approach"><div class="wrap"><div class="section-heading"><div><p class="eyebrow">02 / How I work</p><h2>The build starts<br>with a better question.</h2></div><p class="section-intro">The software matters. So do the process it fits into and the people who will use it.</p></div><div class="approach-grid"><div><span>01 — Discover</span><h3>Find the real constraint.</h3><p>Talk to the team, map the workflow, and turn an ambiguous request into a problem worth solving.</p></div><div><span>02 — Build</span><h3>Connect reasoning to action.</h3><p>Use Python, APIs, and agent workflows to ship a useful system, with explicit checks around model output.</p></div><div><span>03 — Enable</span><h3>Make it usable without me.</h3><p>Explain the decisions, document the process, and help the team own what happens next.</p></div></div></div></section>
-    <section class="about-section wrap" id="about"><div><p class="eyebrow">03 / A little context</p><h2>Economics by training.<br>A builder by practice.</h2></div><div class="about-copy"><p class="lead">I’m interested in the space between what a business needs and what the technology can actually do.</p><p>I studied International Economics at UBC, then built Clarity Works to help non-technical teams develop practical AI capability. My work moves between client conversations, workflow design, Python pipelines, and hands-on teaching.</p><p>I build with Claude Code and Codex, work with Python and SQL, and have foundational TypeScript experience. My focus is understanding the logic, the failure modes, and the operational outcome.</p><div class="timeline"><div><span>2025 — Present</span><strong>Founder · Clarity Works</strong></div><div><span>2022</span><strong>Product Research Fellow · Circonomy</strong></div><div><span>2020 — 2024</span><strong>International Economics · UBC</strong></div></div><a class="text-link" href="{e(DATA['business'])}">More about Clarity Works ↗</a></div></section>
-    <section class="notes-section wrap" id="notes"><div class="section-heading"><div><p class="eyebrow">04 / Notes from the work</p><h2>What I’m thinking through.</h2></div><a class="text-link" href="{e(DATA['youtube'])}">Watch on YouTube ↗</a></div><div class="notes-grid">{notes}</div></section>
+    <section class="approach-section" id="approach"><div class="wrap"><div class="section-heading"><div><p class="eyebrow">02 / How I work</p><h2>Context. Process.<br>Then the build.</h2></div><p class="section-intro">My operating method at Clarity Works. Each step makes the next one more useful.</p></div><div class="approach-grid">{method}</div><a class="method-source text-link" href="https://www.tryclarityworks.com/philosophy">The philosophy behind the method ↗</a></div></section>
+    <section class="about-section wrap" id="about"><div><p class="eyebrow">03 / A little context</p><h2>Economics by training.<br>A builder by practice.</h2><figure class="about-photo"><img src="{e(DATA['about']['photo'])}" width="1200" height="1600" alt="{e(DATA['about']['photo_alt'])}" loading="lazy"><figcaption>{e(DATA['about']['photo_caption'])}</figcaption></figure></div><div class="about-copy"><p class="lead">{e(DATA['about']['lead'])}</p>{paragraphs(DATA['about']['paragraphs'])}<div class="timeline"><div><span>2025 — Present</span><strong>Founder · Clarity Works</strong></div><div><span>2022</span><strong>Product Research Fellow · Circonomy</strong></div><div><span>2020 — 2024</span><strong>International Economics · UBC</strong></div></div><a class="text-link" href="{e(DATA['business'])}">More about Clarity Works ↗</a></div></section>
+    <section class="video-section wrap" id="teaching"><div class="section-heading"><div><p class="eyebrow">04 / Teaching in the open</p><h2>See how I explain the work.</h2></div><a class="text-link" href="{e(DATA['youtube'])}">The full YouTube library ↗</a></div><div class="video-grid">{videos}</div></section>
+    <section class="notes-section wrap" id="notes"><div class="section-heading"><div><p class="eyebrow">05 / Notes from the work</p><h2>What I’m thinking through.</h2></div></div><div class="notes-grid">{notes}</div></section>
     <section class="contact-section wrap" id="contact"><div class="contact-top"><p class="eyebrow"><i class="availability-dot"></i>Open to the right opportunity</p><span>Remote preferred · Open to the US</span></div><h2>Have a messy workflow<br>or an ambitious AI team?</h2><div class="contact-bottom"><p>I’m exploring Forward Deployed Engineer, AI Solutions Architect, and AI Enablement roles — as well as B2B engagements.</p><a class="button button-light" href="mailto:{e(DATA['email'])}">Let’s talk <span aria-hidden="true">↗</span></a></div></section>'''
 
 def case_study(p):
     sections=''.join(f'<section class="story-section"><h2>{e(s["title"])}</h2><div>{paragraphs(s["paragraphs"])}</div></section>' for s in p['sections'])
     tags=''.join(f'<span>{e(t)}</span>' for t in p['stack'])
     external = f'<a class="button" href="{e(p["link"]["url"])}">{e(p["link"]["label"])} ↗</a>' if p.get('link') else ''
-    body=f'''<div class="wrap story"><a class="back-link" href="/#work">← All selected work</a><header class="story-header"><p class="eyebrow">{e(p['context'])} <span class="status"><i></i>{e(p['status'])}</span></p><h1>{e(p['name'])}</h1><p class="story-deck">{e(p['summary'])}</p></header><dl class="story-facts"><div><dt>Project</dt><dd>{e(p['product'])}</dd></div><div><dt>My role</dt><dd>{e(p['role'])}</dd></div><div><dt>Current outcome</dt><dd>{e(p['outcome'])}</dd></div></dl><div class="story-flow"><p class="eyebrow">The workflow, at a glance</p>{flow(p,True)}<p class="flow-caption">A simplified view of the workflow.</p></div>{sections}<section class="story-tools"><h2>Tools & focus</h2><div class="tags">{tags}</div></section><div class="story-cta">{external}<a class="text-link" href="mailto:{e(DATA['email'])}">Talk about this work ↗</a></div></div>'''
+    metrics=''
+    if p.get('metrics'):
+        metric_items=''.join(f'<div><strong>{e(m["value"])}</strong><span>{e(m["label"])}</span></div>' for m in p['metrics'])
+        metrics=f'<aside class="case-metrics" aria-label="Reported project results"><div>{metric_items}</div><p>{e(p["metrics_note"])}</p></aside>'
+    stages=''
+    if p.get('stages'):
+        stage_items=''.join(f'<li><span>{i+1:02d}</span>{e(stage)}</li>' for i,stage in enumerate(p['stages']))
+        stages=f'<section class="stage-section"><h2>The stages</h2><ol>{stage_items}</ol></section>'
+    sources=''
+    if p.get('sources'):
+        source_items=''.join(f'<a href="{e(s["url"])}">{e(s["label"])} ↗</a>' for s in p['sources'])
+        sources=f'<aside class="story-sources"><h2>More detail</h2><div>{source_items}</div></aside>'
+    body=f'''<div class="wrap story"><a class="back-link" href="/#work">← All selected work</a><header class="story-header"><p class="eyebrow">{e(p['context'])} <span class="status"><i></i>{e(p['status'])}</span></p><h1>{e(p['name'])}</h1><p class="story-deck">{e(p['summary'])}</p></header><dl class="story-facts"><div><dt>Project</dt><dd>{e(p['product'])}</dd></div><div><dt>My role</dt><dd>{e(p['role'])}</dd></div><div><dt>Current outcome</dt><dd>{e(p['outcome'])}</dd></div></dl>{metrics}<div class="story-flow"><p class="eyebrow">The workflow, at a glance</p>{flow(p,True)}<p class="flow-caption">A simplified view of the workflow.</p></div>{stages}{sections}<section class="story-tools"><h2>Tools & focus</h2><div class="tags">{tags}</div></section>{sources}<div class="story-cta">{external}<a class="text-link" href="mailto:{e(DATA['email'])}">Talk about this work ↗</a></div></div>'''
     return shell(p['name']+' — Vatsal Jain',p['summary'],body,'/work/'+p['slug']+'/')
 
 def note_page(n):
@@ -93,5 +112,5 @@ if __name__ == '__main__':
     write('404.html',shell('Page not found — Vatsal Jain','Return to Vatsal Jain’s portfolio.','<section class="wrap not-found"><p class="eyebrow">404 / A loose end</p><h1>This page has moved<br>or doesn’t exist.</h1><a class="button" href="/">Back to the portfolio →</a></section>'))
     paths=['/']+['/work/'+p['slug']+'/' for p in DATA['projects']]+['/notes/'+n['slug']+'/' for n in DATA['notes']]
     write('sitemap.xml','<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+''.join('<url><loc>'+e(ORIGIN+p)+'</loc></url>' for p in paths)+'</urlset>')
-    write('robots.txt','User-agent: *\nAllow: /\nSitemap: '+ORIGIN+'/sitemap.xml\n')
+    write('robots.txt','User-agent: *\n'+('Disallow: /\n' if PREVIEW else 'Allow: /\nSitemap: '+ORIGIN+'/sitemap.xml\n'))
     print(f'Built {len(paths)} content pages plus 404 in {OUT}')
