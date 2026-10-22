@@ -38,6 +38,6 @@ Social metadata uses a 1200×630 PNG rendered from the editable `social.svg`. Ve
 
 Import this repository into Vercel with root directory `.` and framework preset Other. Vercel reads `vercel.json`, builds with `python3 build.py && python3 check.py`, and serves only `dist/`. There are no Python packages to install; the standard build image provides Python. Production branch: `main`. Canonicals, sitemap, and social metadata default to `https://vatsaljain.com`; preview builds are marked noindex. No environment variables are required.
 
-Attach `vatsaljain.com` and `www.vatsaljain.com` to the Vercel project, then use its returned DNS recommendations. The `www` redirect to the apex domain is already configured. Do not change mail or other unrelated DNS records.
+Attach `vatsaljain.com` and `www.vatsaljain.com` to the Vercel project, then use its returned DNS recommendations. Manage the primary-domain redirect in Vercel's Domains settings; do not add a reverse host redirect in `vercel.json`. The active domain configuration redirects the apex to `www`. Do not change mail or other unrelated DNS records.
 
 The portfolio manager keeps private operations and deployment records outside this repository. Historical hosting identity, Vercel local state, credentials, and generated output are ignored. No registrar or DNS credentials are stored here.
