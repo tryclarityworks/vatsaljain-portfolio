@@ -10,48 +10,90 @@
   "projects": [
     {
       "slug": "intent-signals",
-      "name": "Finding intent in the conversation",
-      "product": "Real estate intent engine",
+      "name": "From missed signals to a useful follow-up",
+      "product": "Real estate follow-up system",
       "category": "systems",
-      "status": "Live pilot",
-      "summary": "An LLM-powered system that finds buying and selling signals in communication streams, then alerts the agent when a prospect needs help.",
-      "context": "Real estate · Intent extraction",
+      "status": "Live client pilot",
+      "summary": "A live client workflow that turns newsletter activity and website enquiries into a shared contact record, timely alerts, and AI drafts the advisor reviews before sending.",
+      "context": "Client work · Real estate",
       "role": "Founder & builder, Clarity Works",
-      "outcome": "Currently in pilot testing",
+      "outcome": "Live with a client; adoption and outcomes under evaluation",
       "stack": [
-        "LLM reasoning",
-        "API orchestration",
-        "Workflow design"
+        "Python",
+        "Modal",
+        "Mailchimp API",
+        "Formspark API",
+        "Google Sheets",
+        "Claude / OpenRouter",
+        "Gmail",
+        "healthchecks.io",
+        "Claude Cowork"
       ],
       "flow": [
-        "Communication streams",
-        "Intent extraction",
-        "Agent alert"
+        "Read signals",
+        "Update contact record",
+        "Review follow-up"
       ],
       "sections": [
         {
-          "title": "The problem",
+          "title": "The client problem",
           "paragraphs": [
-            "A prospect’s next move can be buried in an ordinary reply. Real estate teams need a way to notice those signals across newsletters, drip campaigns, and ongoing conversations."
+            "An independent real estate advisor had a newsletter audience and incoming website enquiries, but no shared view of what each person needed. Engagement lived in email reports, form details lived elsewhere, and relationship history depended on memory. A signal could be recorded without becoming a useful next action.",
+            "The client wanted individual follow-up without watching a dashboard or sending generic sequences. The system also had to preserve the existing email plan, leave website changes under the client’s control, and keep every contact email subject to human approval. This account reflects an early live review in October 2026; client and contact details are anonymized."
           ]
         },
         {
-          "title": "What I built",
+          "title": "Start with the existing workflow",
           "paragraphs": [
-            "The system ingests communication streams and uses LLM reasoning to extract explicit and implicit buying or selling intent. It sends real-time alerts to agents when a prospect needs assistance.",
-            "This is the current main product at Clarity Works. It brings together the work I enjoy most: understanding the operational problem and translating it into a working AI pipeline."
+            "I reviewed campaign activity and form submissions before designing the automation. The audit surfaced buying and selling interest already present in the data, as well as a form-to-email integration that passed an address but lost the context of the enquiry.",
+            "I brought the contact history into one Google Sheet owned by the client: one row per person, with their stated needs, relevant observations, and follow-up status."
           ]
         },
         {
-          "title": "Where it stands",
+          "title": "Separate interest from permission",
           "paragraphs": [
-            "The product is live in pilot testing. I’m keeping that distinction clear: a deployed pilot is an important step, and its broader business impact still needs to be measured."
+            "The newsletter now includes a question with one-click answers for buying, selling, or watching the market. Declared answers and inferred interest are stored separately, so an interpretation is never presented as something the contact said.",
+            "Call recommendations require an explicit request. A later answer indicating that someone is only watching the market marks an earlier call request as “Don’t call.” Click activity on its own does not authorize a call."
           ]
         },
         {
-          "title": "The design question",
+          "title": "What is live",
           "paragraphs": [
-            "How do you distinguish a useful signal from a plausible interpretation? For an intent system, that question matters as much as the extraction itself. It is the part of the work I want to make visible as the pilot develops."
+            "A Python watcher runs on Modal every 15 minutes. It reads Mailchimp campaign reports and website submissions through the Formspark API, updates the contact record, and sends the advisor an email alert with context and a draft follow-up. A weekly summary covers activity that does not need an immediate alert.",
+            "Reading forms directly preserves the enquiry, contact details, and preferred call time that the earlier integration dropped. Explicit call requests enter a call list with a next-business-day deadline. The system also checks whether a form submission reached the email list."
+          ]
+        },
+        {
+          "title": "Put guardrails around the draft",
+          "paragraphs": [
+            "Claude, accessed through OpenRouter, drafts from the person’s history. Code checks each draft for prohibited references to browsing or click tracking, calls offered without a request, and writing rules. Rejected drafts are rewritten; a pre-checked fallback is available if validation still fails.",
+            "Observed browsing details stay in the advisor’s internal context and out of the outgoing draft. Scanner-like bursts of clicks are held instead of treated as genuine interest. The advisor reviews, edits, and sends every contact email; the system does not send outreach automatically."
+          ]
+        },
+        {
+          "title": "Make failure visible",
+          "paragraphs": [
+            "The watcher retries temporary errors, protects against duplicate alerts, and records failures in the Sheet. An external heartbeat monitor flags a stopped schedule. Before client delivery, I tested real emails and clicks against a copy of the contact record, with alerts routed to a test inbox."
+          ]
+        },
+        {
+          "title": "Make the newsletter actionable",
+          "paragraphs": [
+            "I built a newsletter template and a Claude Cowork workflow with checks for complete links and correct answer buttons. The new text-based newsletter format and question have been sent to the audience. Routine use of the builder remains part of the ongoing handoff."
+          ]
+        },
+        {
+          "title": "Early operation, measured carefully",
+          "paragraphs": [
+            "At the October 2026 review, website enquiries reached the advisor as full alerts and contact records, including requests for calls. This demonstrates that existing demand is reaching the follow-up workflow; it does not establish that the system generated new demand.",
+            "At that point, the newsletter question had not produced genuine answers, call completion was not yet reliably recorded, and the client was not using the suggested drafts as-is. Conversion, revenue, and time saved remained unmeasured."
+          ]
+        },
+        {
+          "title": "What client feedback changed",
+          "paragraphs": [
+            "Feedback showed that draft tone and contact-record usability needed more work. I separated subject lines from message text and added a compose-email link to reduce copying. Compatibility with the client’s usual email app is still being tested.",
+            "The next iteration will ground drafts in examples of what the advisor actually sends in each situation, improve the call-list workflow, and measure draft adoption and follow-through. Those are the next steps in this live engagement."
           ]
         }
       ]
@@ -343,7 +385,7 @@
     "lead": "My economics background made me curious about incentives and ownership. Building AI systems made that practical.",
     "paragraphs": [
       "I founded Clarity Works to help service-based businesses build AI capability inside their teams. I work from business context to workflow diagnosis, SOP improvement, and the first useful AI-assisted build.",
-      "That same method shapes my own systems: an outbound engine, an intent-extraction pilot, and the content pipeline behind my educational work. I publish the frameworks openly and use real builds to explain the decisions.",
+      "That same method shapes my work: a live client follow-up system, my outbound engine, and the content pipeline behind my educational work. I publish the frameworks openly and use real builds to explain the decisions.",
       "I build with Claude Code and Codex, work with Python and SQL, and have foundational TypeScript experience. I care about understanding the logic, making failure modes visible, and leaving a workflow people can maintain."
     ],
     "photo": "/assets/vatsal-railing.jpg",
