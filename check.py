@@ -48,6 +48,8 @@ def main():
         for href in page.links:
             url=urlsplit(href)
             if url.scheme or url.netloc:continue
+            # Vercel serves this analytics endpoint; it is not a build artifact.
+            if url.path=='/_vercel/insights/script.js':continue
             target=(DIST/unquote(url.path.lstrip('/'))) if url.path.startswith('/') else (path.parent/unquote(url.path))
             if not url.path:target=path
             if target.is_dir():target=target/'index.html'

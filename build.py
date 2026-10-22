@@ -13,6 +13,10 @@ OUT = ROOT / 'dist'
 DATA = json.loads((ROOT / 'content.json').read_text())
 ORIGIN = os.environ.get('PORTFOLIO_ORIGIN', DATA['production_origin']).rstrip('/')
 PREVIEW = os.environ.get('VERCEL_ENV') in ('preview', 'development')
+ANALYTICS = '''  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>''' if os.environ.get('VERCEL_ENV') == 'production' else ''
 if urlsplit(ORIGIN).scheme not in ('http', 'https') or not urlsplit(ORIGIN).netloc:
     raise SystemExit('PORTFOLIO_ORIGIN must be an absolute HTTP(S) URL')
 
@@ -36,6 +40,7 @@ def shell(title, description, body, path='/'):
     values = dict(DATA, title=e(title), description=e(description), body=body,
                   origin=e(ORIGIN), canonical=e(ORIGIN+path),
                   robots='<meta name="robots" content="noindex, nofollow">' if PREVIEW else '',
+                  analytics=ANALYTICS,
                   schema=json.dumps(schema).replace('<','\\u003c'))
     return re.sub(r'\{\{([a-z_]+)\}\}', lambda m:str(values[m.group(1)]), template)
 

@@ -1,6 +1,6 @@
 # Portfolio website
 
-An editorial, responsive static portfolio. Five project stories, two notes, an about section, a four-step working method, two public video links, work filters, and email/social links. Content and personal photos are adapted from the user's Clarity Works website with explicit permission. Contact opens the visitor's email app; there is no contact-form backend, analytics, account system, or database.
+An editorial, responsive static portfolio. Five project stories, two notes, an about section, a four-step working method, two public video links, work filters, and email/social links. Content and personal photos are adapted from the user's Clarity Works website with explicit permission. Contact opens the visitor's email app; there is no contact-form backend, account system, or database. Production pages use Vercel Web Analytics.
 
 ## Edit and preview
 
@@ -31,6 +31,12 @@ The [user-selected palette](https://coolors.co/bfbdc1-6d6a75-37323e-deb841-de9e3
 Typography uses Manrope/DM Sans with system fallbacks and an italic serif emphasis. Google Fonts is an external font request; the site remains readable without it. Two photos come from [Clarity Works](https://www.tryclarityworks.com/about); the video thumbnails link to Vatsal's own published videos. These assets are reused with the owner's permission. Workflow diagrams are simplified explanatory views, not product screenshots.
 
 Social metadata uses a 1200×630 PNG rendered from the editable `social.svg`. Verify rich previews on the target platform at public launch.
+
+## Web Analytics
+
+The shared HTML template includes Vercel's supported tracking snippet when `VERCEL_ENV=production`. It loads the deferred script at `/_vercel/insights/script.js` to count visitors and page views on every production page. Local and preview builds omit tracking. This static site uses the HTML integration, so no Next.js component, npm dependency, or JavaScript bundler is required. See [Vercel's setup guide](https://vercel.com/docs/analytics/quickstart).
+
+Web Analytics must remain enabled in the existing Vercel project. Verify the script returns JavaScript and the browser's page-view request succeeds after deployment. Counts are available in that project's Analytics dashboard.
 
 ## Hosting
 
