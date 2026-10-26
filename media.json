@@ -1,0 +1,218 @@
+{
+  "images": {
+    "/assets/vatsal.jpg": {
+      "width": 1200,
+      "height": 1600,
+      "sizes": "(max-width: 760px) calc(50vw - 31px), (max-width: 1050px) calc(40.82vw - 42.45px), (max-width: 1296px) calc(38.46vw - 65.38px), 434px",
+      "avif": [
+        {
+          "width": 120,
+          "src": "/assets/optimized/vatsal-120w.8dafdbda4635.avif",
+          "bytes": 2405
+        },
+        {
+          "width": 240,
+          "src": "/assets/optimized/vatsal-240w.9c27f2c591e3.avif",
+          "bytes": 5709
+        },
+        {
+          "width": 360,
+          "src": "/assets/optimized/vatsal-360w.aec35c4054e8.avif",
+          "bytes": 9648
+        },
+        {
+          "width": 540,
+          "src": "/assets/optimized/vatsal-540w.9d973cba2e45.avif",
+          "bytes": 16904
+        },
+        {
+          "width": 720,
+          "src": "/assets/optimized/vatsal-720w.739380d665f0.avif",
+          "bytes": 25280
+        },
+        {
+          "width": 960,
+          "src": "/assets/optimized/vatsal-960w.79d0d963d228.avif",
+          "bytes": 38776
+        }
+      ],
+      "webp": [
+        {
+          "width": 120,
+          "src": "/assets/optimized/vatsal-120w.db630de07b57.webp",
+          "bytes": 3690
+        },
+        {
+          "width": 240,
+          "src": "/assets/optimized/vatsal-240w.a208f3221534.webp",
+          "bytes": 8972
+        },
+        {
+          "width": 360,
+          "src": "/assets/optimized/vatsal-360w.21cbd6b0dcf7.webp",
+          "bytes": 15292
+        },
+        {
+          "width": 540,
+          "src": "/assets/optimized/vatsal-540w.69dbba6c6c1d.webp",
+          "bytes": 27254
+        },
+        {
+          "width": 720,
+          "src": "/assets/optimized/vatsal-720w.47b4271c71af.webp",
+          "bytes": 40810
+        },
+        {
+          "width": 960,
+          "src": "/assets/optimized/vatsal-960w.fc64652caf5f.webp",
+          "bytes": 62196
+        }
+      ],
+      "fallback": "/assets/optimized/vatsal-540w.69dbba6c6c1d.webp"
+    },
+    "/assets/vatsal-railing.jpg": {
+      "width": 1200,
+      "height": 1600,
+      "sizes": "(max-width: 760px) calc(100vw - 40px), (max-width: 899px) calc(50vw - 59.5px), 390px",
+      "avif": [
+        {
+          "width": 360,
+          "src": "/assets/optimized/vatsal-railing-360w.5bde370b5b16.avif",
+          "bytes": 13370
+        },
+        {
+          "width": 540,
+          "src": "/assets/optimized/vatsal-railing-540w.2222cb49cf83.avif",
+          "bytes": 26404
+        },
+        {
+          "width": 780,
+          "src": "/assets/optimized/vatsal-railing-780w.e9f363ad8f68.avif",
+          "bytes": 46915
+        },
+        {
+          "width": 1080,
+          "src": "/assets/optimized/vatsal-railing-1080w.9a8f7984a360.avif",
+          "bytes": 75173
+        }
+      ],
+      "webp": [
+        {
+          "width": 360,
+          "src": "/assets/optimized/vatsal-railing-360w.739b55bfe810.webp",
+          "bytes": 21060
+        },
+        {
+          "width": 540,
+          "src": "/assets/optimized/vatsal-railing-540w.b5f9019330e0.webp",
+          "bytes": 41190
+        },
+        {
+          "width": 780,
+          "src": "/assets/optimized/vatsal-railing-780w.b0e74f6d1645.webp",
+          "bytes": 72300
+        },
+        {
+          "width": 1080,
+          "src": "/assets/optimized/vatsal-railing-1080w.d55e3ec88132.webp",
+          "bytes": 115108
+        }
+      ],
+      "fallback": "/assets/optimized/vatsal-railing-780w.b0e74f6d1645.webp"
+    },
+    "/assets/content-walkthrough.jpg": {
+      "width": 480,
+      "height": 360,
+      "sizes": "(max-width: 390px) 90px, (max-width: 760px) 115px, (max-width: 1050px) 110px, 150px",
+      "avif": [
+        {
+          "width": 160,
+          "src": "/assets/optimized/content-walkthrough-160w.4c829a8c232e.avif",
+          "bytes": 2912
+        },
+        {
+          "width": 320,
+          "src": "/assets/optimized/content-walkthrough-320w.804412ff5f50.avif",
+          "bytes": 7551
+        },
+        {
+          "width": 480,
+          "src": "/assets/optimized/content-walkthrough-480w.100badfa1a33.avif",
+          "bytes": 14059
+        }
+      ],
+      "webp": [
+        {
+          "width": 160,
+          "src": "/assets/optimized/content-walkthrough-160w.d6f03039c3e3.webp",
+          "bytes": 4288
+        },
+        {
+          "width": 320,
+          "src": "/assets/optimized/content-walkthrough-320w.bbb57ff455ca.webp",
+          "bytes": 12238
+        },
+        {
+          "width": 480,
+          "src": "/assets/optimized/content-walkthrough-480w.c6de9e47e0c2.webp",
+          "bytes": 22288
+        }
+      ],
+      "fallback": "/assets/optimized/content-walkthrough-320w.bbb57ff455ca.webp"
+    },
+    "/assets/workflow-selection.jpg": {
+      "width": 480,
+      "height": 360,
+      "sizes": "(max-width: 390px) 90px, (max-width: 760px) 115px, (max-width: 1050px) 110px, 150px",
+      "avif": [
+        {
+          "width": 160,
+          "src": "/assets/optimized/workflow-selection-160w.323984eabfa2.avif",
+          "bytes": 2505
+        },
+        {
+          "width": 320,
+          "src": "/assets/optimized/workflow-selection-320w.2e3448e54f2b.avif",
+          "bytes": 6240
+        },
+        {
+          "width": 480,
+          "src": "/assets/optimized/workflow-selection-480w.6d0b7be3022e.avif",
+          "bytes": 10283
+        }
+      ],
+      "webp": [
+        {
+          "width": 160,
+          "src": "/assets/optimized/workflow-selection-160w.fea4f599dbcc.webp",
+          "bytes": 4068
+        },
+        {
+          "width": 320,
+          "src": "/assets/optimized/workflow-selection-320w.8a889cd47cd6.webp",
+          "bytes": 9154
+        },
+        {
+          "width": 480,
+          "src": "/assets/optimized/workflow-selection-480w.424ba3f4c7bf.webp",
+          "bytes": 15886
+        }
+      ],
+      "fallback": "/assets/optimized/workflow-selection-320w.8a889cd47cd6.webp"
+    }
+  },
+  "fonts": {
+    "dm-sans": {
+      "family": "DM Sans",
+      "weight": "400 700",
+      "src": "/assets/optimized/dm-sans-latin.4a04d842fb8a.woff2",
+      "bytes": 23196
+    },
+    "manrope": {
+      "family": "Manrope",
+      "weight": "400 800",
+      "src": "/assets/optimized/manrope-latin.fa46620b0f58.woff2",
+      "bytes": 23816
+    }
+  }
+}

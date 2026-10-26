@@ -3,6 +3,7 @@
 !build.py
 !check.py
 !content.json
+!media.json
 !package.json
 !vercel.json
 !templates/

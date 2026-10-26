@@ -4,6 +4,7 @@ from pathlib import Path
 from html import escape
 from urllib.parse import urlsplit
 import json
+import hashlib
 import os
 import re
 import shutil
@@ -11,6 +12,9 @@ import shutil
 ROOT = Path(__file__).resolve().parent
 OUT = ROOT / 'dist'
 DATA = json.loads((ROOT / 'content.json').read_text())
+MEDIA = json.loads((ROOT / 'media.json').read_text())
+STYLES = (ROOT / 'static/style.css').read_text()
+APP_VERSION = hashlib.sha256((ROOT / 'static/app.js').read_bytes()).hexdigest()[:12]
 ORIGIN = os.environ.get('PORTFOLIO_ORIGIN', DATA['production_origin']).rstrip('/')
 PREVIEW = os.environ.get('VERCEL_ENV') in ('preview', 'development')
 ANALYTICS = '''  <script>
@@ -25,6 +29,16 @@ def e(value):
 
 def paragraphs(items):
     return ''.join(f'<p>{e(p)}</p>' for p in items)
+
+def responsive_image(src, alt, lazy=False, priority=False):
+    media = MEDIA['images'][src]
+    def srcset(fmt):
+        return ', '.join(f'{item["src"]} {item["width"]}w' for item in media[fmt])
+    loading = ' loading="lazy"' if lazy else ''
+    fetch = ' fetchpriority="high"' if priority else ''
+    return (f'<picture><source type="image/avif" srcset="{e(srcset("avif"))}" sizes="{e(media["sizes"])}">'
+            f'<img src="{e(media["fallback"])}" srcset="{e(srcset("webp"))}" sizes="{e(media["sizes"])}" '
+            f'width="{media["width"]}" height="{media["height"]}" alt="{e(alt)}" decoding="async"{loading}{fetch}></picture>')
 
 def flow(project, large=False):
     nodes = ''.join(f'<span class="flow-node"><i aria-hidden="true">{i+1:02d}</i>{e(label)}</span>'
@@ -41,6 +55,9 @@ def shell(title, description, body, path='/'):
                   origin=e(ORIGIN), canonical=e(ORIGIN+path),
                   robots='<meta name="robots" content="noindex, nofollow">' if PREVIEW else '',
                   analytics=ANALYTICS,
+                  styles=STYLES, app_version=APP_VERSION,
+                  dm_sans_font=MEDIA['fonts']['dm-sans']['src'],
+                  manrope_font=MEDIA['fonts']['manrope']['src'],
                   schema=json.dumps(schema).replace('<','\\u003c'))
     return re.sub(r'\{\{([a-z_]+)\}\}', lambda m:str(values[m.group(1)]), template)
 
@@ -61,7 +78,7 @@ def home():
     projects=''.join(project_card(p,i+1) for i,p in enumerate(DATA['projects']))
     notes=''.join(f'''<a class="note" href="/notes/{e(n['slug'])}/"><span class="eyebrow">{e(n['tag'])}</span><h3>{e(n['title'])}<span aria-hidden="true">↗</span></h3><p>{e(n['summary'])}</p><span class="note-read">Read note →</span></a>''' for n in DATA['notes'])
     method=''.join(f'''<div><span>{i+1:02d} — {e(item['label'])}</span><h3>{e(item['heading'])}</h3><p>{e(item['description'])}</p></div>''' for i,item in enumerate(DATA['method']))
-    videos=''.join(f'''<a class="video-link" href="{e(v['url'])}"><div class="video-image"><img src="{e(v['thumbnail'])}" width="480" height="360" alt="" loading="lazy"><span class="play-mark" aria-hidden="true">↗</span></div><div><span class="eyebrow">{e(v['tag'])}</span><h3>{e(v['title'])}</h3><p>{e(v['description'])}</p><span class="note-read">Watch on YouTube ↗</span></div></a>''' for v in DATA['videos'])
+    videos=''.join(f'''<a class="video-link" href="{e(v['url'])}"><div class="video-image">{responsive_image(v['thumbnail'], "", lazy=True)}<span class="play-mark" aria-hidden="true">↗</span></div><div><span class="eyebrow">{e(v['tag'])}</span><h3>{e(v['title'])}</h3><p>{e(v['description'])}</p><span class="note-read">Watch on YouTube ↗</span></div></a>''' for v in DATA['videos'])
     filters=''.join(f'<button type="button" aria-pressed="{str(category=="all").lower()}" data-filter="{category}">{label} <span>{sum(category=="all" or p["category"]==category for p in DATA["projects"]):02d}</span></button>' for category,label in [('all','All work'),('systems','AI systems'),('enablement','Enablement')])
     return f'''
     <section class="hero wrap">
@@ -70,14 +87,14 @@ def home():
       <p class="hero-description">{e(DATA['hero_description'])}</p>
       <div class="hero-actions"><a class="button" href="#work">Explore my work <span aria-hidden="true">↓</span></a><a class="text-link" href="mailto:{e(DATA['email'])}">Get in touch ↗</a></div>
       <p class="hero-location"><span class="location-mark" aria-hidden="true">⌖</span> Greater Vancouver, BC <span> / </span> Open to remote & US opportunities</p></div>
-      <div class="hero-side"><div class="portrait-frame"><img src="/assets/vatsal.jpg" width="1200" height="1600" alt="Vatsal Jain" fetchpriority="high"><span class="portrait-corner" aria-hidden="true">+</span><div class="portrait-caption"><span>Vatsal Jain</span><span>Founder, Clarity Works</span></div></div><div class="field-note"><span class="eyebrow">The through line</span><p>Understand the work.<br>Build the system.<br>Leave the team capable.</p><span class="field-note-arrow" aria-hidden="true">↙</span></div></div>
+      <div class="hero-side"><div class="portrait-frame">{responsive_image("/assets/vatsal.jpg", "Vatsal Jain", priority=True)}<span class="portrait-corner" aria-hidden="true">+</span><div class="portrait-caption"><span>Vatsal Jain</span><span>Founder, Clarity Works</span></div></div><div class="field-note"><span class="eyebrow">The through line</span><p>Understand the work.<br>Build the system.<br>Leave the team capable.</p><span class="field-note-arrow" aria-hidden="true">↙</span></div></div>
     </section>
     <div class="proof-strip wrap"><span>Business context.<br><strong>Technical execution.</strong></span><div><b>7</b><span>stages in the<br>outbound pipeline</span></div><div><b>3</b><span>LLM agents<br>working together</span></div><div><b>150</b><span>personalized outreach<br>messages per day</span></div></div>
     <section class="work-section wrap" id="work"><div class="section-heading"><div><p class="eyebrow">01 / Selected work</p><h2>From an operational problem<br>to something people can use.</h2></div><span class="section-aside">Built, shipped, and learning.</span></div>
       <div class="work-toolbar"><div class="filters" role="group" aria-label="Filter projects">{filters}</div><span id="project-count" aria-live="polite">{len(DATA['projects'])} projects</span></div>{projects}
     </section>
     <section class="approach-section" id="approach"><div class="wrap"><div class="section-heading"><div><p class="eyebrow">02 / How I work</p><h2>Context. Process.<br>Then the build.</h2></div><p class="section-intro">My operating method at Clarity Works. Each step makes the next one more useful.</p></div><div class="approach-grid">{method}</div><a class="method-source text-link" href="https://www.tryclarityworks.com/philosophy">The philosophy behind the method ↗</a></div></section>
-    <section class="about-section wrap" id="about"><div><p class="eyebrow">03 / A little context</p><h2>Economics by training.<br>A builder by practice.</h2><figure class="about-photo"><img src="{e(DATA['about']['photo'])}" width="1200" height="1600" alt="{e(DATA['about']['photo_alt'])}" loading="lazy"><figcaption>{e(DATA['about']['photo_caption'])}</figcaption></figure></div><div class="about-copy"><p class="lead">{e(DATA['about']['lead'])}</p>{paragraphs(DATA['about']['paragraphs'])}<div class="timeline"><div><span>2025 — Present</span><strong>Founder · Clarity Works</strong></div><div><span>2022</span><strong>Product Research Fellow · Circonomy</strong></div><div><span>2020 — 2024</span><strong>International Economics · UBC</strong></div></div><a class="text-link" href="{e(DATA['business'])}">More about Clarity Works ↗</a></div></section>
+    <section class="about-section wrap" id="about"><div><p class="eyebrow">03 / A little context</p><h2>Economics by training.<br>A builder by practice.</h2><figure class="about-photo">{responsive_image(DATA['about']['photo'], DATA['about']['photo_alt'], lazy=True)}<figcaption>{e(DATA['about']['photo_caption'])}</figcaption></figure></div><div class="about-copy"><p class="lead">{e(DATA['about']['lead'])}</p>{paragraphs(DATA['about']['paragraphs'])}<div class="timeline"><div><span>2025 — Present</span><strong>Founder · Clarity Works</strong></div><div><span>2022</span><strong>Product Research Fellow · Circonomy</strong></div><div><span>2020 — 2024</span><strong>International Economics · UBC</strong></div></div><a class="text-link" href="{e(DATA['business'])}">More about Clarity Works ↗</a></div></section>
     <section class="video-section wrap" id="teaching"><div class="section-heading"><div><p class="eyebrow">04 / Teaching in the open</p><h2>See how I explain the work.</h2></div><a class="text-link" href="{e(DATA['youtube'])}">The full YouTube library ↗</a></div><div class="video-grid">{videos}</div></section>
     <section class="notes-section wrap" id="notes"><div class="section-heading"><div><p class="eyebrow">05 / Notes from the work</p><h2>What I’m thinking through.</h2></div></div><div class="notes-grid">{notes}</div></section>
     <section class="contact-section wrap" id="contact"><div class="contact-top"><p class="eyebrow"><i class="availability-dot"></i>Open to the right opportunity</p><span>Remote preferred · Open to the US</span></div><h2>Have a messy workflow<br>or an ambitious AI team?</h2><div class="contact-bottom"><p>I’m exploring Forward Deployed Engineer, AI Solutions Architect, and AI Enablement roles — as well as B2B engagements.</p><a class="button button-light" href="mailto:{e(DATA['email'])}">Let’s talk <span aria-hidden="true">↗</span></a></div></section>'''
@@ -102,7 +119,7 @@ def case_study(p):
     return shell(p['name']+' — Vatsal Jain',p['summary'],body,'/work/'+p['slug']+'/')
 
 def note_page(n):
-    body=f'''<article class="wrap note-page"><a class="back-link" href="/#notes">← Notes from the work</a><header><p class="eyebrow">{e(n['tag'])} / October 2026</p><h1>{e(n['title'])}</h1><p class="story-deck">{e(n['summary'])}</p></header><div class="prose">{paragraphs(n['paragraphs'])}</div><div class="note-signature"><img src="/assets/vatsal.jpg" width="52" height="52" alt=""><div><strong>Vatsal Jain</strong><p>Founder, Clarity Works · Applied AI & systems</p></div></div><a class="text-link" href="mailto:{e(DATA['email'])}">Continue the conversation ↗</a></article>'''
+    body=f'''<article class="wrap note-page"><a class="back-link" href="/#notes">← Notes from the work</a><header><p class="eyebrow">{e(n['tag'])} / October 2026</p><h1>{e(n['title'])}</h1><p class="story-deck">{e(n['summary'])}</p></header><div class="prose">{paragraphs(n['paragraphs'])}</div><div class="note-signature"><img src="{e(MEDIA['images']['/assets/vatsal.jpg']['webp'][0]['src'])}" width="52" height="52" alt="" loading="lazy" decoding="async"><div><strong>Vatsal Jain</strong><p>Founder, Clarity Works · Applied AI & systems</p></div></div><a class="text-link" href="mailto:{e(DATA['email'])}">Continue the conversation ↗</a></article>'''
     return shell(n['title']+' — Vatsal Jain',n['summary'],body,'/notes/'+n['slug']+'/')
 
 if __name__ == '__main__':

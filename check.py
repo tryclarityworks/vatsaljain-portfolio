@@ -24,6 +24,8 @@ class Page(HTMLParser):
         if tag=='meta' and attrs.get('property')=='og:image':self.og_image=attrs.get('content','')
         for attr in ['href','src']:
             if attrs.get(attr):self.links.append(attrs[attr])
+        if attrs.get('srcset'):
+            self.links.extend(item.strip().split()[0] for item in attrs['srcset'].split(',') if item.strip())
         if tag=='img' and 'alt' not in attrs:raise ValueError('Image missing alt attribute')
 
 def main():
