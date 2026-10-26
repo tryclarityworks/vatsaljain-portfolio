@@ -104,7 +104,7 @@
       "product": "Clarity Works outbound pipeline",
       "category": "systems",
       "status": "Built & used",
-      "summary": "Seven stages, three LLM agents, and deterministic checks around the work. Personalized outreach grew from about 10 to 150 messages per day.",
+      "summary": "Seven stages, three LLM agents, and rules in code: do-not-contact checks at three stages, verification before send, and a human approval gate. Personalized outreach grew from about 10 to 150 messages per day.",
       "context": "GTM · Multi-agent orchestration",
       "role": "Founder & builder, Clarity Works",
       "outcome": "~10 → 150 personalized messages / day",
@@ -381,7 +381,7 @@
     }
   ],
   "production_origin": "https://vatsaljain.com",
-  "hero_description": "I’m Vatsal — a founder, builder, and advisor. I turn operational problems into useful AI workflows, then help the people doing the work understand and own them.",
+  "hero_description": "I’m Vatsal — a founder who builds the systems too. I start from the operational problem, then help the people doing the work own what we build. Open to Forward Deployed Engineer, AI Solutions, and AI Enablement roles.",
   "about": {
     "lead": "My economics background made me curious about incentives and ownership. Building AI systems made that practical.",
     "paragraphs": [
@@ -413,6 +413,39 @@
       "label": "Build & enable",
       "heading": "Ship it. Help the team own it.",
       "description": "Add AI where it helps, keep review in the workflow, and transfer the capability."
+    }
+  ],
+  "announcement": {
+    "lead": "In San Francisco November 10–13.",
+    "text": "Glad to meet teams working on applied AI.",
+    "link_label": "Say hello ↗",
+    "subject": "San Francisco, Nov 10-13",
+    "until": "2026-11-15T00:00:00-08:00"
+  },
+  "stack": [
+    {
+      "label": "Hands-on",
+      "items": ["Python", "SQL", "API orchestration"]
+    },
+    {
+      "label": "Foundational",
+      "items": ["TypeScript"]
+    },
+    {
+      "label": "AI-assisted coding",
+      "items": ["Claude Code", "OpenAI Codex"]
+    },
+    {
+      "label": "Models & services",
+      "items": ["Claude via OpenRouter", "Apify", "Instantly", "Twilio", "Modal", "Mailchimp", "Formspark", "Google Sheets", "Gmail"]
+    },
+    {
+      "label": "Agent infrastructure",
+      "items": ["Hermes", "OpenClaw", "Graphify", "Cron scheduling"]
+    },
+    {
+      "label": "Reliability",
+      "items": ["Deterministic checks", "Guardrails in code", "Failure-mode analysis", "Heartbeat monitoring"]
     }
   ],
   "videos": [

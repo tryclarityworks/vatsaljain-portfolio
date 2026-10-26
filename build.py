@@ -2,7 +2,8 @@
 """Build only explicitly public content. No dependencies, no private-folder copies."""
 from pathlib import Path
 from html import escape
-from urllib.parse import urlsplit
+from urllib.parse import urlsplit, quote
+from datetime import datetime, timezone
 import json
 import hashlib
 import os
@@ -45,6 +46,14 @@ def flow(project, large=False):
                     for i, label in enumerate(project['flow']))
     return f'<div class="flow {"flow-large" if large else ""}" aria-label="Workflow overview">{nodes}</div>'
 
+def banner():
+    note = DATA['announcement']
+    if datetime.fromisoformat(note['until']) <= datetime.now(timezone.utc):
+        return ''
+    subject = quote(note['subject'])
+    return (f'  <div class="announce" data-until="{e(note["until"])}"><p><strong>{e(note["lead"])}</strong> {e(note["text"])} '
+            f'<a href="mailto:{e(DATA["email"])}?subject={subject}">{e(note["link_label"])}</a></p></div>')
+
 def shell(title, description, body, path='/'):
     template = (ROOT / 'templates/shell.html').read_text()
     schema = {'@context':'https://schema.org', '@type':'Person', 'name':DATA['name'],
@@ -54,7 +63,7 @@ def shell(title, description, body, path='/'):
     values = dict(DATA, title=e(title), description=e(description), body=body,
                   origin=e(ORIGIN), canonical=e(ORIGIN+path),
                   robots='<meta name="robots" content="noindex, nofollow">' if PREVIEW else '',
-                  analytics=ANALYTICS,
+                  analytics=ANALYTICS, banner=banner(),
                   styles=STYLES, app_version=APP_VERSION,
                   dm_sans_font=MEDIA['fonts']['dm-sans']['src'],
                   manrope_font=MEDIA['fonts']['manrope']['src'],
@@ -80,24 +89,26 @@ def home():
     method=''.join(f'''<div><span>{i+1:02d} — {e(item['label'])}</span><h3>{e(item['heading'])}</h3><p>{e(item['description'])}</p></div>''' for i,item in enumerate(DATA['method']))
     videos=''.join(f'''<a class="video-link" href="{e(v['url'])}"><div class="video-image">{responsive_image(v['thumbnail'], "", lazy=True)}<span class="play-mark" aria-hidden="true">↗</span></div><div><span class="eyebrow">{e(v['tag'])}</span><h3>{e(v['title'])}</h3><p>{e(v['description'])}</p><span class="note-read">Watch on YouTube ↗</span></div></a>''' for v in DATA['videos'])
     filters=''.join(f'<button type="button" aria-pressed="{str(category=="all").lower()}" data-filter="{category}">{label} <span>{sum(category=="all" or p["category"]==category for p in DATA["projects"]):02d}</span></button>' for category,label in [('all','All work'),('systems','AI systems'),('enablement','Enablement')])
+    stack=''.join(f'<div><dt>{e(group["label"])}</dt><dd>{e(" · ".join(group["items"]))}</dd></div>' for group in DATA['stack'])
     return f'''
     <section class="hero wrap">
       <div class="hero-copy"><p class="eyebrow"><span class="accent-line"></span>Applied AI · Systems · Enablement</p>
       <h1>I turn messy workflows into <em>working AI systems.</em></h1>
       <p class="hero-description">{e(DATA['hero_description'])}</p>
       <div class="hero-actions"><a class="button" href="#work">Explore my work <span aria-hidden="true">↓</span></a><a class="text-link" href="mailto:{e(DATA['email'])}">Get in touch ↗</a></div>
-      <p class="hero-location"><span class="location-mark" aria-hidden="true">⌖</span> Greater Vancouver, BC <span> / </span> Open to remote & US opportunities</p></div>
+      <p class="hero-location"><span class="location-mark" aria-hidden="true">⌖</span> Greater Vancouver, BC <span> / </span> Canadian citizen · Work from Canada, no US visa sponsorship needed</p></div>
       <div class="hero-side"><div class="portrait-frame">{responsive_image("/assets/vatsal.jpg", "Vatsal Jain", priority=True)}<span class="portrait-corner" aria-hidden="true">+</span><div class="portrait-caption"><span>Vatsal Jain</span><span>Founder, Clarity Works</span></div></div><div class="field-note"><span class="eyebrow">The through line</span><p>Understand the work.<br>Build the system.<br>Leave the team capable.</p><span class="field-note-arrow" aria-hidden="true">↙</span></div></div>
     </section>
     <div class="proof-strip wrap"><span>Business context.<br><strong>Technical execution.</strong></span><div><b>7</b><span>stages in the<br>outbound pipeline</span></div><div><b>3</b><span>LLM agents<br>working together</span></div><div><b>150</b><span>personalized outreach<br>messages per day</span></div></div>
     <section class="work-section wrap" id="work"><div class="section-heading"><div><p class="eyebrow">01 / Selected work</p><h2>From an operational problem<br>to something people can use.</h2></div><span class="section-aside">Built, shipped, and learning.</span></div>
       <div class="work-toolbar"><div class="filters" role="group" aria-label="Filter projects">{filters}</div><span id="project-count" aria-live="polite">{len(DATA['projects'])} projects</span></div>{projects}
+      <div class="stack"><p class="eyebrow">What the work is built with</p><dl>{stack}</dl></div>
     </section>
     <section class="approach-section" id="approach"><div class="wrap"><div class="section-heading"><div><p class="eyebrow">02 / How I work</p><h2>Context. Process.<br>Then the build.</h2></div><p class="section-intro">My operating method at Clarity Works. Each step makes the next one more useful.</p></div><div class="approach-grid">{method}</div><a class="method-source text-link" href="https://www.tryclarityworks.com/philosophy">The philosophy behind the method ↗</a></div></section>
     <section class="about-section wrap" id="about"><div><p class="eyebrow">03 / A little context</p><h2>Economics by training.<br>A builder by practice.</h2><figure class="about-photo">{responsive_image(DATA['about']['photo'], DATA['about']['photo_alt'], lazy=True)}<figcaption>{e(DATA['about']['photo_caption'])}</figcaption></figure></div><div class="about-copy"><p class="lead">{e(DATA['about']['lead'])}</p>{paragraphs(DATA['about']['paragraphs'])}<div class="timeline"><div><span>2025 — Present</span><strong>Founder · Clarity Works</strong></div><div><span>2022</span><strong>Product Research Fellow · Circonomy</strong></div><div><span>2020 — 2024</span><strong>International Economics · UBC</strong></div></div><a class="text-link" href="{e(DATA['business'])}">More about Clarity Works ↗</a></div></section>
     <section class="video-section wrap" id="teaching"><div class="section-heading"><div><p class="eyebrow">04 / Teaching in the open</p><h2>See how I explain the work.</h2></div><a class="text-link" href="{e(DATA['youtube'])}">The full YouTube library ↗</a></div><div class="video-grid">{videos}</div></section>
     <section class="notes-section wrap" id="notes"><div class="section-heading"><div><p class="eyebrow">05 / Notes from the work</p><h2>What I’m thinking through.</h2></div></div><div class="notes-grid">{notes}</div></section>
-    <section class="contact-section wrap" id="contact"><div class="contact-top"><p class="eyebrow"><i class="availability-dot"></i>Open to the right opportunity</p><span>Remote preferred · Open to the US</span></div><h2>Have a messy workflow<br>or an ambitious AI team?</h2><div class="contact-bottom"><p>I’m exploring Forward Deployed Engineer, AI Solutions Architect, and AI Enablement roles — as well as B2B engagements.</p><a class="button button-light" href="mailto:{e(DATA['email'])}">Let’s talk <span aria-hidden="true">↗</span></a></div></section>'''
+    <section class="contact-section wrap" id="contact"><div class="contact-top"><p class="eyebrow"><i class="availability-dot"></i>Open to the right opportunity</p><span>Remote preferred · Open to the US</span></div><h2>Have a messy workflow<br>or an ambitious AI team?</h2><div class="contact-bottom"><div class="contact-copy"><p>I’m exploring Forward Deployed Engineer, AI Solutions Architect, and AI Enablement roles, plus scoped B2B builds.</p><p><strong>Remote from Canada.</strong> I can work with US teams as an employee, or as a contractor through Clarity Works LLP, registered in British Columbia. Work performed in Canada doesn’t need US visa sponsorship.</p><p><strong>In person in the US.</strong> Open to travel for meetings and to relocating for the right role. Work authorization would be settled per role.</p></div><a class="button button-light" href="mailto:{e(DATA['email'])}">Let’s talk <span aria-hidden="true">↗</span></a></div></section>'''
 
 def case_study(p):
     sections=''.join(f'<section class="story-section"><h2>{e(s["title"])}</h2><div>{paragraphs(s["paragraphs"])}</div></section>' for s in p['sections'])

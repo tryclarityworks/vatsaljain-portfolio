@@ -12,3 +12,7 @@ document.querySelectorAll('[data-filter]').forEach((button) => {
     document.getElementById('project-count').textContent = `${count} project${count === 1 ? '' : 's'}`;
   });
 });
+
+document.querySelectorAll('.announce[data-until]').forEach((banner) => {
+  if (Date.now() >= Date.parse(banner.dataset.until)) banner.hidden = true;
+});
