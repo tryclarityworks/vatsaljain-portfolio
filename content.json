@@ -107,7 +107,7 @@
       "summary": "Seven stages, three LLM agents, and rules in code: do-not-contact checks at three stages, verification before send, and a human approval gate. Personalized outreach grew from about 10 to 150 messages per day.",
       "context": "GTM · Multi-agent orchestration",
       "role": "Founder & builder, Clarity Works",
-      "outcome": "~10 → 150 personalized messages / day",
+      "outcome": "~10 to 150 personalized messages / day",
       "stack": [
         "Python",
         "Claude / OpenRouter",
@@ -418,7 +418,7 @@
   "announcement": {
     "lead": "In San Francisco November 10–13.",
     "text": "Glad to meet teams working on applied AI.",
-    "link_label": "Say hello ↗",
+    "link_label": "Say hello",
     "subject": "San Francisco, Nov 10-13",
     "until": "2026-11-15T00:00:00-08:00"
   },

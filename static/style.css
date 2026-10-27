@@ -29,7 +29,7 @@ h3{font-size:var(--lead)}
 .skip-link{position:absolute;top:-80px;left:20px;padding:12px 20px;background:var(--ink);color:var(--paper);z-index:20}
 .skip-link:focus{top:12px}
 .announce{background:var(--ink);color:var(--paper);font-size:var(--small);line-height:1.5;text-align:center;padding:10px var(--gutter)}
-.announce a{color:var(--accent);display:inline-block;margin-left:8px}
+.announce a{color:var(--accent);display:inline-flex;align-items:center;gap:6px;vertical-align:middle;margin-left:8px}
 .announce a:hover{text-decoration:underline}
 .site-header{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-block:28px}
 .wordmark{display:flex;align-items:center;gap:12px;font-weight:650;letter-spacing:-.02em}
@@ -134,8 +134,9 @@ h3{font-size:var(--lead)}
 .footer{padding-block:0 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;font-size:var(--small)}
 .footer .wordmark{font-size:var(--small);gap:4px}
 .footer>div{display:flex;gap:24px}
-.footer a{min-height:44px;display:inline-flex;align-items:center}
-.back-link{display:inline-flex;align-items:center;min-height:44px;font-size:var(--small);margin-block:30px 40px}
+.footer a{min-height:44px;display:inline-flex;align-items:center;gap:6px}
+.announce .arrow-icon,.site-header .arrow-icon,.footer .arrow-icon{width:16px;height:16px;flex-basis:16px}
+.back-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;font-size:var(--small);margin-block:30px 40px}
 .story-header{max-width:960px}
 .story h1,.note-page h1{font-size:clamp(32px,4.3vw,60px);margin-bottom:24px;line-height:1.1;letter-spacing:-.04em}
 .story-header .content-meta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:24px}
@@ -156,6 +157,7 @@ h3{font-size:var(--lead)}
 .tags{display:flex;flex-wrap:wrap;gap:10px}
 .tags>span{padding:8px 12px;background:var(--surface);font-size:var(--small)}
 .story-sources>div{display:flex;align-items:center;flex-wrap:wrap;gap:16px 28px;font-size:var(--small)}
+.story-sources a{display:inline-flex;align-items:center;gap:8px}
 .story-cta{display:flex;align-items:center;gap:28px;flex-wrap:wrap;padding-block:40px 96px}
 .case-metrics{margin-block:32px 40px}
 .case-metrics>div{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}

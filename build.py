@@ -44,8 +44,9 @@ def responsive_image(src, alt, lazy=False, priority=False):
 def arrow(direction='diagonal'):
     paths = {'diagonal': 'M5 19 19 5M5 5h14v14',
              'right': 'M4 12h16m-7-7 7 7-7 7',
+             'left': 'M20 12H4m7-7-7 7 7 7',
              'down': 'M12 4v16m-7-7 7 7 7-7'}
-    return f'<svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="{paths[direction]}"/></svg>'
+    return f'<svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="{paths[direction]}"/></svg>'
 
 
 def flow(project, large=False):
@@ -59,7 +60,7 @@ def banner():
         return ''
     subject = quote(note['subject'])
     return (f'  <div class="announce" data-until="{e(note["until"])}"><p><strong>{e(note["lead"])}</strong> {e(note["text"])} '
-            f'<a href="mailto:{e(DATA["email"])}?subject={subject}">{e(note["link_label"])}</a></p></div>')
+            f'<a href="mailto:{e(DATA["email"])}?subject={subject}">{e(note["link_label"])} {arrow()}</a></p></div>')
 
 def shell(title, description, body, path='/'):
     template = (ROOT / 'templates/shell.html').read_text()
@@ -70,7 +71,7 @@ def shell(title, description, body, path='/'):
     values = dict(DATA, title=e(title), description=e(description), body=body,
                   origin=e(ORIGIN), canonical=e(ORIGIN+path),
                   robots='<meta name="robots" content="noindex, nofollow">' if PREVIEW else '',
-                  analytics=ANALYTICS, banner=banner(),
+                  analytics=ANALYTICS, banner=banner(), arrow_diagonal=arrow(),
                   styles=STYLES, app_version=APP_VERSION,
                   dm_sans_font=MEDIA['fonts']['dm-sans']['src'],
                   manrope_font=MEDIA['fonts']['manrope']['src'],
@@ -119,7 +120,7 @@ def home():
 def case_study(p):
     sections=''.join(f'<section class="story-section"><h2>{e(s["title"])}</h2><div>{paragraphs(s["paragraphs"])}</div></section>' for s in p['sections'])
     tags=''.join(f'<span>{e(t)}</span>' for t in p['stack'])
-    external = f'<a class="button" href="{e(p["link"]["url"])}">{e(p["link"]["label"])} ↗</a>' if p.get('link') else ''
+    external = f'<a class="button" href="{e(p["link"]["url"])}">{e(p["link"]["label"])} {arrow()}</a>' if p.get('link') else ''
     metrics=''
     if p.get('metrics'):
         metric_items=''.join(f'<div><strong>{e(m["value"])}</strong><span>{e(m["label"])}</span></div>' for m in p['metrics'])
@@ -130,13 +131,13 @@ def case_study(p):
         stages=f'<section class="stage-section"><h2>The stages</h2><ol>{stage_items}</ol></section>'
     sources=''
     if p.get('sources'):
-        source_items=''.join(f'<a href="{e(s["url"])}">{e(s["label"])} ↗</a>' for s in p['sources'])
+        source_items=''.join(f'<a href="{e(s["url"])}">{e(s["label"])} {arrow()}</a>' for s in p['sources'])
         sources=f'<aside class="story-sources"><h2>More detail</h2><div>{source_items}</div></aside>'
-    body=f'''<div class="wrap story"><a class="back-link" href="/#work">← All selected work</a><header class="story-header"><h1>{e(p['name'])}</h1><p class="content-meta">{e(p['context'])} <span class="status">{e(p['status'])}</span></p><p class="story-deck">{e(p['summary'])}</p></header><dl class="story-facts"><div><dt>Project</dt><dd>{e(p['product'])}</dd></div><div><dt>My role</dt><dd>{e(p['role'])}</dd></div><div><dt>Current outcome</dt><dd>{e(p['outcome'])}</dd></div></dl>{metrics}<div class="story-flow"><p class="content-meta">The workflow, at a glance</p>{flow(p,True)}<p class="flow-caption">A simplified view of the workflow.</p></div>{stages}{sections}<section class="story-tools"><h2>Tools & focus</h2><div class="tags">{tags}</div></section>{sources}<div class="story-cta">{external}<a class="text-link" href="mailto:{e(DATA['email'])}">Talk about this work ↗</a></div></div>'''
+    body=f'''<div class="wrap story"><a class="back-link" href="/#work">{arrow('left')} All selected work</a><header class="story-header"><h1>{e(p['name'])}</h1><p class="content-meta">{e(p['context'])} <span class="status">{e(p['status'])}</span></p><p class="story-deck">{e(p['summary'])}</p></header><dl class="story-facts"><div><dt>Project</dt><dd>{e(p['product'])}</dd></div><div><dt>My role</dt><dd>{e(p['role'])}</dd></div><div><dt>Current outcome</dt><dd>{e(p['outcome'])}</dd></div></dl>{metrics}<div class="story-flow"><p class="content-meta">The workflow, at a glance</p>{flow(p,True)}<p class="flow-caption">A simplified view of the workflow.</p></div>{stages}{sections}<section class="story-tools"><h2>Tools & focus</h2><div class="tags">{tags}</div></section>{sources}<div class="story-cta">{external}<a class="text-link" href="mailto:{e(DATA['email'])}">Talk about this work {arrow()}</a></div></div>'''
     return shell(p['name']+' — Vatsal Jain',p['summary'],body,'/work/'+p['slug']+'/')
 
 def note_page(n):
-    body=f'''<article class="wrap note-page"><a class="back-link" href="/#notes">← Notes from the work</a><header><h1>{e(n['title'])}</h1><p class="content-meta">{e(n['tag'])} / October 2026</p><p class="story-deck">{e(n['summary'])}</p></header><div class="prose">{paragraphs(n['paragraphs'])}</div><div class="note-signature"><img src="{e(MEDIA['images']['/assets/vatsal.jpg']['webp'][0]['src'])}" width="52" height="52" alt="" loading="lazy" decoding="async"><div><strong>Vatsal Jain</strong><p>Founder, Clarity Works · Applied AI & systems</p></div></div><a class="text-link" href="mailto:{e(DATA['email'])}">Continue the conversation ↗</a></article>'''
+    body=f'''<article class="wrap note-page"><a class="back-link" href="/#notes">{arrow('left')} Notes from the work</a><header><h1>{e(n['title'])}</h1><p class="content-meta">{e(n['tag'])} / October 2026</p><p class="story-deck">{e(n['summary'])}</p></header><div class="prose">{paragraphs(n['paragraphs'])}</div><div class="note-signature"><img src="{e(MEDIA['images']['/assets/vatsal.jpg']['webp'][0]['src'])}" width="52" height="52" alt="" loading="lazy" decoding="async"><div><strong>Vatsal Jain</strong><p>Founder, Clarity Works · Applied AI & systems</p></div></div><a class="text-link" href="mailto:{e(DATA['email'])}">Continue the conversation {arrow()}</a></article>'''
     return shell(n['title']+' — Vatsal Jain',n['summary'],body,'/notes/'+n['slug']+'/')
 
 if __name__ == '__main__':
@@ -148,7 +149,7 @@ if __name__ == '__main__':
     write('index.html',shell('Vatsal Jain — '+DATA['title'],DATA['description'],home()))
     for p in DATA['projects']: write('work/'+p['slug']+'/index.html',case_study(p))
     for n in DATA['notes']: write('notes/'+n['slug']+'/index.html',note_page(n))
-    write('404.html',shell('Page not found — Vatsal Jain','Return to Vatsal Jain’s portfolio.','<section class="wrap not-found"><p class="content-meta">404 / A loose end</p><h1>This page has moved<br>or doesn’t exist.</h1><a class="button" href="/">Back to the portfolio →</a></section>'))
+    write('404.html',shell('Page not found — Vatsal Jain','Return to Vatsal Jain’s portfolio.',f'<section class="wrap not-found"><p class="content-meta">404 / A loose end</p><h1>This page has moved<br>or doesn’t exist.</h1><a class="button" href="/">Back to the portfolio {arrow("right")}</a></section>'))
     paths=['/']+['/work/'+p['slug']+'/' for p in DATA['projects']]+['/notes/'+n['slug']+'/' for n in DATA['notes']]
     write('sitemap.xml','<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+''.join('<url><loc>'+e(ORIGIN+p)+'</loc></url>' for p in paths)+'</urlset>')
     write('robots.txt','User-agent: *\n'+('Disallow: /\n' if PREVIEW else 'Allow: /\nSitemap: '+ORIGIN+'/sitemap.xml\n'))
