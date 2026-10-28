@@ -3,6 +3,10 @@
   "title": "Applied AI, built around real work.",
   "description": "Vatsal Jain builds applied AI systems and helps teams adopt them. Explore agent pipelines, real estate products, and AI enablement work.",
   "email": "vatsaljain27@gmail.com",
+  "booking": {
+    "url": "https://cal.com/vatsal-tryclarityworks/intro",
+    "duration_minutes": 25
+  },
   "location": "Greater Vancouver, BC",
   "linkedin": "https://www.linkedin.com/in/vatsal-jain27/",
   "youtube": "https://www.youtube.com/@vatsal-tryclarityworks",

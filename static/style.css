@@ -131,6 +131,7 @@ h3{font-size:var(--lead)}
 .contact-copy{display:grid;align-content:start;gap:22px;font-size:var(--body)}
 .contact-copy strong{font-weight:650}
 .contact-section a:focus-visible{outline-color:var(--accent)}
+.contact-email{display:flex;width:fit-content;margin-top:20px}
 .footer{padding-block:0 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;font-size:var(--small)}
 .footer .wordmark{font-size:var(--small);gap:4px}
 .footer>div{display:flex;gap:24px}

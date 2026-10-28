@@ -1,6 +1,8 @@
 # Portfolio website
 
-An editorial, responsive static portfolio. Five project stories, two notes, an about section, a four-step working method, two public video links, work filters, and email/social links. Content and personal photos are adapted from the user's Clarity Works website with explicit permission. Contact opens the visitor's email app; there is no contact-form backend, account system, or database. Production pages use Vercel Web Analytics.
+An editorial, responsive static portfolio. Five project stories, two notes, an about section, a four-step working method, two public video links, work filters, and calendar/email/social links. Content and personal photos are adapted from the user's Clarity Works website with explicit permission. Booking opens the verified Cal.com introductory-call page, with email retained as an alternative. There is no contact-form backend, account system, or database. Production pages use Vercel Web Analytics.
+
+`content.json` holds the public `booking.url` and `booking.duration_minutes`. The navigation, hero, and contact section share these settings. The calendar is an ordinary link; no embedded widget or third-party calendar script loads on the portfolio. If `booking` is removed, those actions fall back to email.
 
 ## Edit and preview
 

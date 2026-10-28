@@ -49,6 +49,21 @@ def arrow(direction='diagonal'):
     return f'<svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="{paths[direction]}"/></svg>'
 
 
+def contact_action(placement):
+    booking = DATA.get('booking')
+    if booking:
+        url = urlsplit(booking['url'])
+        if url.scheme != 'https' or url.netloc != 'cal.com' or url.query or url.fragment or not re.fullmatch(r'/[a-z0-9-]+/[a-z0-9-]+', url.path):
+            raise ValueError('Booking URL must be a verified public Cal.com event URL')
+        label = f'Book a {booking["duration_minutes"]}-min call' if placement == 'contact' else 'Book a call'
+        href = booking['url']
+    else:
+        label = 'Get in touch' if placement == 'hero' else 'Let’s talk'
+        href = 'mailto:' + DATA['email']
+    classes = {'nav': 'nav-contact', 'hero': 'text-link', 'contact': 'button button-light'}
+    return f'<a class="{classes[placement]}" href="{e(href)}">{e(label)} {arrow()}</a>'
+
+
 def flow(project, large=False):
     nodes = ''.join(f'<li class="flow-node">{e(label)}{arrow("down") if i < len(project["flow"])-1 else ""}</li>'
                     for i, label in enumerate(project['flow']))
@@ -71,7 +86,7 @@ def shell(title, description, body, path='/'):
     values = dict(DATA, title=e(title), description=e(description), body=body,
                   origin=e(ORIGIN), canonical=e(ORIGIN+path),
                   robots='<meta name="robots" content="noindex, nofollow">' if PREVIEW else '',
-                  analytics=ANALYTICS, banner=banner(), arrow_diagonal=arrow(),
+                  analytics=ANALYTICS, banner=banner(), arrow_diagonal=arrow(), nav_contact=contact_action('nav'),
                   styles=STYLES, app_version=APP_VERSION,
                   dm_sans_font=MEDIA['fonts']['dm-sans']['src'],
                   manrope_font=MEDIA['fonts']['manrope']['src'],
@@ -93,6 +108,7 @@ def project_card(p, i):
 
 
 def home():
+    email_alternative = f'<a class="text-link contact-email" href="mailto:{e(DATA["email"])}">Or send an email {arrow()}</a>' if DATA.get('booking') else ''
     projects=''.join(project_card(p,i+1) for i,p in enumerate(DATA['projects']))
     notes=''.join(f'''<a class="note" href="/notes/{e(n['slug'])}/"><h3>{e(n['title'])}{arrow()}</h3><p class="content-meta">{e(n['tag'])}</p><p>{e(n['summary'])}</p><span class="note-read">Read note {arrow('right')}</span></a>''' for n in DATA['notes'])
     method=''.join(f'''<li><h3>{e(item['heading'])}</h3><p>{e(item['description'])}</p><span class="method-label">{e(item['label'])}</span></li>''' for item in DATA['method'])
@@ -103,7 +119,7 @@ def home():
     <section class="hero wrap" aria-labelledby="hero-title">
       <div class="hero-copy"><h1 id="hero-title">Applied AI,<br>built around real work.</h1>
       <p class="hero-description">{e(DATA['hero_description'])}</p>
-      <div class="hero-actions"><a class="button" href="#work">Explore my work {arrow('down')}</a><a class="text-link" href="mailto:{e(DATA['email'])}">Get in touch {arrow()}</a></div>
+      <div class="hero-actions"><a class="button" href="#work">Explore my work {arrow('down')}</a>{contact_action('hero')}</div>
       <p class="hero-location">Greater Vancouver, BC<br>Canadian citizen · Work from Canada, no US visa sponsorship needed</p></div>
       <div class="hero-side"><figure class="portrait-frame">{responsive_image("/assets/vatsal.jpg", "Vatsal Jain", priority=True)}<figcaption><strong>Vatsal Jain</strong><span>Founder, Clarity Works</span></figcaption></figure><p class="field-note">Understand the work. Build the system.<br>Leave the team capable.</p></div>
     </section>
@@ -115,7 +131,7 @@ def home():
     <section class="about-section wrap" id="about"><div><h2>Economics by training.<br>A builder by practice.</h2><figure class="about-photo">{responsive_image(DATA['about']['photo'], DATA['about']['photo_alt'], lazy=True)}<figcaption>{e(DATA['about']['photo_caption'])}</figcaption></figure></div><div class="about-copy"><p class="lead">{e(DATA['about']['lead'])}</p>{paragraphs(DATA['about']['paragraphs'])}<div class="timeline"><div><span>2025 — Present</span><strong>Founder · Clarity Works</strong></div><div><span>2022</span><strong>Product Research Fellow · Circonomy</strong></div><div><span>2020 — 2024</span><strong>International Economics · UBC</strong></div></div><a class="text-link" href="{e(DATA['business'])}">More about Clarity Works {arrow()}</a></div></section>
     <section class="video-section wrap" id="teaching"><div class="section-heading"><h2>See how I explain the work.</h2><a class="text-link" href="{e(DATA['youtube'])}">The full YouTube library {arrow()}</a></div><div class="video-grid">{videos}</div></section>
     <section class="notes-section wrap" id="notes"><div class="section-heading"><h2>Notes from the work.</h2></div><div class="notes-grid">{notes}</div></section>
-    <section class="contact-section wrap" id="contact"><div class="contact-heading"><h2>Let’s talk about<br>the work.</h2><p>Open to the right opportunity.<br>Remote preferred · Open to the US</p><a class="button button-light" href="mailto:{e(DATA['email'])}">Let’s talk {arrow()}</a></div><div class="contact-copy"><p>I’m exploring Forward Deployed Engineer, AI Solutions Architect, and AI Enablement roles, plus scoped B2B builds.</p><p><strong>Remote from Canada.</strong> I can work with US teams as an employee, or as a contractor through Clarity Works LLP, registered in British Columbia. Work performed in Canada doesn’t need US visa sponsorship.</p><p><strong>In person in the US.</strong> Open to travel for meetings and to relocating for the right role. Work authorization would be settled per role.</p></div></section>'''
+    <section class="contact-section wrap" id="contact"><div class="contact-heading"><h2>Let’s talk about<br>the work.</h2><p>Open to the right opportunity.<br>Remote preferred · Open to the US</p>{contact_action('contact')}{email_alternative}</div><div class="contact-copy"><p>I’m exploring Forward Deployed Engineer, AI Solutions Architect, and AI Enablement roles, plus scoped B2B builds.</p><p><strong>Remote from Canada.</strong> I can work with US teams as an employee, or as a contractor through Clarity Works LLP, registered in British Columbia. Work performed in Canada doesn’t need US visa sponsorship.</p><p><strong>In person in the US.</strong> Open to travel for meetings and to relocating for the right role. Work authorization would be settled per role.</p></div></section>'''
 
 def case_study(p):
     sections=''.join(f'<section class="story-section"><h2>{e(s["title"])}</h2><div>{paragraphs(s["paragraphs"])}</div></section>' for s in p['sections'])
