@@ -8,3 +8,10 @@ __pycache__/
 node_modules/
 .vercel/
 dist/
+
+# Local design boards, screenshots and tool state. Durable context stays tracked.
+.taste-skill/
+.impeccable/*
+!.impeccable/config.json
+!.impeccable/design.json
+!.impeccable/surfaces/

@@ -1,0 +1,217 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-28T06:30:35.000699+00:00",
+  "title": "Design System: Vatsal Jain Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "palette-gray": {
+        "role": "neutral",
+        "displayName": "Palette Gray"
+      },
+      "palette-muted": {
+        "role": "neutral",
+        "displayName": "Muted Plum Gray"
+      },
+      "palette-ink": {
+        "role": "neutral",
+        "displayName": "Plum Ink"
+      },
+      "palette-gold": {
+        "role": "primary",
+        "displayName": "Gold"
+      },
+      "palette-amber": {
+        "role": "primary",
+        "displayName": "Amber"
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Cool Paper"
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Cool Surface"
+      },
+      "surface-warm": {
+        "role": "neutral",
+        "displayName": "Warm Surface"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Large personal name; tablet and mobile overrides are recorded in DESIGN.md."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section headings."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Project, video, and note titles."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Readable prose; 16px below 620px."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Sentence-case metadata and navigation; actions use weight 600."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "ease",
+        "value": "cubic-bezier(.16,1,.3,1)",
+        "purpose": "Source easing for transitions and introductions."
+      },
+      {
+        "name": "button-transition",
+        "value": ".22s",
+        "purpose": "Action transform and background transition."
+      },
+      {
+        "name": "arrow-transition",
+        "value": ".24s",
+        "purpose": "Directional link-icon movement."
+      },
+      {
+        "name": "workflow-arrival",
+        "value": ".65s",
+        "purpose": "One-time workflow step arrival; 18px vertical or 12px horizontal travel."
+      },
+      {
+        "name": "workflow-stagger",
+        "value": "70ms",
+        "purpose": "Reading-order delay between workflow steps."
+      },
+      {
+        "name": "name-arrival",
+        "value": ".85s",
+        "purpose": "Single load introduction of the personal name."
+      },
+      {
+        "name": "portrait-arrival",
+        "value": "1.2s",
+        "purpose": "Single load portrait crop settling from scale 1.04."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "wide-tablet",
+        "value": "1100px"
+      },
+      {
+        "name": "tablet",
+        "value": "800px"
+      },
+      {
+        "name": "mobile",
+        "value": "620px"
+      },
+      {
+        "name": "compact-mobile",
+        "value": "360px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Gold action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Square gold action with dark text and a directional link icon.",
+      "html": "<a class=\"ds-button\" href=\"#work\">Explore my work <svg class=\"ds-arrow\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M12 4v16m-7-7 7 7 7-7\"/></svg></a>",
+      "css": ".ds-button{display:inline-flex;align-items:center;justify-content:space-between;gap:26px;background:var(--accent);color:var(--ink);padding:14px 20px;font:600 14px/1.6 var(--sans);min-height:48px;text-decoration:none;border-radius:0;transition:transform .22s var(--ease),background-color .22s ease}.ds-button:hover{background:var(--palette-amber)}.ds-button:active{transform:scale(.98)}.ds-button:focus-visible{outline:3px solid var(--ink);outline-offset:5px}.ds-arrow{width:20px;height:20px;flex:0 0 20px;transition:transform .24s var(--ease)}@media(hover:hover) and (prefers-reduced-motion:no-preference){.ds-button:hover{transform:translateY(-2px)}.ds-button:hover>.ds-arrow{transform:translate(3px,-2px)}}@media(prefers-reduced-motion:reduce){.ds-button,.ds-arrow{transition:none}.ds-button:active{transform:none;opacity:.8}}"
+    },
+    {
+      "name": "Inverse action",
+      "kind": "button",
+      "refersTo": "button-inverse",
+      "description": "Ink action used within the gold contact field.",
+      "html": "<a class=\"ds-button ds-inverse\" href=\"https://cal.com/vatsal-tryclarityworks/intro\">Book a 25-min call <svg class=\"ds-arrow\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M5 19 19 5M5 5h14v14\"/></svg></a>",
+      "css": ".ds-button{display:inline-flex;align-items:center;justify-content:space-between;gap:26px;background:var(--accent);color:var(--ink);padding:14px 20px;font:600 14px/1.6 var(--sans);min-height:48px;text-decoration:none;border-radius:0;transition:transform .22s var(--ease),background-color .22s ease}.ds-button:hover{background:var(--palette-amber)}.ds-button:active{transform:scale(.98)}.ds-button:focus-visible{outline:3px solid var(--ink);outline-offset:5px}.ds-arrow{width:20px;height:20px;flex:0 0 20px;transition:transform .24s var(--ease)}@media(hover:hover) and (prefers-reduced-motion:no-preference){.ds-button:hover{transform:translateY(-2px)}.ds-button:hover>.ds-arrow{transform:translate(3px,-2px)}}@media(prefers-reduced-motion:reduce){.ds-button,.ds-arrow{transition:none}.ds-button:active{transform:none;opacity:.8}}.ds-inverse{background:var(--ink);color:var(--paper)}.ds-inverse:hover{background:var(--ink);color:var(--accent)}"
+    },
+    {
+      "name": "Main navigation",
+      "kind": "nav",
+      "description": "Plain text row with visible mobile links.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Main navigation\"><a href=\"#work\">Work</a><a href=\"#about\">About</a><a href=\"#notes\">Notes</a><a class=\"ds-contact\" href=\"https://cal.com/vatsal-tryclarityworks/intro\">Book a call <svg class=\"ds-arrow\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M5 19 19 5M5 5h14v14\"/></svg></a></nav>",
+      "css": ".ds-nav{display:flex;align-items:center;gap:30px;font:14px/1.6 var(--sans);color:var(--ink)}.ds-nav>a{display:inline-flex;align-items:center;min-height:44px;text-decoration:none;color:inherit}.ds-contact{gap:10px;font-weight:600}.ds-arrow{width:16px;height:16px;flex:0 0 16px}.ds-nav>a:hover{text-decoration:underline;text-decoration-color:var(--palette-amber);text-underline-offset:.25em;text-decoration-thickness:1.5px}.ds-nav>a:focus-visible{outline:3px solid var(--ink);outline-offset:5px}@media(max-width:620px){.ds-nav{gap:20px}.ds-nav>a{font-size:13px}.ds-contact{gap:4px}}"
+    },
+    {
+      "name": "Project filters",
+      "kind": "chip",
+      "refersTo": "filter",
+      "description": "Borderless filter row with an ink selected state.",
+      "html": "<div class=\"ds-filters\" role=\"group\" aria-label=\"Filter projects\"><button type=\"button\" aria-pressed=\"true\">All work</button><button type=\"button\" aria-pressed=\"false\">AI systems</button><button type=\"button\" aria-pressed=\"false\">Enablement</button></div>",
+      "css": ".ds-filters{display:flex;gap:4px}.ds-filters>button{padding:10px 12px;min-height:44px;border:0;border-radius:0;background:transparent;color:var(--ink);font:14px/1.6 var(--sans);cursor:pointer;transition:background-color .2s ease,transform .2s var(--ease)}.ds-filters>button[aria-pressed=true]{background:var(--ink);color:var(--paper)}.ds-filters>button:hover:not([aria-pressed=true]){background:var(--surface)}.ds-filters>button:active{transform:scale(.97)}.ds-filters>button:focus-visible{outline:3px solid var(--ink);outline-offset:5px}@media(prefers-reduced-motion:reduce){.ds-filters>button{transition:none}.ds-filters>button:active{transform:none;opacity:.8}}"
+    },
+    {
+      "name": "Note panel",
+      "kind": "card",
+      "refersTo": "note",
+      "description": "Flat cool field with a linked title and short topic.",
+      "html": "<a class=\"ds-note\" href=\"/notes/sop-as-architecture/\"><h3>The SOP is architecture. <svg class=\"ds-arrow\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M5 19 19 5M5 5h14v14\"/></svg></h3><p>Workflow design</p></a>",
+      "css": ".ds-note{display:block;background:var(--surface);padding:28px;color:var(--ink);text-decoration:none;border-radius:0}.ds-note h3{margin:0;display:flex;justify-content:space-between;gap:20px;font:650 24px/1.15 var(--display);letter-spacing:-.035em;text-wrap:balance}.ds-note p{margin:16px 0 0;font:14px/1.6 var(--sans)}.ds-arrow{width:20px;height:20px;flex:0 0 20px;margin-top:4px;transition:transform .24s var(--ease)}.ds-note:focus-visible{outline:3px solid var(--ink);outline-offset:5px}@media(hover:hover) and (prefers-reduced-motion:no-preference){.ds-note:hover h3{text-decoration:underline;text-decoration-color:var(--palette-amber);text-underline-offset:.2em}.ds-note:hover h3>.ds-arrow{transform:translate(3px,-2px)}}@media(prefers-reduced-motion:reduce){.ds-arrow{transition:none}}"
+    },
+    {
+      "name": "Technology tag",
+      "kind": "chip",
+      "refersTo": "tag",
+      "description": "Static technology metadata with a cool square field.",
+      "html": "<span class=\"ds-tag\">Python</span>",
+      "css": ".ds-tag{display:inline-block;padding:8px 12px;background:var(--surface);color:var(--ink);font:14px/1.6 var(--sans);border-radius:0}"
+    },
+    {
+      "name": "Status marker",
+      "kind": "chip",
+      "refersTo": "status",
+      "description": "Compact static status label retained on detail pages.",
+      "html": "<span class=\"ds-status\">Under development</span>",
+      "css": ".ds-status{display:inline-block;background:var(--surface);color:var(--ink);padding:5px 10px;font:14px/1.6 var(--sans);border-radius:0}"
+    },
+    {
+      "name": "Signal workflow preview",
+      "kind": "custom",
+      "description": "Text-based explanatory workflow on a flat gold field.",
+      "html": "<a class=\"ds-preview\" href=\"/work/intent-signals/\"><div class=\"ds-input\"><span>Newsletter activity</span><span>Website enquiries</span></div><svg class=\"ds-arrow\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M12 4v16m-7-7 7 7 7-7\"/></svg><div class=\"ds-record\"><strong>A contact with context.</strong><span>Activity, interests &amp; next action</span></div><div class=\"ds-output\"><span>AI draft</span><strong>Advisor review</strong></div></a>",
+      "css": ".ds-preview{height:300px;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;padding:24px;gap:8px;background:var(--accent);color:var(--ink);font:14px/1.6 var(--sans);text-decoration:none;transition:transform .4s var(--ease)}.ds-input{display:flex;gap:12px}.ds-input>span{background:var(--surface-warm);padding:10px 18px}.ds-arrow{width:24px;height:24px;flex:0 0 24px}.ds-record{background:var(--ink);color:var(--paper);padding:18px 28px;text-align:center;min-width:280px}.ds-record strong{display:block;font:700 24px/1.6 var(--display);letter-spacing:-.025em}.ds-record>span{display:block;margin-top:5px}.ds-output{display:flex;align-items:center;gap:16px;margin-top:8px}.ds-preview:focus-visible{outline:3px solid var(--ink);outline-offset:5px}@media(hover:hover) and (prefers-reduced-motion:no-preference){.ds-preview:hover{transform:translateY(-3px)}}@media(prefers-reduced-motion:reduce){.ds-preview{transition:none}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Speaking Folio",
+    "overview": "A personal showcase with a confident name, approved photographs, and plain geometric explanations of real workflows. Plum, cool paper, and gold give the work contrast without decorative surface effects.\n\nThe system is flat and open: hierarchy comes from scale, spacing, image crops, and tonal fields. Motion introduces the name and portrait once, then sequences workflow steps; ordinary headings and prose remain static.",
+    "keyCharacteristics": [
+      "Oversized Manrope display with readable DM Sans text.",
+      "Square media and flat plum, paper, and gold fields.",
+      "Workflow geometry and real photographs as the visual material.",
+      "Visible content by default, with optional introduction and workflow motion."
+    ],
+    "rules": [
+      {
+        "name": "The Gold Contrast Rule",
+        "body": "Gold actions carry dark ink text; pale text is reserved for ink fields.",
+        "section": "colors"
+      },
+      {
+        "name": "The Flat Surface Rule",
+        "body": "Use tonal fields and space for grouping; do not add decorative borders, gradients, blur, or shadows.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do use approved photographs and original video thumbnails; preserve responsive assets and self-hosted fonts.",
+      "Do keep workflow previews diagrammatic and readable, with visible text supplying their link names.",
+      "Do preserve square corners, visible keyboard focus, and content that remains visible without JavaScript.",
+      "Do limit entrance motion to the name, portrait, and workflow steps; honor reduced motion."
+    ],
+    "donts": [
+      "Don't turn diagrams into invented product screenshots or imply unsupported results.",
+      "Don't add ornamental borders, gradients, shadows, rounded cards, or a floating navigation shell.",
+      "Don't use emoji arrows, external font imports, or scroll-driven hiding of ordinary content.",
+      "Don't treat the retained circular note avatar as a general corner treatment."
+    ]
+  }
+}

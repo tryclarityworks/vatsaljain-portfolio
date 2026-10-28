@@ -444,7 +444,8 @@
         "That is why workflow mapping and SOP improvement come before the assisted build in the AI Capability Ladder I use at Clarity Works. The process gives the build its shape. It also gives the team something concrete to question and improve.",
         "I want a working session to leave behind more than a promising demo. The team should be able to explain what the workflow does, recognize when it needs human judgment, and maintain the process as the work changes.",
         "For me, discovery and engineering belong in the same conversation. Understanding the process is how I decide what is worth building."
-      ]
+      ],
+      "home_title": "The SOP is architecture."
     },
     {
       "slug": "checks-around-the-model",
@@ -457,11 +458,12 @@
         "In the pipeline, do-not-contact checks run at three stages, verification happens before send, and a cross-channel reply-stop prevents continued follow-up. There is also a human approval gate before a message ships.",
         "The distinction shapes how I think about applied AI: use the model where interpretation helps, and make the boundaries around its output inspectable. A well-written prompt is one part of that design.",
         "The result I can point to today is throughput: personalized outreach grew from about 10 to 150 messages a day. To tell the full business story, response quality and downstream outcomes need their own measurement."
-      ]
+      ],
+      "home_title": "Checks around the model."
     }
   ],
   "production_origin": "https://vatsaljain.com",
-  "hero_description": "I’m Vatsal — a founder who builds the systems too. I start from the operational problem, then help the people doing the work own what we build. Open to Forward Deployed Engineer, AI Solutions, and AI Enablement roles.",
+  "hero_description": "From the first conversation to the working build.",
   "about": {
     "lead": "My economics background made me curious about incentives and ownership. Building AI systems made that practical.",
     "paragraphs": [
@@ -496,8 +498,8 @@
     }
   ],
   "announcement": {
-    "lead": "In San Francisco November 10–13.",
-    "text": "Glad to meet teams working on applied AI.",
+    "lead": "San Francisco · November 10–13.",
+    "text": "",
     "link_label": "Say hello",
     "subject": "San Francisco, Nov 10-13",
     "until": "2026-11-15T00:00:00-08:00"
@@ -505,27 +507,56 @@
   "stack": [
     {
       "label": "Hands-on",
-      "items": ["Python", "SQL", "API orchestration"]
+      "items": [
+        "Python",
+        "SQL",
+        "API orchestration"
+      ]
     },
     {
       "label": "Foundational",
-      "items": ["TypeScript"]
+      "items": [
+        "TypeScript"
+      ]
     },
     {
       "label": "AI-assisted coding",
-      "items": ["Claude Code", "OpenAI Codex"]
+      "items": [
+        "Claude Code",
+        "OpenAI Codex"
+      ]
     },
     {
       "label": "Models & services",
-      "items": ["Claude via OpenRouter", "Apify", "Instantly", "Twilio", "Modal", "Mailchimp", "Formspark", "Google Sheets", "Gmail"]
+      "items": [
+        "Claude via OpenRouter",
+        "Apify",
+        "Instantly",
+        "Twilio",
+        "Modal",
+        "Mailchimp",
+        "Formspark",
+        "Google Sheets",
+        "Gmail"
+      ]
     },
     {
       "label": "Agent infrastructure",
-      "items": ["Hermes", "OpenClaw", "Graphify", "Cron scheduling"]
+      "items": [
+        "Hermes",
+        "OpenClaw",
+        "Graphify",
+        "Cron scheduling"
+      ]
     },
     {
       "label": "Reliability",
-      "items": ["Deterministic checks", "Guardrails in code", "Failure-mode analysis", "Heartbeat monitoring"]
+      "items": [
+        "Deterministic checks",
+        "Guardrails in code",
+        "Failure-mode analysis",
+        "Heartbeat monitoring"
+      ]
     }
   ],
   "videos": [
@@ -543,5 +574,64 @@
       "url": "https://www.youtube.com/watch?v=eqhq7H5AmfY",
       "thumbnail": "/assets/workflow-selection.jpg"
     }
-  ]
+  ],
+  "home": {
+    "intro": "From the first conversation to the working build.",
+    "availability": "Exploring AI solutions & enablement roles.",
+    "projects": [
+      {
+        "slug": "intent-signals",
+        "title": "Follow-up, with context.",
+        "description": "Newsletter and enquiry signals become a shared contact record and an AI draft for the advisor to review.",
+        "contribution": "Discovery, workflow design & build",
+        "detail": "Live client pilot · Checks every 15 minutes",
+        "visual": "signals"
+      },
+      {
+        "slug": "infnty",
+        "title": "AI news, made personal.",
+        "description": "A personalized newsletter that connects AI developments to the reader’s work.",
+        "contribution": "Co-developer · Backend & delivery",
+        "detail": "Under development · 20 early testers onboarded",
+        "visual": "newsletter"
+      },
+      {
+        "slug": "outbound-engine",
+        "title": "An outbound engine.",
+        "description": "Three LLM agents, seven stages, and human approval before anything sends. Personalized outreach grew from about 10 to 150 messages a day.",
+        "contribution": "Founder & builder · Clarity Works",
+        "detail": "Built & used",
+        "visual": "outbound"
+      }
+    ],
+    "other_projects": [
+      {
+        "slug": "leadpulse",
+        "title": "LeadPulse",
+        "description": "Lead alerts by SMS",
+        "status": "Shipped"
+      },
+      {
+        "slug": "content-pipeline",
+        "title": "The content engine",
+        "description": "One recording, multiple formats",
+        "status": "In use"
+      },
+      {
+        "slug": "ai-capability",
+        "title": "AI capability",
+        "description": "Build with the team",
+        "status": "Advisory practice"
+      }
+    ],
+    "about_title": "Economics to applied AI.",
+    "about_paragraphs": [
+      "I’m a UBC economics graduate and the founder of Clarity Works. I start with the business problem, map the workflow, and build with the people who’ll use it.",
+      "I like making the logic visible and leaving the team able to own what comes next."
+    ],
+    "practice": "Python & SQL · API orchestration · AI-assisted coding",
+    "learning": "Foundational TypeScript",
+    "contact_title": "Let’s build something useful.",
+    "contact_description": "Looking for someone who can connect the business problem to the build? Let’s talk."
+  }
 }
