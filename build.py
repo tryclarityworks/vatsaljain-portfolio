@@ -123,7 +123,7 @@ def home():
       <p class="hero-location">Greater Vancouver, BC<br>Canadian citizen · Work from Canada, no US visa sponsorship needed</p></div>
       <div class="hero-side"><figure class="portrait-frame">{responsive_image("/assets/vatsal.jpg", "Vatsal Jain", priority=True)}<figcaption><strong>Vatsal Jain</strong><span>Founder, Clarity Works</span></figcaption></figure><p class="field-note">Understand the work. Build the system.<br>Leave the team capable.</p></div>
     </section>
-    <section class="work-section wrap" id="work"><div class="section-heading"><h2>Selected work.</h2><p>From an operational problem to something people can use. Built, shipped, and learning.</p></div>
+    <section class="work-section wrap" id="work"><div class="section-heading"><h2>Selected work.</h2><p>From an operational problem to something people can use. Live systems, shipped products, and work in development.</p></div>
       <div class="work-toolbar"><div class="filters" role="group" aria-label="Filter projects" hidden>{filters}</div><span id="project-count" role="status" aria-live="polite" aria-atomic="true">{len(DATA['projects'])} projects</span></div><div class="project-list">{projects}</div>
       <div class="stack"><h3>What the work is built with</h3><dl>{stack}</dl></div>
     </section>

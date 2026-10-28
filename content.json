@@ -154,6 +154,82 @@
       ]
     },
     {
+      "slug": "infnty",
+      "name": "Infnty: AI for your work",
+      "product": "Personalized AI newsletter",
+      "category": "systems",
+      "status": "Under development",
+      "summary": "A personalized AI newsletter in development: one shared editorial workflow, reader-specific application, relevant news, and human review before delivery.",
+      "context": "Product development · AI learning",
+      "role": "Co-developer · Backend & delivery design",
+      "outcome": "20 early testers onboarded; beta under development",
+      "stack": [
+        "TypeScript",
+        "OpenRouter",
+        "JSON Schema / Ajv",
+        "Tavily",
+        "Tally",
+        "Google Sheets",
+        "Handlebars",
+        "n8n",
+        "SMTP"
+      ],
+      "flow": [
+        "Editorial workflow",
+        "Reader-specific briefing",
+        "Review & delivery"
+      ],
+      "sections": [
+        {
+          "title": "The reader problem",
+          "paragraphs": [
+            "A model announcement does not tell a consultant how to improve a research brief, or an analyst how to check a report. Useful AI guidance needs to connect to the work someone actually does, the tools they have, and the restrictions they work within.",
+            "Infnty is being developed as a weekly briefing built around one practical workflow. A shared editorial method provides the substance; personalization makes its application relevant to each reader. A small selection of AI news adds context for their work."
+          ]
+        },
+        {
+          "title": "My contribution",
+          "paragraphs": [
+            "I’m a co-developer on Infnty. I designed the entire backend and delivery system for the personalized newsletter automation, including the path from reader profiles and editorial inputs to reviewed email output.",
+            "I’ve also onboarded 20 early testers and beta users. That is an onboarding milestone; sustained usage, retention, and improvements to readers’ work are still to be established."
+          ]
+        },
+        {
+          "title": "Keep the method intact",
+          "paragraphs": [
+            "The human-written workflow package is the source of truth. It contains five executable steps, a copyable prompt, a populated worked example, checkpoints, failure modes, and guardrails. The system generates three to five representative previews for review before a workflow is approved. A content hash makes previous approvals stale when that workflow changes.",
+            "The application layer can adapt framing, use cases, tool fit, and explanation depth. Code preserves the approved workflow steps, base prompt, guardrails, and verified news facts when assembling the final content. This gives personalization a defined boundary."
+          ]
+        },
+        {
+          "title": "Match news to the reader",
+          "paragraphs": [
+            "News discovery uses fixed editorial searches and a seven-day window. It does not receive reader profiles or audience-derived search terms. Candidates are deduplicated and must pass human verification before they enter the approved pool.",
+            "A separate relevance agent scores approved articles against each reader’s responsibilities, role, industry, tools, confidence, and restrictions. It does not receive the weekly workflow. Code selects three items from the stored scores and blocks generation if too few clear the relevance and restriction checks."
+          ]
+        },
+        {
+          "title": "Generate, check, then deliver",
+          "paragraphs": [
+            "The TypeScript pipeline creates a personalization plan and structured content through OpenRouter. Deterministic checks validate schemas, required fields, source links, placeholders, and privacy-sensitive wording. An LLM critic provides a second review, with one revision attempt followed by revalidation.",
+            "Handlebars renders structured content into branded HTML. Google Sheets holds the operational records and review queue; n8n handles delivery. During the beta, every email requires human approval. Delivery checks subscription eligibility, consent, QA, scheduling, and the send ledger before SMTP.",
+            "The welcome email uses deterministic rendering to reflect the reader’s onboarding inputs and invite corrections. Generation, review, and delivery remain separate stages so each can be inspected."
+          ]
+        },
+        {
+          "title": "Learn from real use",
+          "paragraphs": [
+            "Signed feedback links are designed to capture usefulness, saves, depth mismatch, and workflow attempts. An attempt is separate from a reported outcome on a real task. The tracking implementation includes event deduplication and suspicious-click handling, with the aim of learning whether readers actually use the workflows.",
+            "The core pipeline, templates, validation tests, and delivery workflow definitions are in place. Infnty remains under development while delivery readiness and the beta learning loop are validated. No productivity improvement, retention rate, or commercial result is claimed."
+          ]
+        }
+      ],
+      "link": {
+        "label": "Visit Infnty",
+        "url": "https://www.infntyai.com/"
+      }
+    },
+    {
       "slug": "leadpulse",
       "name": "Closing the lead-to-response gap",
       "product": "LeadPulse",
