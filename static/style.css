@@ -371,3 +371,55 @@ h2{font-size:var(--heading)}h3{font-size:var(--lead)}
   .contact-section{padding:24px}
   .case-metrics>div{grid-template-columns:1fr}
 }
+
+/* Multi-page navigation and section introductions. */
+.site-header nav>a[aria-current]{text-decoration:underline;text-decoration-color:var(--palette-amber);text-underline-offset:.3em}
+.page-intro{display:grid;grid-template-columns:1fr 1fr;align-items:end;gap:40px;padding-block:48px 64px}
+.page-intro h1{font-size:clamp(48px,6vw,80px);line-height:1.08;letter-spacing:-.04em}
+.page-intro p{font-size:20px;line-height:1.5;max-width:45ch;padding-bottom:6px}
+.home-paths{display:grid;grid-template-columns:1fr 1fr;gap:32px;padding-bottom:var(--section-space)}
+.home-paths article{background:var(--surface);padding:32px}
+.home-paths h2{font-size:28px}
+.home-paths p{margin-block:16px 8px;max-width:35ch}
+.home-contact{margin-bottom:48px}
+.about-page{align-items:start}
+.about-page .about-copy>p{max-width:55ch}
+.method-section,.skills-section{padding-bottom:var(--section-space)}
+.method-list,.skills-list{margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 48px}
+.method-list>div,.skills-list>div{margin:0}
+.method-list dt{font:650 24px/1.2 var(--display);letter-spacing:-.025em}
+.method-list dd,.skills-list dd{margin:12px 0 0;max-width:50ch}
+.skills-list dt{font-weight:650}
+.skills-list dd{margin-top:8px}
+.page-next{background:var(--surface);padding:32px;display:flex;align-items:center;justify-content:space-between;gap:32px;margin-bottom:64px}
+.page-next h2{font-size:28px}
+.contact-page{margin-top:64px;min-height:380px}
+.contact-heading h1{font-size:clamp(36px,4vw,56px);line-height:1.1;max-width:16ch}
+@media(max-width:800px){
+  .page-intro{padding-block:36px 52px;gap:28px}
+  .page-intro h1{font-size:48px}
+  .page-intro p{font-size:17px}
+  .method-list,.skills-list{gap:28px 32px}
+  .contact-page{margin-top:36px;min-height:0}
+}
+@media(max-width:620px){
+  .site-header nav{gap:14px}
+  .page-intro{grid-template-columns:1fr;gap:18px;padding-block:30px 44px}
+  .page-intro h1{font-size:40px}
+  .page-intro p{font-size:16px;padding:0}
+  .home-paths{grid-template-columns:1fr;gap:20px}
+  .home-paths article{padding:26px}
+  .home-paths h2{font-size:26px}
+  .method-list,.skills-list{grid-template-columns:1fr;gap:26px}
+  .method-list dt{font-size:22px}
+  .page-next{display:block;padding:26px;margin-bottom:48px}
+  .page-next h2{font-size:26px}
+  .page-next .text-link{margin-top:10px}
+  .contact-page{margin-top:30px}
+  .contact-heading h1{font-size:38px}
+  .footer>div{flex-wrap:wrap;gap:0 20px}
+}
+@media(max-width:360px){
+  .site-header nav{gap:10px}
+  .nav-call-suffix{display:none}
+}

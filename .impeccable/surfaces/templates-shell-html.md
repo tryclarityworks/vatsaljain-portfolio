@@ -12,7 +12,7 @@ OWN-WORLD
 The speaking folio translated to a working builder's portfolio: confident name, human portrait, and the work itself instead of a report. Pinned plum/gray/gold, Manrope and DM Sans. No invented speaking history, client outcomes, app screenshots, or engineering seniority. Photographs are existing approved personal images. Geometry illustrates documented workflows.
 
 STORY
-Personal introduction → two substantial work previews → compact additional builds → short background and practice → real video previews and notes → book a conversation. Six case studies and two notes retain their routes and evidence. Infnty stays under development, with co-developer/backend/delivery contribution and 20 onboarded early testers.
+Personal introduction and two featured work previews on Home → dedicated Work, About, Notes & videos, and Contact pages → case studies, articles, or a conversation. All six case studies and two notes retain their routes and evidence. Infnty stays under development, with co-developer/backend/delivery contribution and 20 onboarded early testers.
 
 FIRST VIEWPORT
 A large Vatsal Jain heading, short applied-AI introduction, right-hand real portrait, and the beginning of paired project previews. Mobile brings the introduction, portrait and first project into a deliberate reading sequence. Project previews explain workflow and stage before any long copy. White space is bounded by work, not oversized empty sections.

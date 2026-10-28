@@ -33,7 +33,7 @@ def main():
     data=json.loads((ROOT/'content.json').read_text())
     origin=os.environ.get('PORTFOLIO_ORIGIN',data['production_origin']).rstrip('/')
     preview=os.environ.get('VERCEL_ENV') in ('preview','development')
-    assert len(htmls)==len(data['projects'])+len(data['notes'])+2,'Unexpected page count'
+    assert len(htmls)==len(data['projects'])+len(data['notes'])+6,'Unexpected page count'
     for path in htmls:
         raw=path.read_text();page=Page();page.feed(raw);pages[path.resolve()]=page
         assert page.h1==1,f'{path}: expected one H1'
@@ -59,7 +59,7 @@ def main():
             assert target.is_relative_to(DIST.resolve()),f'{path}: link escapes output'
             assert target.is_file(),f'{path}: missing local asset or page {href}'
             if url.fragment and target in pages:assert unquote(url.fragment) in pages[target].ids,f'{path}: missing anchor {href}'
-    allowed_roots={'assets','work','notes'}
+    allowed_roots={'assets','work','notes','about','contact'}
     allowed_files={'index.html','404.html','sitemap.xml','robots.txt','style.css','app.js'}
     for path in files:
         if not path.is_file():continue
