@@ -12,7 +12,7 @@ Hiring teams evaluating Vatsal Jain for applied AI, solutions, forward-deployed,
 
 ## Product Purpose
 
-Help a visitor quickly understand who Vatsal is, see credible examples of his work, and start a conversation. The October 27 redesign addresses a homepage that requires too much reading and lacks visual appeal.
+Help a visitor quickly understand who Vatsal is, see credible examples of his work, and start a conversation. The October 28 redesign responds to feedback that the previous multipage release kept the old visual design. The site should feel personal, visually engaging, and easy to scan on each page.
 
 ## Positioning
 

@@ -1,6 +1,6 @@
 ---
 name: Vatsal Jain Portfolio
-description: A personal showcase of practical AI systems and the person behind them.
+description: A personal showcase of practical AI work, grounded in the person and the projects.
 colors:
   palette-gray: "#BFBDC1"
   palette-muted: "#6D6A75"
@@ -13,21 +13,21 @@ colors:
 typography:
   display:
     fontFamily: "Manrope, Arial, sans-serif"
-    fontSize: "clamp(64px, 8.5vw, 120px)"
+    fontSize: "clamp(42px, 4.8vw, 68px)"
     fontWeight: 650
-    lineHeight: 1.05
+    lineHeight: 1.08
     letterSpacing: "-0.04em"
   headline:
     fontFamily: "Manrope, Arial, sans-serif"
-    fontSize: "clamp(30px, 3vw, 36px)"
+    fontSize: "clamp(32px, 3.2vw, 44px)"
     fontWeight: 650
-    lineHeight: 1.15
+    lineHeight: 1.13
     letterSpacing: "-0.035em"
   title:
     fontFamily: "Manrope, Arial, sans-serif"
     fontSize: "24px"
     fontWeight: 650
-    lineHeight: 1.15
+    lineHeight: 1.13
     letterSpacing: "-0.035em"
   body:
     fontFamily: "DM Sans, Arial, sans-serif"
@@ -48,24 +48,20 @@ spacing:
   24: "24px"
   32: "32px"
   40: "40px"
-  48: "48px"
-  section: "104px"
+  section: "112px"
 components:
   button-primary:
     backgroundColor: "{colors.palette-gold}"
     textColor: "{colors.palette-ink}"
     rounded: "{rounded.square}"
-    padding: "14px 20px"
+    padding: "15px 20px"
   button-primary-hover:
     backgroundColor: "{colors.palette-amber}"
   button-inverse:
     backgroundColor: "{colors.palette-ink}"
     textColor: "{colors.paper}"
     rounded: "{rounded.square}"
-    padding: "14px 20px"
-  button-inverse-hover:
-    backgroundColor: "{colors.palette-ink}"
-    textColor: "{colors.palette-gold}"
+    padding: "15px 20px"
   filter:
     backgroundColor: "transparent"
     textColor: "{colors.palette-ink}"
@@ -78,13 +74,15 @@ components:
     backgroundColor: "{colors.surface}"
     textColor: "{colors.palette-ink}"
     rounded: "{rounded.square}"
-    padding: "28px"
+    padding: "32px"
   tag:
     backgroundColor: "{colors.surface}"
+    textColor: "{colors.palette-ink}"
     rounded: "{rounded.square}"
     padding: "8px 12px"
   status:
     backgroundColor: "{colors.surface}"
+    textColor: "{colors.palette-ink}"
     rounded: "{rounded.square}"
     padding: "5px 10px"
 ---
@@ -93,103 +91,91 @@ components:
 
 ## Overview
 
-**Creative North Star: "The Speaking Folio"**
+**Creative North Star: "The Personal Project Bookshelf"**
 
-A personal showcase with a confident name, approved photographs, and plain geometric explanations of real workflows. Plum, cool paper, and gold give the work contrast without decorative surface effects.
+A photographic, editorial portfolio pairs a direct personal introduction with a collection of specific work. Large plum, cool paper, and gold fields, simple typography, and generous space let the person and projects lead.
 
-The system is flat and open: hierarchy comes from scale, spacing, image crops, and tonal fields. Motion introduces the name and portrait once, then sequences workflow steps; ordinary headings and prose remain static.
+The design is flat and rectangular. Project representations use real descriptions and clearly labeled illustration, while approved photographs and original video thumbnails bring a human presence. Content is visible by default; short, optional motion adds orientation without becoming necessary to read or navigate.
 
 **Key Characteristics:**
 
-- Oversized Manrope display with readable DM Sans text.
-- Square media and flat plum, paper, and gold fields.
-- Workflow geometry and real photographs as the visual material.
-- Visible content by default, with optional introduction and workflow motion.
+- A dark opening with a real portrait and selected work.
+- Manrope headings and DM Sans text, both self-hosted.
+- Square, flat fields and project-specific visual explanations.
+- Accessible navigation, visible focus, and restrained motion.
 
-Extracted from the completed October 27, 2026 implementation: `static/style.css`, `static/app.js`, `build.py`, `templates/shell.html`, and `dist/index.html`. The desktop, tablet, and mobile captures in `.impeccable/review/` record its rendered expression. Surface-specific composition stays in `.impeccable/surfaces/templates-shell-html.md`.
+Documented from the October 28, 2026 implementation in `static/style.css`, `static/app.js`, `build.py`, `templates/shell.html`, and `media.json`, checked against the final desktop and phone captures in `output/design/2026-10-28/redesign/final/`. Surface composition is recorded in `.impeccable/surfaces/templates-shell-html.md`.
 
 ## Colors
 
-The user-selected palette pairs plum and gray neutrals with gold and amber accents; the implementation adds light fields for legibility.
+The user-pinned plum and gray palette is punctuated with gold and amber; light fields provide reading surfaces.
 
 ### Primary
 
-- **Gold** (`palette-gold`): primary actions, the signal preview, contact field, selection, and video-link mark.
-- **Amber** (`palette-amber`): action hover, link underline, and the monogram dot.
+- **Gold:** primary action, announcement, contact and case-workflow fields, selection, and video link mark.
+- **Amber:** action hover and link underlines.
 
 ### Neutral
 
-- **Plum Ink** (`palette-ink`): body text, dark preview fields, selected filters, and inverse actions.
-- **Cool Paper** (`paper`): page background and text on dark ink.
-- **Cool Surface** (`surface`): note panels, outbound grouping, case facts, and unselected-filter hover.
-- **Warm Surface** (`surface-warm`): signal inputs and case-study workflow fields.
-- **Muted Plum Gray** (`palette-muted`): native scrollbar color. Body copy remains ink.
-- **Palette Gray** (`palette-gray`): pinned palette primitive retained in the source; no active component assignment.
+- **Plum ink:** dark header, opening, footer, selected filters, case facts and inverse actions; body text on light fields.
+- **Cool paper:** body background and text on plum.
+- **Cool surface:** note panels, tags, status markers, and filter hover.
+- **Palette gray:** the Infnty illustrative field.
+- **Muted plum gray:** scrollbar and portrait loading background.
+- **Warm surface:** retained source token; no current component assignment.
 
-**The Gold Contrast Rule.** Gold actions carry dark ink text; pale text is reserved for ink fields.
+**The Gold Contrast Rule.** Gold actions carry dark ink text; pale text is reserved for dark fields.
 
 ## Typography
 
-**Display Font:** Manrope, with Arial and sans-serif fallbacks. **Body Font:** DM Sans, with the same fallbacks. Both are self-hosted Latin WOFF2 variable fonts, preloaded by the shared shell.
+**Display Font:** Manrope, with Arial and sans-serif fallbacks. **Body Font:** DM Sans with the same fallbacks. Both are variable Latin WOFF2 files served locally and preloaded in the shared shell; preserve their licenses and manifest references.
 
-Display, headline, title, body, and label values live in the frontmatter. The large name has tighter tracking and leading than section headings. Titles use the headline weight; labels remain sentence case without tracking or a separate mono face. Action labels increase to semibold (600).
-
-The display name becomes (64px) at the tablet breakpoint and a mobile clamp (`clamp(54px,15.8vw,92px)`) below (620px). Body text becomes (16px) there. Story titles use their own smaller responsive display; long note prose uses (18px) with (1.85) leading until mobile. Homepage descriptions stay near (46–54ch); case prose reaches (72ch).
+The frontmatter records the opening display and shared heading, title, body, and label defaults. Page mastheads use a larger responsive display (`clamp(54px, 7vw, 96px)`); project titles and contact headings have their own scales. Headings use weight (650), tight tracking and balanced wrapping. Action labels are semibold. Case prose is capped at (72ch); long-form note prose uses (18px) with (1.85) line height until mobile.
 
 ## Layout
 
-The centered container caps at (1280px). Its side gutter is (40px), then (32px), (24px), (20px), and (16px) at maximum widths of (1100px), (800px), (620px), and (360px). Section spacing follows (104px), (80px), (72px), then (64px).
+The centered container is capped at (1280px). Its side gutter is (40px), reducing to (32px), (24px), (20px), and (16px) at maximum widths of (1100px), (800px), (620px), and (360px). Base section spacing is (112px), then (88px), (72px), and (64px) at the first three breakpoints.
 
-Work uses a six-column grid: substantial previews span three columns, the wide outbound row spans six, and compact entries span two. Below (620px), projects, biography, videos, and notes form single columns. The hero retains a compact portrait alongside its introductory text on mobile, with the name above both. Two-column video and note grids use a (32px) desktop gap, reducing to (24px) on tablet. Case-study prose pairs a narrow heading column with a wider text column, then stacks on mobile. Filtered results use one column and an updated live count.
+On desktop, the home stage places the introduction and selected work beside a sticky portrait; the portrait releases with its parent. Featured work on the Work page uses alternating two-column rows followed by a compact dark index. About and case-study sections pair headings with text; notes and video collections use grids. At (620px) and below, these layouts stack, the portrait becomes static, and work entries flow naturally in reading order. The video grid is asymmetric on desktop and single-column on mobile.
 
 ## Elevation & Depth
 
-No shadows, gradients, blur, or decorative border vocabulary ships. Grouping comes from cool and warm tonal fields, image crops, and spacing. Keyboard focus is an intentional functional outline (3px ink, 5px offset).
-
-**The Flat Surface Rule.** Use tonal fields and space for grouping; do not add decorative borders, gradients, blur, or shadows.
+The interface uses flat tonal fields, image crops, and spacing instead of shadows, gradients, or blur. A visible focus outline (3px current color, 5px offset) is functional and adapts to dark and light backgrounds.
 
 ## Shapes
 
-Controls, panels, diagrams, photographs, and video thumbnails have square corners. The only circular exception is the small author avatar on retained note pages. Workflow arrows are inline SVG with a (1.5) stroke, normally (20px); they express direction or a link, never act as ornamental glyphs.
+Fields, photos, controls, and media use square corners. The note signature uses a circular avatar as a specific exception. Directional arrows are inline SVG, generally (20px), and serve navigation and workflow direction.
 
 ## Components
 
-### Buttons and links
+### Actions and navigation
 
-Gold actions use dark ink text; the contact field uses an inverse ink action with paper text. Both have the primary button padding in the frontmatter, a (48px) minimum height, and semibold labels. Text links remain open, with (44px) minimum height. Hover changes the gold action to amber; link hover adds an amber underline. Hover-capable users without a reduced-motion preference also receive a small upward movement and arrow shift. All links, buttons, and summaries share the visible focus outline.
+Primary actions are gold with ink text; inverse actions are ink with paper text on gold. Both have a (48px) minimum height and use the padding in frontmatter. Hover changes a primary action to amber and inverse text to gold; links acquire amber underlines. The dark header contains the wordmark, Work, About, Notes, Contact, and a direct booking link. Current routes receive a gold underline. At (620px), the name beside the monogram hides while the links remain visible; at (360px), the booking label shortens visually while its accessible name remains complete. The footer repeats navigation and external links.
 
-The Cal.com action is an ordinary external link, not an embedded scheduling interface.
+### Project representations
 
-### Navigation
+Featured entries combine a linked visual field, title, maturity, description, contribution, and a case-study link. The signal diagram states the 15-minute check and advisor review; the Infnty newsletter field explicitly labels itself illustrative; the outbound field shows research, enrichment, drafting and human approval. These are explanatory representations, not evidence of an actual product interface. The compact work index uses simple rows on plum.
 
-A plain, non-sticky row pairs the monogram and name with sentence-case links. Navigation links have (44px) minimum height; the name beside the monogram hides on mobile while the links remain visible. There is no drawer, floating pill, blur, or navigation panel.
+Filters are hidden until JavaScript enables them, so every project remains available without it. Buttons communicate selection with `aria-pressed`, and the result count is a polite live region. Notes use cool square panels; case facts, flow steps, status markers and tags use flat fields. The contact detail disclosure uses native `details` and `summary`.
 
-### Project filters and metadata
+### Media and motion
 
-Borderless square filter buttons use ink on paper at rest, a cool field on hover, and paper on ink when selected. Selection is represented by `aria-pressed`; the result count is a polite live region. Filters are hidden until JavaScript enables them, leaving all projects available otherwise. Technology tags and the retained status marker use flat cool fields with their distinct frontmatter padding; homepage maturity and contribution text remains unboxed.
+Approved portrait photography and original public video thumbnails use responsive AVIF and WebP sources with a fallback from `media.json`; video art retains its 16:9 presentation. The shared shell preloads the local fonts. Preserve hashed filenames and their manifest references.
 
-### Workflow previews
-
-Large gold and ink fields hold semantic text nodes, square records, and directional SVG connectors. They explain a workflow rather than imitate an app interface. Their entire preview links to the corresponding case study; the visible text supplies the accessible name. The outbound preview uses a cool field and a dark human-approval block. Workflow direction adapts to available width.
-
-Steps enter once in reading order with (70ms) stagger. The arrival lasts (.65s); only workflow steps receive JavaScript entrance assignments. Name and portrait introduce on load for (.85s) and (1.2s). All use the source easing `cubic-bezier(.16,1,.3,1)`. Content is visible initially, and reduced-motion settings disable these entrances and hover movement.
-
-### Media, notes, and case studies
-
-Approved photographs use deliberate cover crops. Original video thumbnails retain a (16:9) presentation and a small square gold link mark; they open the public videos without autoplay. Notes are simple cool panels, with a title, arrow, and topic. Case facts, workflow nodes, and technology tags repeat the same flat grouping. No input, modal, or form component exists in this implementation.
+With motion allowed, the portrait settles from scale (1.04) over (1.1s); project artifact elements enter over (.65s), staggered by (70ms). Hover-capable devices may lift buttons, shift arrows, and gently scale image or artifact content. The shared easing is `cubic-bezier(.16,1,.3,1)`. Reduced motion disables entrance and transition effects, and all content remains visible without JavaScript. Links, buttons, and summaries expose visible keyboard focus; the skip link appears on focus.
 
 ## Do's and Don'ts
 
 ### Do:
 
-- **Do** use approved photographs and original video thumbnails; preserve responsive assets and self-hosted fonts.
-- **Do** keep workflow previews diagrammatic and readable, with visible text supplying their link names.
-- **Do** preserve square corners, visible keyboard focus, and content that remains visible without JavaScript.
-- **Do** limit entrance motion to the name, portrait, and workflow steps; honor reduced motion.
+- **Do** use the pinned palette and keep dark text on gold actions.
+- **Do** preserve approved photos, original video thumbnails, responsive media, and self-hosted fonts.
+- **Do** label illustrative material and keep project representations tied to supported facts and maturity.
+- **Do** maintain keyboard focus, semantic controls, reduced-motion support, and content visible without JavaScript.
 
 ### Don't:
 
-- **Don't** turn diagrams into invented product screenshots or imply unsupported results.
-- **Don't** add ornamental borders, gradients, shadows, rounded cards, or a floating navigation shell.
-- **Don't** use emoji arrows, external font imports, or scroll-driven hiding of ordinary content.
-- **Don't** treat the retained circular note avatar as a general corner treatment.
+- **Don't** present illustrations as actual product screenshots or imply unsupported outcomes.
+- **Don't** use emoji arrows or external font imports.
+- **Don't** use motion to conceal ordinary content or block navigation.
+- **Don't** generalize the note avatar's circular crop to the rest of the interface.

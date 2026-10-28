@@ -105,33 +105,23 @@ def write(path, content):
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(content)
 
-def project_preview(p):
-    """Public workflow diagrams, rather than invented product screenshots."""
+def project_art(p):
+    """A labeled visual representation of supported project facts."""
     if p['visual'] == 'signals':
-        return f'''<div class="work-art signals-art">
-          <div class="signal-input"><span>Newsletter activity</span><span>Website enquiries</span></div>
-          <div class="diagram-connector">{arrow('down')}</div>
-          <div class="signal-record"><strong>A contact with context.</strong><span>Activity, interests & next action</span></div>
-          <div class="signal-output"><span>AI draft</span>{arrow('right')}<strong>Advisor review</strong></div>
-        </div>'''
+        return f'''<div class="artifact artifact-signals"><div class="signal-flow"><div class="signal-source"><strong data-reveal>Newsletter &<br>website signals</strong><span data-reveal>Checked every 15 minutes</span></div>{arrow('right')}<div class="signal-result"><strong data-reveal>Contact record<br>+ AI draft</strong><span data-reveal>For advisor review</span></div></div></div>'''
     if p['visual'] == 'newsletter':
-        return f'''<div class="work-art newsletter-art">
-          <div class="newsletter-name">Infnty<span>AI for your work.</span></div>
-          <div class="newsletter-path"><span>Editorial brief</span><span>Reader context</span></div>
-          <div class="diagram-connector">{arrow('down')}</div>
-          <div class="newsletter-edition"><strong>A personal edition.</strong><span>Relevant news. Practical application.</span></div>
-          <p>Human review before delivery</p>
-        </div>'''
-    return f'''<div class="outbound-art"><span>Research</span>{arrow('right')}<span>Enrich · Route · Draft</span>{arrow('right')}<strong>Human approval</strong></div>'''
+        return '''<div class="artifact artifact-newsletter"><div class="newsletter-sheet"><div class="newsletter-brand" data-reveal>Infnty <span>AI for your work</span></div><div class="newsletter-body"><span data-reveal>Personal AI briefing</span><strong data-reveal>One useful workflow.<br>Made relevant to you.</strong><p data-reveal>Practical application and the news behind it.</p></div><div class="newsletter-foot">Illustrative newsletter format</div></div></div>'''
+    return '''<div class="artifact artifact-outbound"><div class="outbound-process"><span data-reveal>Research</span><span data-reveal>Enrich · Route · Draft</span><strong data-reveal>Human approval</strong><p data-reveal>150 personalized messages a day, up from about 10.</p></div></div>'''
 
 
-def project_cards(projects):
+def featured_projects(projects, context='work'):
     by_slug={p['slug']:p for p in DATA['projects']}
-    return ''.join(f'''<article class="project project-{e(p['visual'])}" data-category="{e(by_slug[p['slug']]['category'])}">
-      <a class="project-cover" href="/work/{e(p['slug'])}/">{project_preview(p)}</a>
-      <div class="project-main"><h3><a href="/work/{e(p['slug'])}/">{e(p['title'])} {arrow()}</a></h3>
+    names={'intent-signals':'Follow-up, with context.','infnty':'Infnty: AI for your work.','outbound-engine':'The outbound engine.'}
+    return ''.join(f'''<article class="folio-entry project project-{e(p['visual'])}" data-category="{e(by_slug[p['slug']]['category'])}">
+      <a class="project-cover" href="/work/{e(p['slug'])}/">{project_art(p)}</a>
+      <div class="project-main"><h3><a href="/work/{e(p['slug'])}/">{e(names[p['slug']])} {arrow()}</a></h3>
       <p class="project-status">{e(p['detail'])}</p><p>{e(p['description'])}</p>
-      <div class="project-bottom"><span>{e(p['contribution'])}</span><a class="text-link" href="/work/{e(p['slug'])}/">Case study {arrow('right')}</a></div></div></article>''' for p in projects)
+      <div class="project-bottom"><span>{e(p['contribution'])}</span><a class="text-link" href="/work/{e(p['slug'])}/">Explore project {arrow('right')}</a></div></div></article>''' for p in projects)
 
 
 def compact_projects():
@@ -140,40 +130,34 @@ def compact_projects():
 
 
 def video_links():
-    return ''.join(f'''<a class="video-link" href="{e(v['url'])}"><div class="video-image">{responsive_image(v['thumbnail'], "", lazy=True)}<span class="play-mark">{arrow()}</span></div><h3>{e(v['title'])}</h3><p>Watch on YouTube {arrow()}</p></a>''' for v in DATA['videos'])
+    return ''.join(f'''<a class="video-link" href="{e(v['url'])}"><div class="video-image">{responsive_image(v['thumbnail'], "", lazy=True)}<span class="play-mark">{arrow()}</span></div><div class="video-caption"><h3>{e(v['title'])}</h3><span>Watch on YouTube {arrow()}</span></div></a>''' for v in DATA['videos'])
 
 
 def note_links():
-    return ''.join(f'''<a class="note" href="/notes/{e(n['slug'])}/"><h3>{e(n.get('home_title', n['title']))} {arrow()}</h3><p>{e(n['tag'])}</p></a>''' for n in DATA['notes'])
+    return ''.join(f'''<a class="note" href="/notes/{e(n['slug'])}/"><div><h3>{e(n.get('home_title', n['title']))}</h3><p>{e(n['tag'])}</p></div>{arrow()}</a>''' for n in DATA['notes'])
 
 
 def home():
     copy=DATA['home']
     return f'''
-    <section class="hero wrap" aria-labelledby="hero-title">
-      <div class="hero-copy"><h1 id="hero-title">Vatsal Jain</h1><p class="hero-statement">I build AI for real work.</p>
-      <p class="hero-description">{e(copy['intro'])}</p>
-      <div class="hero-actions"><a class="button" href="/work/">Explore my work {arrow('right')}</a><a class="text-link" href="{e(DATA['linkedin'])}">LinkedIn {arrow()}</a></div>
-      <p class="hero-location">{e(copy['availability'])}</p></div>
-      <figure class="portrait-frame">{responsive_image('/assets/vatsal.jpg', 'Vatsal Jain', priority=True)}<figcaption><span>Founder, Clarity Works</span><span>Vancouver, BC</span></figcaption></figure>
-    </section>
-    <section class="work-section wrap" id="work"><div class="section-heading"><h2>Selected work.</h2><a class="text-link" href="/work/">View all six projects {arrow('right')}</a></div>
-      <div class="project-list">{project_cards(copy['projects'][:2])}</div>
-    </section>
-    <section class="home-paths wrap" aria-label="Explore more">
-      <article id="about"><h2>More about me.</h2><p>My background, tools, and how I work with teams.</p><a class="text-link" href="/about/">About Vatsal {arrow('right')}</a></article>
-      <article id="notes"><h2 id="teaching">Notes & videos.</h2><p>Ideas and practical walkthroughs from the work.</p><a class="text-link" href="/notes/">Explore ideas {arrow('right')}</a></article>
-    </section>
-    <section class="contact-section home-contact wrap" id="contact"><div class="contact-heading"><h2>{e(copy['contact_title'])}</h2><p>{e(copy['contact_description'])}</p><div class="contact-actions">{contact_action('contact')}<a class="text-link" href="/contact/">Contact details {arrow('right')}</a></div></div><div class="contact-copy"><p>Based in Canada.<br>Remote preferred. Open to the US.</p></div></section>'''
+    <section class="home-stage"><div class="wrap stage-grid">
+      <div class="stage-intro"><h1>Hi, I’m Vatsal.<br>I build useful AI.</h1><p>I turn real business problems into systems that people can actually use.</p>
+        <div class="hero-actions"><a class="button" href="/work/">Explore my work {arrow('right')}</a><a class="text-link" href="/about/">About me {arrow('right')}</a></div>
+        <p class="hero-location">{e(copy['availability'])}</p></div>
+      <figure class="stage-portrait">{responsive_image('/assets/vatsal.jpg', 'Vatsal Jain', priority=True)}<figcaption><span>Vatsal Jain</span><span>Vancouver, BC</span></figcaption></figure>
+      <section class="home-work" id="work"><div class="section-heading"><h2>Selected work.</h2><a class="text-link" href="/work/">All projects {arrow('right')}</a></div><div class="home-projects">{featured_projects(copy['projects'][:2])}</div></section>
+    </div></section>
+    <section class="home-more wrap" id="about"><div><h2>Curious about how the work gets done?</h2><p>My background is in economics. These days I work across the business problem, the workflow, and the build.</p><a class="text-link" href="/about/">More about me {arrow('right')}</a></div><a class="home-media" href="/notes/" id="notes">{responsive_image(DATA['videos'][0]['thumbnail'], '', lazy=True)}<div id="teaching"><strong>Ideas from the work.</strong><span>Notes & videos</span>{arrow()}</div></a></section>
+    <section class="contact-section home-contact wrap" id="contact"><div class="contact-heading"><h2>Let’s work<br>together.</h2><p>{e(copy['contact_description'])}</p><div class="contact-actions">{contact_action('contact')}<a class="text-link" href="/contact/">Contact details {arrow('right')}</a></div></div><div class="contact-copy"><p>Based in Canada.<br>Remote preferred. Open to the US.</p></div></section>'''
 
 
 def work_page():
     categories=[('all','All work'),('systems','AI systems'),('enablement','Enablement')]
     filters=''.join(f'<button type="button" aria-pressed="{str(category=="all").lower()}" data-filter="{category}">{label} <span>{sum(category=="all" or p["category"]==category for p in DATA["projects"])}</span></button>' for category,label in categories)
-    body=f'''<header class="page-intro wrap"><h1>Selected work.</h1><p>AI systems and practical workflows, from early development to work in use.</p></header>
-    <section class="work-section wrap" id="projects"><div class="section-heading"><h2>Projects</h2><div class="work-toolbar"><div class="filters" role="group" aria-label="Filter projects" hidden>{filters}</div><span id="project-count" role="status" aria-live="polite" aria-atomic="true">{len(DATA['projects'])} projects</span></div></div>
-    <div class="project-list">{project_cards(DATA['home']['projects'])}{compact_projects()}</div></section>
-    <section class="page-next wrap"><h2>Have a project in mind?</h2><a class="text-link" href="/contact/">Let’s connect {arrow('right')}</a></section>'''
+    body=f'''<header class="page-masthead wrap"><h1>Work in the<br>real world.</h1><p>Practical AI systems, from an early idea to work in use.</p></header>
+    <section class="work-section wrap" id="projects"><div class="section-heading"><h2>Selected projects.</h2><div class="work-toolbar"><div class="filters" role="group" aria-label="Filter projects" hidden>{filters}</div><span id="project-count" role="status" aria-live="polite" aria-atomic="true">{len(DATA['projects'])} projects</span></div></div>
+    <div class="project-list">{featured_projects(DATA['home']['projects'])}<div class="work-index">{compact_projects()}</div></div></section>
+    <section class="page-next wrap"><h2>Have a problem<br>worth solving?</h2><a class="button" href="/contact/">Let’s connect {arrow('right')}</a></section>'''
     return shell('Work — Vatsal Jain','Explore Vatsal Jain’s applied AI systems, products and workflow projects.',body,'/work/')
 
 
@@ -181,25 +165,26 @@ def about_page():
     about=DATA['about']
     method=''.join(f'''<div><dt>{e(item['heading'])}</dt><dd>{e(item['description'])}</dd></div>''' for item in DATA['method'])
     stack=''.join(f'''<div><dt>{e(group['label'])}</dt><dd>{e(' · '.join(group['items']))}</dd></div>''' for group in DATA['stack'])
-    body=f'''<header class="page-intro wrap"><h1>{e(DATA['home']['about_title'])}</h1><p>{e(about['lead'])}</p></header>
-    <section class="about-section about-page wrap"><figure class="about-photo">{responsive_image(about['photo'], about['photo_alt'], priority=True)}</figure><div class="about-copy"><h2>A bit about me.</h2>{paragraphs([DATA['home']['about_paragraphs'][0]] + about['paragraphs'][1:])}<a class="text-link" href="{e(DATA['business'])}">Meet Clarity Works {arrow()}</a></div></section>
+    body=f'''<section class="about-opening wrap"><div class="about-intro"><h1>People first.<br>Then AI.</h1><p>{e(DATA['home']['about_paragraphs'][0])}</p><a class="text-link" href="{e(DATA['business'])}">Meet Clarity Works {arrow()}</a></div><figure class="about-portrait">{responsive_image(about['photo'], about['photo_alt'], priority=True)}<figcaption>Founder, builder, and advisor · Greater Vancouver</figcaption></figure></section>
+    <section class="about-story wrap"><h2>How I got here.</h2><div><p>{e(about['lead'])}</p>{paragraphs(about['paragraphs'][1:])}</div></section>
+    <section class="journey-section wrap"><h2>A little background.</h2><div class="journey-list"><div><span>2025 — Present</span><strong>Founder, Clarity Works</strong></div><div><span>2022</span><strong>Product Research Fellow, Circonomy</strong></div><div><span>2020 — 2024</span><strong>International Economics, UBC</strong></div></div></section>
     <section class="method-section wrap"><div class="section-heading"><h2>How I work.</h2><a class="text-link" href="https://www.tryclarityworks.com/philosophy">The philosophy {arrow()}</a></div><dl class="method-list">{method}</dl></section>
     <section class="skills-section wrap"><div class="section-heading"><h2>Tools & focus.</h2></div><dl class="skills-list">{stack}</dl></section>
-    <section class="page-next wrap"><h2>See the work in practice.</h2><a class="text-link" href="/work/">Explore projects {arrow('right')}</a></section>'''
+    <section class="page-next wrap"><h2>See the work<br>in practice.</h2><a class="button" href="/work/">Explore projects {arrow('right')}</a></section>'''
     return shell('About — Vatsal Jain','Learn about Vatsal Jain’s background, approach and practical AI skills.',body,'/about/')
 
 
 def notes_index():
-    body=f'''<header class="page-intro wrap"><h1>Notes & videos.</h1><p>Ideas and walkthroughs from building AI systems with people in the loop.</p></header>
-    <section class="video-section wrap" id="videos"><div class="section-heading"><h2>The work, explained.</h2><a class="text-link" href="{e(DATA['youtube'])}">More on YouTube {arrow()}</a></div><div class="video-grid">{video_links()}</div></section>
-    <section class="notes-section wrap" id="writing"><div class="section-heading"><h2>Things I’m thinking about.</h2></div><div class="notes-grid">{note_links()}</div></section>
-    <section class="page-next wrap"><h2>See what I’m building.</h2><a class="text-link" href="/work/">Explore projects {arrow('right')}</a></section>'''
+    body=f'''<header class="page-masthead wrap"><h1>Ideas from<br>the work.</h1><p>Videos and notes about building AI systems with people in the loop.</p></header>
+    <section class="video-section wrap" id="videos"><div class="section-heading"><h2>Watch.</h2><a class="text-link" href="{e(DATA['youtube'])}">More on YouTube {arrow()}</a></div><div class="video-grid">{video_links()}</div></section>
+    <section class="notes-section wrap" id="writing"><div class="section-heading"><h2>Read.</h2></div><div class="notes-grid">{note_links()}</div></section>
+    <section class="page-next wrap"><h2>See what<br>I’m building.</h2><a class="button" href="/work/">Explore projects {arrow('right')}</a></section>'''
     return shell('Notes & videos — Vatsal Jain','Notes and video walkthroughs on applied AI, workflow design and reliability.',body,'/notes/')
 
 
 def contact_page():
     copy=DATA['home']
-    body=f'''<section class="contact-section contact-page wrap" id="contact"><div class="contact-heading"><h1>Let’s connect.</h1><p>{e(copy['contact_description'])}</p><div class="contact-actions">{contact_action('contact')}<a class="text-link" href="mailto:{e(DATA['email'])}">Send an email {arrow()}</a></div></div><div class="contact-copy"><p>Based in Canada.<br>Remote preferred. Open to the US.</p><details><summary>Working together</summary><p>I’m exploring Forward Deployed Engineer, AI Solutions Architect, and AI Enablement roles, plus scoped B2B builds.</p><p>I can work with US teams from Canada as an employee, or as a contractor through Clarity Works LLP, registered in British Columbia. Work performed in Canada doesn’t need US visa sponsorship. For US relocation, work authorization would be settled per role.</p></details></div></section>'''
+    body=f'''<section class="contact-section contact-page wrap" id="contact"><div class="contact-heading"><h1>Let’s work<br>together.</h1><p>{e(copy['contact_description'])}</p><div class="contact-actions">{contact_action('contact')}<a class="text-link" href="mailto:{e(DATA['email'])}">Send an email {arrow()}</a></div></div><div class="contact-copy"><p>Based in Canada.<br>Remote preferred. Open to the US.</p><details><summary>Working together</summary><p>I’m exploring Forward Deployed Engineer, AI Solutions Architect, and AI Enablement roles, plus scoped B2B builds.</p><p>I can work with US teams from Canada as an employee, or as a contractor through Clarity Works LLP, registered in British Columbia. Work performed in Canada doesn’t need US visa sponsorship. For US relocation, work authorization would be settled per role.</p></details></div></section>'''
     return shell('Contact — Vatsal Jain','Book a conversation with Vatsal Jain about applied AI work and opportunities.',body,'/contact/')
 
 def case_study(p):
@@ -218,7 +203,7 @@ def case_study(p):
     if p.get('sources'):
         source_items=''.join(f'<a href="{e(s["url"])}">{e(s["label"])} {arrow()}</a>' for s in p['sources'])
         sources=f'<aside class="story-sources"><h2>More detail</h2><div>{source_items}</div></aside>'
-    body=f'''<div class="wrap story"><a class="back-link" href="/work/">{arrow('left')} All selected work</a><header class="story-header"><h1>{e(p['name'])}</h1><p class="content-meta">{e(p['context'])} <span class="status">{e(p['status'])}</span></p><p class="story-deck">{e(p['summary'])}</p></header><dl class="story-facts"><div><dt>Project</dt><dd>{e(p['product'])}</dd></div><div><dt>My role</dt><dd>{e(p['role'])}</dd></div><div><dt>Current outcome</dt><dd>{e(p['outcome'])}</dd></div></dl>{metrics}<div class="story-flow"><p class="content-meta">The workflow, at a glance</p>{flow(p,True)}<p class="flow-caption">A simplified view of the workflow.</p></div>{stages}{sections}<section class="story-tools"><h2>Tools & focus</h2><div class="tags">{tags}</div></section>{sources}<div class="story-cta">{external}<a class="text-link" href="mailto:{e(DATA['email'])}">Talk about this work {arrow()}</a></div></div>'''
+    body=f'''<div class="wrap story"><a class="back-link" href="/work/">{arrow('left')} All selected work</a><header class="story-header"><div class="story-heading"><h1>{e(p['name'])}</h1><p class="content-meta">{e(p['context'])} <span class="status">{e(p['status'])}</span></p><p class="story-deck">{e(p['summary'])}</p></div><dl class="story-facts"><div><dt>Project</dt><dd>{e(p['product'])}</dd></div><div><dt>My role</dt><dd>{e(p['role'])}</dd></div><div><dt>Current outcome</dt><dd>{e(p['outcome'])}</dd></div></dl></header>{metrics}<div class="story-flow"><p class="content-meta">The workflow, at a glance</p>{flow(p,True)}<p class="flow-caption">A simplified view of the workflow.</p></div>{stages}{sections}<section class="story-tools"><h2>Tools & focus</h2><div class="tags">{tags}</div></section>{sources}<div class="story-cta">{external}<a class="text-link" href="mailto:{e(DATA['email'])}">Talk about this work {arrow()}</a></div></div>'''
     return shell(p['name']+' — Vatsal Jain',p['summary'],body,'/work/'+p['slug']+'/')
 
 def note_page(n):

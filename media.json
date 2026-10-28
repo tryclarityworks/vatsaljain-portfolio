@@ -3,7 +3,7 @@
     "/assets/vatsal.jpg": {
       "width": 1200,
       "height": 1600,
-      "sizes": "(max-width: 360px) 120px, (max-width: 620px) 140px, (max-width: 800px) 230px, (max-width: 1100px) 280px, 320px",
+      "sizes": "(max-width: 620px) calc(100vw - 40px), (max-width: 1100px) 45vw, 560px",
       "avif": [
         {
           "width": 120,
@@ -121,84 +121,104 @@
       "fallback": "/assets/optimized/vatsal-railing-780w.b0e74f6d1645.webp"
     },
     "/assets/content-walkthrough.jpg": {
-      "width": 480,
-      "height": 360,
-      "sizes": "(max-width: 620px) calc(100vw - 40px), (max-width: 800px) calc((100vw - 72px) / 2), (max-width: 1100px) calc((100vw - 96px) / 2), (max-width: 1360px) calc((100vw - 112px) / 2), 624px",
+      "width": 1280,
+      "height": 720,
+      "sizes": "(max-width: 620px) calc(100vw - 40px), (max-width: 1100px) 60vw, 800px",
       "avif": [
         {
-          "width": 160,
-          "src": "/assets/optimized/content-walkthrough-160w.4c829a8c232e.avif",
-          "bytes": 2912
-        },
-        {
           "width": 320,
-          "src": "/assets/optimized/content-walkthrough-320w.804412ff5f50.avif",
-          "bytes": 7551
+          "src": "/assets/optimized/content-walkthrough-320w.25b0442187f9.avif",
+          "bytes": 7518
         },
         {
-          "width": 480,
-          "src": "/assets/optimized/content-walkthrough-480w.100badfa1a33.avif",
-          "bytes": 14059
+          "width": 640,
+          "src": "/assets/optimized/content-walkthrough-640w.5adef76e1dd6.avif",
+          "bytes": 17201
+        },
+        {
+          "width": 960,
+          "src": "/assets/optimized/content-walkthrough-960w.c68e741efc72.avif",
+          "bytes": 29087
+        },
+        {
+          "width": 1280,
+          "src": "/assets/optimized/content-walkthrough-1280w.fefadebd9499.avif",
+          "bytes": 43246
         }
       ],
       "webp": [
         {
-          "width": 160,
-          "src": "/assets/optimized/content-walkthrough-160w.d6f03039c3e3.webp",
-          "bytes": 4288
-        },
-        {
           "width": 320,
-          "src": "/assets/optimized/content-walkthrough-320w.bbb57ff455ca.webp",
-          "bytes": 12238
+          "src": "/assets/optimized/content-walkthrough-320w.b51d88cedd59.webp",
+          "bytes": 12614
         },
         {
-          "width": 480,
-          "src": "/assets/optimized/content-walkthrough-480w.c6de9e47e0c2.webp",
-          "bytes": 22288
+          "width": 640,
+          "src": "/assets/optimized/content-walkthrough-640w.cde170d476c3.webp",
+          "bytes": 31094
+        },
+        {
+          "width": 960,
+          "src": "/assets/optimized/content-walkthrough-960w.c80530e3296f.webp",
+          "bytes": 50426
+        },
+        {
+          "width": 1280,
+          "src": "/assets/optimized/content-walkthrough-1280w.e42d6a8d0781.webp",
+          "bytes": 73878
         }
       ],
-      "fallback": "/assets/optimized/content-walkthrough-320w.bbb57ff455ca.webp"
+      "fallback": "/assets/optimized/content-walkthrough-640w.cde170d476c3.webp"
     },
     "/assets/workflow-selection.jpg": {
-      "width": 480,
-      "height": 360,
-      "sizes": "(max-width: 620px) calc(100vw - 40px), (max-width: 800px) calc((100vw - 72px) / 2), (max-width: 1100px) calc((100vw - 96px) / 2), (max-width: 1360px) calc((100vw - 112px) / 2), 624px",
+      "width": 1280,
+      "height": 720,
+      "sizes": "(max-width: 620px) calc(100vw - 40px), (max-width: 1100px) 60vw, 800px",
       "avif": [
         {
-          "width": 160,
-          "src": "/assets/optimized/workflow-selection-160w.323984eabfa2.avif",
-          "bytes": 2505
-        },
-        {
           "width": 320,
-          "src": "/assets/optimized/workflow-selection-320w.2e3448e54f2b.avif",
-          "bytes": 6240
+          "src": "/assets/optimized/workflow-selection-320w.11cdcebb3344.avif",
+          "bytes": 5919
         },
         {
-          "width": 480,
-          "src": "/assets/optimized/workflow-selection-480w.6d0b7be3022e.avif",
-          "bytes": 10283
+          "width": 640,
+          "src": "/assets/optimized/workflow-selection-640w.7792c9f06ddc.avif",
+          "bytes": 13333
+        },
+        {
+          "width": 960,
+          "src": "/assets/optimized/workflow-selection-960w.0879f70742e9.avif",
+          "bytes": 21281
+        },
+        {
+          "width": 1280,
+          "src": "/assets/optimized/workflow-selection-1280w.d4093248e13c.avif",
+          "bytes": 32422
         }
       ],
       "webp": [
         {
-          "width": 160,
-          "src": "/assets/optimized/workflow-selection-160w.fea4f599dbcc.webp",
-          "bytes": 4068
-        },
-        {
           "width": 320,
-          "src": "/assets/optimized/workflow-selection-320w.8a889cd47cd6.webp",
-          "bytes": 9154
+          "src": "/assets/optimized/workflow-selection-320w.fcf0a1bc0938.webp",
+          "bytes": 9798
         },
         {
-          "width": 480,
-          "src": "/assets/optimized/workflow-selection-480w.424ba3f4c7bf.webp",
-          "bytes": 15886
+          "width": 640,
+          "src": "/assets/optimized/workflow-selection-640w.87deb68bdd49.webp",
+          "bytes": 21248
+        },
+        {
+          "width": 960,
+          "src": "/assets/optimized/workflow-selection-960w.28dffd2754ff.webp",
+          "bytes": 34352
+        },
+        {
+          "width": 1280,
+          "src": "/assets/optimized/workflow-selection-1280w.07f625806dbf.webp",
+          "bytes": 49096
         }
       ],
-      "fallback": "/assets/optimized/workflow-selection-320w.8a889cd47cd6.webp"
+      "fallback": "/assets/optimized/workflow-selection-640w.87deb68bdd49.webp"
     }
   },
   "fonts": {

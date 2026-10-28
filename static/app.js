@@ -49,16 +49,11 @@ if ('IntersectionObserver' in window) {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
-      const steps = entry.target.matches('.signals-art')
-        ? '.signal-input > span, .diagram-connector, .signal-record, .signal-output'
-        : entry.target.matches('.newsletter-art')
-          ? '.newsletter-path > span, .diagram-connector, .newsletter-edition, p'
-          : ':scope > *';
-      entry.target.querySelectorAll(steps).forEach((step, index) => arrive(step, index * 70));
+      entry.target.querySelectorAll('[data-reveal]').forEach((step, index) => arrive(step, index * 70));
       observer.unobserve(entry.target);
     });
   }, { threshold: 0.12 });
-  document.querySelectorAll('.work-art, .outbound-art').forEach((element) => observer.observe(element));
+  document.querySelectorAll('.artifact').forEach((element) => observer.observe(element));
 }
 
 document.querySelectorAll('.announce[data-until]').forEach((banner) => {
