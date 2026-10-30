@@ -104,7 +104,7 @@ The design is flat and rectangular. Project representations use real description
 - Square, flat fields and project-specific visual explanations.
 - Accessible navigation, visible focus, and restrained motion.
 
-Documented from the October 28, 2026 implementation in `static/style.css`, `static/app.js`, `build.py`, `templates/shell.html`, and `media.json`, checked against the final desktop and phone captures in `output/design/2026-10-28/redesign/final/`. Surface composition is recorded in `.impeccable/surfaces/templates-shell-html.md`.
+Documented from the October 30, 2026 Hallmark refinement of the October 28 implementation in `static/style.css`, `static/app.js`, `build.py`, `templates/shell.html`, and `media.json`, checked against the final desktop and phone captures in `output/design/2026-10-28/redesign/final/`. Surface composition is recorded in `.impeccable/surfaces/templates-shell-html.md`.
 
 ## Colors
 
@@ -140,17 +140,17 @@ On desktop, the home stage places the introduction and selected work beside a st
 
 ## Elevation & Depth
 
-The interface uses flat tonal fields, image crops, and spacing instead of shadows, gradients, or blur. A visible focus outline (3px current color, 5px offset) is functional and adapts to dark and light backgrounds.
+The interface uses flat tonal fields, image crops, and spacing instead of shadows, gradients, or blur. A visible focus outline (3px, 5px offset) uses `--focus`: plum ink on paper/gold and cool paper on dark fields. The ring contrasts with the surrounding surface rather than inheriting the button label color.
 
 ## Shapes
 
-Fields, photos, controls, and media use square corners. The note signature uses a circular avatar as a specific exception. Directional arrows are inline SVG, generally (20px), and serve navigation and workflow direction.
+Fields, photos, controls, and media use square corners. The note signature uses a circular avatar as a specific exception. Directional arrows are inline SVG, generally (20px), and serve selected actions and workflow direction. Video thumbnails use a dedicated (24px) play glyph in a (48px) control mark, with a brief existing video summary below.
 
 ## Components
 
 ### Actions and navigation
 
-Primary actions are gold with ink text; inverse actions are ink with paper text on gold. Both have a (48px) minimum height and use the padding in frontmatter. Hover changes a primary action to amber and inverse text to gold; links acquire amber underlines. The dark header contains the wordmark, Work, About, Notes, Contact, and a direct booking link. Current routes receive a gold underline. At (620px), the name beside the monogram hides while the links remain visible; at (360px), the booking label shortens visually while its accessible name remains complete. The footer repeats navigation and external links.
+Primary actions are gold with ink text; inverse actions are ink with paper text on gold. Both have a (48px) minimum height and use the padding in frontmatter. Hover changes a primary action to amber and inverse text to gold; links acquire amber underlines. The dark header contains the wordmark, Work, About, Notes, Contact, and a direct booking link. Current routes receive a gold underline. At (620px), the name beside the monogram hides while the links remain visible; at (420px), the booking label shortens visually while its accessible name remains complete. The footer repeats navigation and external links.
 
 ### Project representations
 
@@ -162,7 +162,7 @@ Filters are hidden until JavaScript enables them, so every project remains avail
 
 Approved portrait photography and original public video thumbnails use responsive AVIF and WebP sources with a fallback from `media.json`; video art retains its 16:9 presentation. The shared shell preloads the local fonts. Preserve hashed filenames and their manifest references.
 
-With motion allowed, the portrait settles from scale (1.04) over (1.1s); project artifact elements enter over (.65s), staggered by (70ms). Hover-capable devices may lift buttons, shift arrows, and gently scale image or artifact content. The shared easing is `cubic-bezier(.16,1,.3,1)`. Reduced motion disables entrance and transition effects, and all content remains visible without JavaScript. Links, buttons, and summaries expose visible keyboard focus; the skip link appears on focus.
+With motion allowed, the portrait settles from scale (1.04) over (1.1s); project artifact elements enter over (.65s), staggered by (70ms). Hover feedback changes action contrast, underlines linked titles, and shifts directional icons; photographs and project illustrations remain still. The shared easing is `cubic-bezier(.16,1,.3,1)`. Reduced motion disables entrance and transition effects, and all content remains visible without JavaScript. Links, buttons, and summaries expose visible keyboard focus; the skip link appears on focus.
 
 ## Do's and Don'ts
 
@@ -179,3 +179,7 @@ With motion allowed, the portrait settles from scale (1.04) over (1.1s); project
 - **Don't** use emoji arrows or external font imports.
 - **Don't** use motion to conceal ordinary content or block navigation.
 - **Don't** generalize the note avatar's circular crop to the rest of the interface.
+
+## October 30 refinements
+
+Hallmark was used for an audit and targeted polish within this locked design. The shared public work context restores Canadian citizenship on Home, About and Contact. Metadata uses distinct text elements rather than dot-joined lists, and tools remain supported named items. Image grid tracks use `minmax(0, ...)`, headings can wrap safely, and root horizontal overflow uses `clip`. Phone actions remain on one line. No new imagery, video, testimonial or project claim was invented. The Hallmark comparison and audit state stay private in `.hallmark/`.

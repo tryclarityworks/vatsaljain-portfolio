@@ -15,3 +15,6 @@ dist/
 !.impeccable/config.json
 !.impeccable/design.json
 !.impeccable/surfaces/
+
+# Local Hallmark audits and comparisons.
+.hallmark/

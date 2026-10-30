@@ -498,7 +498,7 @@
     }
   ],
   "announcement": {
-    "lead": "San Francisco · November 10–13.",
+    "lead": "San Francisco / November 10 to 13.",
     "text": "",
     "link_label": "Say hello",
     "subject": "San Francisco, Nov 10-13",
@@ -633,5 +633,10 @@
     "learning": "Foundational TypeScript",
     "contact_title": "Let’s build something useful.",
     "contact_description": "Looking for someone who can connect the business problem to the build? Let’s talk."
+  },
+  "work_context": {
+    "citizenship": "Canadian citizen",
+    "location": "Based in Vancouver, BC.",
+    "preferences": "Remote preferred. Open to the US."
   }
 }
