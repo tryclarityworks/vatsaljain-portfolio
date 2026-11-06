@@ -124,7 +124,7 @@ def project_art(p):
         return f'''<div class="artifact artifact-signals"><div class="signal-flow"><div class="signal-source"><strong data-reveal>Newsletter &<br>website signals</strong><span data-reveal>Checked every 15 minutes</span></div>{arrow('right')}<div class="signal-result"><strong data-reveal>Contact record<br>+ AI draft</strong><span data-reveal>For advisor review</span></div></div></div>'''
     if p['visual'] == 'newsletter':
         return '''<div class="artifact artifact-newsletter"><div class="newsletter-sheet"><div class="newsletter-brand" data-reveal>Infnty <span>AI for your work</span></div><div class="newsletter-body"><span data-reveal>Personal AI briefing</span><strong data-reveal>One useful workflow.<br>Made relevant to you.</strong><p data-reveal>Practical application and the news behind it.</p></div><div class="newsletter-foot">Illustrative newsletter format</div></div></div>'''
-    return '''<div class="artifact artifact-outbound"><div class="outbound-process"><span data-reveal>Research</span><span data-reveal>Enrich, route, draft</span><strong data-reveal>Human approval</strong><p data-reveal>150 personalized messages a day, up from about 10.</p></div></div>'''
+    return '''<div class="artifact artifact-outbound"><div class="outbound-process"><span data-reveal>Research</span><span data-reveal>Enrich, route, draft</span><strong data-reveal>Human approval</strong><p data-reveal>300 personalized messages a day, up from about 10.</p></div></div>'''
 
 
 def featured_projects(projects, context='work'):

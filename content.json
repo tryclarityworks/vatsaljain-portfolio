@@ -108,10 +108,10 @@
       "product": "Clarity Works outbound pipeline",
       "category": "systems",
       "status": "Built & used",
-      "summary": "Seven stages, three LLM agents, and rules in code: do-not-contact checks at three stages, verification before send, and a human approval gate. Personalized outreach grew from about 10 to 150 messages per day.",
+      "summary": "Seven stages, three LLM agents, and rules in code: do-not-contact checks at three stages, verification before send, and a human approval gate. Personalized outreach grew from about 10 to 300 messages per day.",
       "context": "GTM · Multi-agent orchestration",
       "role": "Founder & builder, Clarity Works",
-      "outcome": "~10 to 150 personalized messages / day",
+      "outcome": "~10 to 300 personalized messages / day",
       "stack": [
         "Python",
         "Claude / OpenRouter",
@@ -147,8 +147,8 @@
         {
           "title": "The result",
           "paragraphs": [
-            "Personalized outreach grew from roughly 10 to 150 messages per day in my own operation. Response quality, meetings, and revenue need their own measurement.",
-            "The system is designed to scale to 1,000+ personalized messages per day. That figure describes designed capacity; current operating volume is 150 per day."
+            "Personalized outreach grew from roughly 10 to 300 messages per day in my own operation. Response quality, meetings, and revenue need their own measurement.",
+            "The system is designed to scale to 1,000+ personalized messages per day. That figure describes designed capacity; current operating volume is 300 per day."
           ]
         }
       ]
@@ -457,7 +457,7 @@
         "A do-not-contact record needs to stop the workflow. A reply needs to stop follow-up. An unverified email needs to be checked before sending. These rules should be explicit in the system that runs the work.",
         "In the pipeline, do-not-contact checks run at three stages, verification happens before send, and a cross-channel reply-stop prevents continued follow-up. There is also a human approval gate before a message ships.",
         "The distinction shapes how I think about applied AI: use the model where interpretation helps, and make the boundaries around its output inspectable. A well-written prompt is one part of that design.",
-        "The result I can point to today is throughput: personalized outreach grew from about 10 to 150 messages a day. To tell the full business story, response quality and downstream outcomes need their own measurement."
+        "The result I can point to today is throughput: personalized outreach grew from about 10 to 300 messages a day. To tell the full business story, response quality and downstream outcomes need their own measurement."
       ],
       "home_title": "Checks around the model."
     }
@@ -598,7 +598,7 @@
       {
         "slug": "outbound-engine",
         "title": "An outbound engine.",
-        "description": "Three LLM agents, seven stages, and human approval before anything sends. Personalized outreach grew from about 10 to 150 messages a day.",
+        "description": "Three LLM agents, seven stages, and human approval before anything sends. Personalized outreach grew from about 10 to 300 messages a day.",
         "contribution": "Founder & builder · Clarity Works",
         "detail": "Built & used",
         "visual": "outbound"
