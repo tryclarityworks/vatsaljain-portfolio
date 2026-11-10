@@ -1,6 +1,8 @@
 # Portfolio website
 
-A concise, responsive personal portfolio for hiring teams. The homepage introduces Vatsal and previews two projects. Dedicated Work, About, Notes & videos, and Contact pages organize six project stories, a biography and method, two notes, two public video links, work filters, and calendar/email/social links. Infnty is explicitly labeled under development. Content and personal photos are adapted from the user's Clarity Works website with explicit permission. Booking opens the verified Cal.com introductory-call page, with email retained as an alternative. There is no contact-form backend, account system, or database. Production pages use Vercel Web Analytics.
+Personal portfolio for Vatsal Jain, developed with AI assistance. This source repository contains the static-site builder, content, template, checks and public assets. The private career workspace is maintained separately.
+
+A concise, responsive personal portfolio for hiring teams. The homepage introduces Vatsal and previews selected projects. Dedicated Work, About, Notes & videos, and Contact pages organize six project stories, a biography and method, two notes, two public video links, work filters, and calendar/email/social links. Infnty is explicitly labeled under development. Content and personal photos are adapted from the user's Clarity Works website with explicit permission. Booking opens the verified Cal.com introductory-call page, with email retained as an alternative. There is no contact-form backend, account system, or database. Production pages use Vercel Web Analytics.
 
 `content.json` holds the public `booking.url` and `booking.duration_minutes`. The navigation and contact section share these settings. The calendar is an ordinary link; no embedded widget or third-party calendar script loads on the portfolio. If `booking` is removed, those actions fall back to email.
 
@@ -51,7 +53,7 @@ Web Analytics must remain enabled in the existing Vercel project. Verify the scr
 
 ## Hosting
 
-**Vercel** is the chosen production host for **vatsaljain.com**, using a dedicated private GitHub repository, `tryclarityworks/vatsaljain-portfolio`.
+**Vercel** is the chosen production host for **vatsaljain.com**, using its standalone public GitHub source repository, `tryclarityworks/vatsaljain-portfolio`.
 
 Import this repository into Vercel with root directory `.` and framework preset Other. Vercel reads `vercel.json`, builds with `python3 build.py && python3 check.py`, and serves only `dist/`. There are no Python packages to install; the standard build image provides Python. Production branch: `main`. Canonicals, sitemap, and social metadata default to `https://vatsaljain.com`; preview builds are marked noindex. No environment variables are required.
 
