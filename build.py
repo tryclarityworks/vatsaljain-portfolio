@@ -31,14 +31,15 @@ def e(value):
 def paragraphs(items):
     return ''.join(f'<p>{e(p)}</p>' for p in items)
 
-def responsive_image(src, alt, lazy=False, priority=False):
+def responsive_image(src, alt, lazy=False, priority=False, sizes=None):
     media = MEDIA['images'][src]
     def srcset(fmt):
         return ', '.join(f'{item["src"]} {item["width"]}w' for item in media[fmt])
     loading = ' loading="lazy"' if lazy else ''
     fetch = ' fetchpriority="high"' if priority else ''
-    return (f'<picture><source type="image/avif" srcset="{e(srcset("avif"))}" sizes="{e(media["sizes"])}">'
-            f'<img src="{e(media["fallback"])}" srcset="{e(srcset("webp"))}" sizes="{e(media["sizes"])}" '
+    sizes = e(sizes or media['sizes'])
+    return (f'<picture><source type="image/avif" srcset="{e(srcset("avif"))}" sizes="{sizes}">'
+            f'<img src="{e(media["fallback"])}" srcset="{e(srcset("webp"))}" sizes="{sizes}" '
             f'width="{media["width"]}" height="{media["height"]}" alt="{e(alt)}" decoding="async"{loading}{fetch}></picture>')
 
 def arrow(direction='diagonal'):
@@ -94,7 +95,7 @@ def banner():
 
 def shell(title, description, body, path='/'):
     template = (ROOT / 'templates/shell.html').read_text()
-    sections = [('/work/', 'Work'), ('/about/', 'About'), ('/notes/', 'Notes'), ('/contact/', 'Contact')]
+    sections = [('/work/', 'Work'), ('/about/', 'About'), ('/uses/', 'Tools'), ('/notes/', 'Notes'), ('/contact/', 'Contact')]
     def nav_link(href, label):
         current = ' aria-current="page"' if path == href else (' aria-current="location"' if path.startswith(href) else '')
         return f'<a href="{href}"{current}>{label}</a>'
@@ -118,10 +119,13 @@ def write(path, content):
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(content)
 
-def project_art(p):
+def project_art(p, context):
     """A labeled visual representation of supported project facts."""
     if p.get('image'):
-        return responsive_image(p['image'], p.get('image_alt', p['title']), lazy=True)
+        sizes = None
+        if context == 'home':
+            sizes = '(max-width: 620px) 92vw, (max-width: 899px) 45vw, (max-width: 1360px) 32vw, 420px'
+        return responsive_image(p['image'], p.get('image_alt', p['title']), lazy=True, sizes=sizes)
     if p['visual'] == 'signals':
         return f'''<div class="artifact artifact-signals"><div class="signal-flow"><div class="signal-source"><strong data-reveal>Newsletter &<br>website signals</strong><span data-reveal>Checked every 15 minutes</span></div>{arrow('right')}<div class="signal-result"><strong data-reveal>Contact record<br>+ AI draft</strong><span data-reveal>For advisor review</span></div></div></div>'''
     if p['visual'] == 'newsletter':
@@ -132,7 +136,7 @@ def project_art(p):
 def featured_projects(projects, context='work'):
     by_slug={p['slug']:p for p in DATA['projects']}
     return ''.join(f'''<article class="folio-entry project project-{e(p['visual'])}" data-category="{e(by_slug[p['slug']]['category'])}">
-      <a class="project-cover" href="/work/{e(p['slug'])}/">{project_art(p)}</a>
+      <a class="project-cover" href="/work/{e(p['slug'])}/" aria-label="View {e(p['title'])}">{project_art(p, context)}</a>
       <div class="project-main"><h3><a href="/work/{e(p['slug'])}/">{e(p['title'])} {arrow()}</a></h3>
       <p class="project-status">{meta_parts(p['detail'])}</p><p>{e(p['description'])}</p>
       <div class="project-bottom"><span>{meta_parts(p['contribution'])}</span><a class="text-link" href="/work/{e(p['slug'])}/">Explore project {arrow('right')}</a></div></div></article>''' for p in projects)
@@ -144,7 +148,7 @@ def compact_projects():
 
 
 def video_links():
-    return ''.join(f'''<a class="video-link" href="{e(v['url'])}"><div class="video-image">{responsive_image(v['thumbnail'], "", lazy=True)}<span class="play-mark">{play_icon()}</span></div><div class="video-caption"><h3>{e(v['title'])}</h3><span>Watch on YouTube</span></div><p class="video-description">{e(v['description'])}</p></a>''' for v in DATA['videos'])
+    return ''.join(f'''<a class="video-link" href="{e(v['url'])}"><div class="video-image">{responsive_image(v['thumbnail'], "", lazy=True)}<span class="play-mark">{play_icon()}</span></div><div class="video-caption"><h3>{e(v['title'])}</h3><p class="video-description">{e(v['description'])}</p><span>Watch on YouTube {arrow()}</span></div></a>''' for v in DATA['videos'])
 
 
 def note_links():
@@ -160,9 +164,9 @@ def home():
         <div class="hero-actions"><a class="button" href="/work/">Explore my work {arrow('right')}</a><a class="text-link" href="{e(DATA['github'])}">View GitHub {arrow()}</a></div>
         <p class="hero-location">{e(copy['availability'])}</p></section>
       <figure class="stage-portrait">{responsive_image('/assets/vatsal.jpg', 'Vatsal Jain', priority=True)}<figcaption><span>Vatsal Jain</span><span>{e(DATA['work_context']['citizenship'])}<br>Vancouver, BC</span></figcaption></figure>
-      <section class="home-work" id="work"><div class="section-heading"><h2>Selected work.</h2><a class="text-link" href="/work/">All projects {arrow('right')}</a></div><div class="home-projects">{featured_projects(selected)}</div></section>
+      <section class="home-work" id="work"><div class="section-heading"><h2>Selected work.</h2><a class="text-link" href="/work/">All projects {arrow('right')}</a></div><div class="home-projects">{featured_projects(selected, 'home')}</div></section>
     </div></div>
-    <section class="home-more wrap" id="about"><div><h2>Economics to<br>applied AI.</h2><p>My background is in economics. These days I work across the business problem, the workflow, and the build.</p><a class="text-link" href="/about/">More about me {arrow('right')}</a></div><a class="home-media" href="/notes/" id="notes">{responsive_image(DATA['videos'][0]['thumbnail'], '', lazy=True)}<div id="teaching"><strong>Ideas from the work.</strong><span>Notes & videos</span>{arrow()}</div></a></section>
+    <section class="home-more wrap" id="about"><div><h2>Economics to<br>applied AI.</h2><p>My background is in economics. These days I work across the business problem, the workflow, and the build.</p><div class="home-links"><a class="text-link" href="/about/">More about me {arrow('right')}</a><a class="text-link" href="/uses/">Tools & open source {arrow('right')}</a></div></div><a class="home-media" href="/notes/" id="notes">{responsive_image(DATA['videos'][0]['thumbnail'], '', lazy=True)}<div id="teaching"><strong>Ideas from the work.</strong><span>Notes & videos</span>{arrow()}</div></a></section>
     <section class="contact-section home-contact wrap" id="contact"><div class="contact-heading"><h2>Let’s work<br>together.</h2><p>{e(copy['contact_description'])}</p><div class="contact-actions">{contact_action('contact')}<a class="text-link" href="/contact/">Contact details {arrow('right')}</a></div></div><div class="contact-copy">{work_context()}</div></section>'''
 
 def work_page():
@@ -215,14 +219,17 @@ def case_study(p):
     stages=''
     if p.get('stages'):
         stage_items=''.join(f'<li>{e(stage)}</li>' for stage in p['stages'])
-        stages=f'<section class="stage-section"><h2>The stages</h2><ol>{stage_items}</ol></section>'
+        stages=f'<section class="stage-section"><h2>The stages</h2><ol role="list">{stage_items}</ol></section>'
     sources=''
     if p.get('sources'):
         source_items=''.join(f'<a href="{e(s["url"])}">{e(s["label"])} {arrow()}</a>' for s in p['sources'])
         sources=f'<aside class="story-sources"><h2>More detail</h2><div>{source_items}</div></aside>'
     proofs=''.join(f'<a class="text-link" href="{e(link["url"])}">{e(link["label"])} {arrow()}</a>' for link in p.get('proof_links',[]))
     proof=f'<div class="proof-links">{proofs}<p>{e(p.get("proof_note",""))}</p></div>' if proofs else ''
-    visual=f'<figure class="case-output">{responsive_image(p["image"],p["image_caption"],lazy=True)}<figcaption>{e(p["image_caption"])}</figcaption></figure>' if p.get('image') else ''
+    visual = ''
+    if p.get('image'):
+        image = responsive_image(p['image'], p['image_caption'], lazy=True, sizes='(max-width: 1024px) 94vw, 960px')
+        visual = f'<figure class="case-output">{image}<figcaption>{e(p["image_caption"])}</figcaption></figure>'
     body=f'''<div class="wrap story"><a class="back-link" href="/work/">{arrow('left')} All selected work</a><header class="story-header"><div class="story-heading"><h1>{e(p['name'])}</h1><p class="content-meta">{e(p['context'].replace(' · ', ' / '))} <span class="status">{e(p['status'])}</span></p><p class="story-deck">{e(p['summary'])}</p>{proof}</div><dl class="story-facts"><div><dt>Project</dt><dd>{e(p['product'])}</dd></div><div><dt>My role</dt><dd>{e(p['role'])}</dd></div><div><dt>Current outcome</dt><dd>{e(p['outcome'])}</dd></div></dl></header>{visual}{metrics}<div class="story-flow"><p class="content-meta">The workflow, at a glance</p>{flow(p,True)}<p class="flow-caption">A simplified view of the workflow.</p></div>{stages}{sections}<section class="story-tools"><h2>Tools & focus</h2><div class="tags">{tags}</div></section>{sources}<div class="story-cta">{external}<a class="text-link" href="mailto:{e(DATA['email'])}">Talk about this work {arrow()}</a></div></div>'''
     return shell(p['name']+' | Vatsal Jain',p['summary'],body,'/work/'+p['slug']+'/')
 
@@ -234,23 +241,61 @@ def note_page(n):
 
 def code_examples():
     entries=[]
+    sizes = '(max-width: 620px) 92vw, (max-width: 780px) 46vw, (max-width: 1360px) 32vw, 420px'
     for item in DATA['code_examples']:
-        image=responsive_image(item['image'],item['alt'],lazy=True) if item.get('image') else ''
+        image=responsive_image(item['image'],item['alt'],lazy=True,sizes=sizes) if item.get('image') else ''
         entries.append(f'<article class="code-example">{image}<div><h3><a href="{e(item["url"])}">{e(item["title"])} {arrow()}</a></h3><p>{e(item["description"])}</p><a class="text-link" href="{e(item["url"])}">View repository {arrow()}</a></div></article>')
     return '<section class="code-section wrap" id="code"><div class="section-heading"><h2>Code you can inspect.</h2><a class="text-link" href="' + e(DATA['github']) + '">GitHub profile ' + arrow() + '</a></div><div class="code-examples">' + ''.join(entries) + '</div></section>'
 
 
 def uses_page():
-    box=DATA['toolbox']
-    repos=''.join(f'<article class="repository-row"><h3><a href="{e(r["url"])}">{e(r["name"])} {arrow()}</a></h3><p>{e(r["description"])}</p></article>' for r in box['repositories'])
-    def groups(items):
-        return ''.join(f'<article class="tool-group"><h3>{e(g["label"])}</h3><div><p>{e(g["description"])}</p><ul>{"".join("<li>"+e(item)+"</li>" for item in g["items"])}</ul></div></article>' for g in items)
-    body=f'''<header class="page-masthead tools-masthead wrap"><h1>Tools I use.</h1><div><p>{e(box['intro'])}</p><a class="text-link" href="/work/">See the work {arrow('right')}</a></div></header>
-    <div class="uses-nav wrap"><a href="#open-source">Open source</a><a href="#applications">Applications</a><a href="#experience">Also worked with</a><a href="#technical">Project stacks</a></div>
-    <section class="tools-section wrap" id="open-source"><h2>Open-source tools.</h2><p class="section-intro">Projects I use in my workflow.</p>{repos}</section>
-    <section class="tools-section wrap" id="applications"><h2>Applications & services.</h2>{groups(box['groups'])}</section>
+    box = DATA['toolbox']
+
+    def mark(name, size=24):
+        if src := box['marks'].get(name):
+            symbol = f'<img src="{e(src)}" width="{size}" height="{size}" alt="" decoding="async" loading="lazy">'
+        else:
+            words = re.findall(r'[a-zA-Z0-9]+', name)
+            symbol = ''.join(word[0] for word in words[:2]) if len(words) > 1 else words[0][:2]
+            symbol = e(symbol.upper())
+        return f'<span class="tool-mark" aria-hidden="true">{symbol}</span>'
+
+    def groups(items, repositories=None):
+        entries = []
+        for group in items:
+            tiles = []
+            for name in group['items']:
+                label = f'{mark(name)}<span>{e(name)}</span>'
+                if repo := (repositories or {}).get(name):
+                    tile = f'<a class="tool-tile" href="https://github.com/{e(repo)}" aria-label="{e(name)} on GitHub">{label}{arrow()}</a>'
+                else:
+                    tile = f'<span class="tool-tile">{label}</span>'
+                tiles.append(f'<li>{tile}</li>')
+            entries.append(f'''<div class="tool-group">
+              <div><h3>{e(group['label'])}</h3><p>{e(group['description'])}</p></div>
+              <ul class="tool-tiles" role="list">{''.join(tiles)}</ul>
+            </div>''')
+        return ''.join(entries)
+
+    repos = ''.join(f'''<article class="repository-card">
+      <a href="{e(repo['url'])}">
+        {mark(repo['name'], 48)}
+        <div><h3>{e(repo['name'])}</h3><p class="repository-path">{e(urlsplit(repo['url']).path.lstrip('/'))}</p></div>
+        {arrow()}
+        <p class="repository-description">{e(repo['description'])}</p>
+      </a>
+    </article>''' for repo in box['repositories'])
+    section_links = [('open-source', 'Open source'), ('applications', 'Applications'), ('technical', 'Project stacks'), ('experience', 'Also worked with')]
+    directory_nav = ''.join(f'<a href="#{target}">{label} {arrow("down")}</a>' for target, label in section_links)
+    body=f'''<header class="page-masthead tools-masthead wrap"><h1>Tools I use.</h1><p>{e(box['intro'])}</p></header>
+    <nav class="uses-nav wrap" aria-label="On this page">{directory_nav}</nav>
+    <section class="tools-section wrap" id="open-source">
+      <div class="section-heading"><h2>Open-source tools.</h2><a class="text-link" href="/work/#code">Code I’ve published {arrow('right')}</a></div>
+      <div class="repository-grid">{repos}</div>
+    </section>
+    <div class="tools-band"><section class="tools-section wrap" id="applications"><h2>Applications & services.</h2>{groups(box['groups'])}</section></div>
+    <section class="tools-section wrap" id="technical"><h2>Project stacks.</h2>{groups(box['technical'], box['technical_repositories'])}</section>
     <section class="tools-section wrap" id="experience"><h2>Also worked with.</h2>{groups(box['prior'])}</section>
-    <section class="tools-section wrap" id="technical"><h2>Project stacks.</h2>{groups(box['technical'])}</section>
     <section class="page-next wrap"><h2>See them<br>in context.</h2><a class="button" href="/work/">Explore projects {arrow('right')}</a></section>'''
     return shell('Tools I use | Vatsal Jain','Open-source tools, applications and project stacks used by Vatsal Jain, including Impeccable, Scrapling, Apify, Notion and Instantly.',body,'/uses/')
 

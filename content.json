@@ -770,7 +770,7 @@
     }
   ],
   "toolbox": {
-    "intro": "The tools behind my research, AI-assisted builds and day-to-day delivery. Project pages show how they fit together.",
+    "intro": "Open-source projects, applications, and the stack behind my AI, research, and outreach work.",
     "repositories": [
       {
         "name": "Impeccable",
@@ -867,15 +867,15 @@
     "prior": [
       {
         "label": "Automation experience",
-        "description": "Earlier low-code work; n8n also appears in the Infnty delivery implementation under development.",
+        "description": "Low-code tools from earlier work. I also use n8n in the Infnty delivery implementation under development.",
         "items": [
           "n8n",
           "Make.com"
         ]
       },
       {
-        "label": "Also worked with",
-        "description": "Additional tools named in my earlier work and resumes.",
+        "label": "AI & infrastructure",
+        "description": "Other AI assistants and infrastructure tools from my earlier work.",
         "items": [
           "ChatGPT",
           "Gemini",
@@ -931,6 +931,60 @@
           "Google Chrome"
         ]
       }
-    ]
+    ],
+    "marks": {
+      "Claude": "/assets/optimized/tool-claude.6f2ab8916640.svg",
+      "Notion": "/assets/optimized/tool-notion.cd263caef640.svg",
+      "Google Sheets": "/assets/optimized/tool-googlesheets.641279d579f8.svg",
+      "Gmail": "/assets/optimized/tool-gmail.6693bd170c75.svg",
+      "Mailchimp": "/assets/optimized/tool-mailchimp.ceb991ec5848.svg",
+      "Vercel": "/assets/optimized/tool-vercel.6dfbcec1180f.svg",
+      "Hostinger": "/assets/optimized/tool-hostinger.c609c8c3c901.svg",
+      "ElevenLabs": "/assets/optimized/tool-elevenlabs.81977d5e2f60.svg",
+      "YouTube": "/assets/optimized/tool-youtube.afea3f4b3c32.svg",
+      "GitHub": "/assets/optimized/tool-github.e5456d0d78f9.svg",
+      "Git": "/assets/optimized/tool-git.c0cd94131569.svg",
+      "Cal.com": "/assets/optimized/tool-caldotcom.f2f93cf3214a.svg",
+      "Google Meet": "/assets/optimized/tool-googlemeet.f7b8dc11b32e.svg",
+      "Telegram": "/assets/optimized/tool-telegram.3f9faf7f4419.svg",
+      "n8n": "/assets/optimized/tool-n8n.9c2b7dd3b95d.svg",
+      "Make.com": "/assets/optimized/tool-make.22772c5e2f3e.svg",
+      "Gemini": "/assets/optimized/tool-googlegemini.5b709d18a8dc.svg",
+      "Perplexity": "/assets/optimized/tool-perplexity.fc936adf1035.svg",
+      "Docker": "/assets/optimized/tool-docker.b76f06211ea4.svg",
+      "GA4": "/assets/optimized/tool-googleanalytics.8a4ec6a0c867.svg",
+      "Google advertising platforms": "/assets/optimized/tool-googleads.86a003095431.svg",
+      "Meta advertising platforms": "/assets/optimized/tool-meta.9986775f915d.svg",
+      "Python": "/assets/optimized/tool-python.9870a16258a6.svg",
+      "TypeScript (foundational)": "/assets/optimized/tool-typescript.200b9e0e626f.svg",
+      "Next.js": "/assets/optimized/tool-nextdotjs.b2ca6e350193.svg",
+      "React": "/assets/optimized/tool-react.c0a98b126479.svg",
+      "Tailwind CSS": "/assets/optimized/tool-tailwindcss.b4ac4b9e586f.svg",
+      "Zod": "/assets/optimized/tool-zod.7dfa3d6d6d30.svg",
+      "Drizzle": "/assets/optimized/tool-drizzle.81ebe1285aed.svg",
+      "SQLite / libSQL": "/assets/optimized/tool-sqlite.8a242268de7c.svg",
+      "Handlebars": "/assets/optimized/tool-handlebarsdotjs.3021390877c4.svg",
+      "Node.js": "/assets/optimized/tool-nodedotjs.b5147c151c97.svg",
+      "pnpm": "/assets/optimized/tool-pnpm.2db6511863d8.svg",
+      "Vitest": "/assets/optimized/tool-vitest.1796413beeea.svg",
+      "Google Chrome": "/assets/optimized/tool-googlechrome.7cc8053eb1e7.svg",
+      "OpenRouter": "/assets/optimized/tool-openrouter.66838b1f36d3.svg",
+      "Scrapling": "/assets/optimized/tool-scrapling.6459914a562a.webp",
+      "Apify": "/assets/optimized/tool-apify.6f4556d75a71.webp"
+    },
+    "technical_repositories": {
+      "Next.js": "vercel/next.js",
+      "React": "react/react",
+      "Tailwind CSS": "tailwindlabs/tailwindcss",
+      "Zod": "colinhacks/zod",
+      "Drizzle": "drizzle-team/drizzle-orm",
+      "SQLite / libSQL": "tursodatabase/libsql",
+      "JSON Schema / Ajv": "ajv-validator/ajv",
+      "Handlebars": "handlebars-lang/handlebars.js",
+      "Node.js": "nodejs/node",
+      "pnpm": "pnpm/pnpm",
+      "Vitest": "vitest-dev/vitest",
+      "Playwright": "microsoft/playwright"
+    }
   }
 }

@@ -104,7 +104,7 @@ The design is flat and rectangular. Project representations use real description
 - Square, flat fields and project-specific visual explanations.
 - Accessible navigation, visible focus, and restrained motion.
 
-Documented from the October 30, 2026 Hallmark refinement of the October 28 implementation in `static/style.css`, `static/app.js`, `build.py`, `templates/shell.html`, and `media.json`, checked against the final desktop and phone captures in `output/design/2026-10-28/redesign/final/`. The November 17 extension retains this system and adds output captures, a code gallery, and a tools directory. Its final desktop, tablet, and phone captures are in the private workspace's `output/website-github-refresh/2026-11-17/final-home/` and `final-uses/`; `final-work/` contains desktop and phone captures. Route, filter, keyboard-focus, no-JavaScript, and reduced-motion verification is recorded in `output/website-github-refresh/2026-11-17/browser/local-checks.json`, with representative captures in `browser/`. Surface composition is recorded in `.impeccable/surfaces/templates-shell-html.md`.
+Documented from the October 30, 2026 Hallmark refinement of the October 28 implementation in `static/style.css`, `static/app.js`, `build.py`, `templates/shell.html`, and `media.json`, checked against the final desktop and phone captures in `output/design/2026-10-28/redesign/final/`. The November 17 extension added output captures, a code gallery, and a tools directory. The November 18 refinement aligns the main layouts, brings Tools into the header, and adds repository cards and marks to the directory. Surface composition is recorded in `.impeccable/surfaces/templates-shell-html.md`.
 
 ## Colors
 
@@ -122,7 +122,7 @@ The user-pinned plum and gray palette is punctuated with gold and amber; light f
 - **Cool surface:** note panels, tags, status markers, and filter hover.
 - **Palette gray:** the Infnty illustrative field.
 - **Muted plum gray:** scrollbar and portrait loading background.
-- **Warm surface:** retained source token; no current component assignment.
+- **Warm surface** supports tool marks and repository link hover states.
 
 **The Gold Contrast Rule.** Gold actions carry dark ink text; pale text is reserved for dark fields.
 
@@ -134,9 +134,9 @@ The frontmatter records the opening display and shared heading, title, body, and
 
 ## Layout
 
-The centered container is capped at (1280px). Its side gutter is (40px), reducing to (32px), (24px), (20px), and (16px) at maximum widths of (1100px), (800px), (620px), and (360px). Base section spacing is (112px), then (88px), (72px), and (64px) at the first three breakpoints.
+The centered content area is capped at 1280px. Side gutters are 40px, reducing to 32px, 24px, 20px, and 16px at 1100px, 899px, 620px, and 374px. Section spacing follows the same first three breakpoints. Major side-by-side layouts use a shared gap that scales from 24px to 64px.
 
-On desktop, the home stage places the introduction and selected work beside a sticky portrait; the portrait releases with its parent. Featured work on the Work page uses alternating two-column rows followed by a compact dark index and a two-column code gallery. The tools directory pairs repository or group headings with descriptions and lists. About and case-study sections pair headings with text; notes and video collections use grids. At (620px) and below, these layouts stack, the portrait becomes static with a (260px) image height, and work entries flow naturally in reading order. The video grid is asymmetric on desktop and single-column on mobile.
+Home aligns the introduction and portrait at the top. Selected work uses the full content width below, with three equal visual columns on desktop, rows with media and text on tablet, and stacked media and text on phones. Work uses a consistent media column across featured projects. The case-study and About reading sections use a shared heading-to-text column ratio, and notes keep the shared left edge with a narrower reading measure. Video thumbnails share one aspect ratio and column width. Contact aligns both columns at the top, then places the details below the heading and actions on narrow screens. At 620px and below the main layouts stack.
 
 ## Elevation & Depth
 
@@ -150,7 +150,7 @@ Fields, photos, controls, and media use square corners. The note signature uses 
 
 ### Actions and navigation
 
-Primary actions are gold with ink text; inverse actions are ink with paper text on gold. Both have a (48px) minimum height and use the padding in frontmatter. Hover changes a primary action to amber and inverse text to gold; links acquire amber underlines. The dark header contains the wordmark, Work, About, Notes, Contact, and a direct booking link. Current routes receive a gold underline. At (620px), the name beside the monogram hides while the links remain visible; at (420px), the booking label shortens visually while its accessible name remains complete. The footer repeats navigation and external links.
+Primary actions are gold with ink text; inverse actions are ink with paper text on gold. Both have a (48px) minimum height and use the padding in frontmatter. Hover changes a primary action to amber and inverse text to gold; links acquire amber underlines. The dark header contains the wordmark, Work, About, Tools, Notes, Contact, and a direct booking link. Current routes receive a gold underline. The header uses a compact wordmark between 461px and 620px. At 460px and below, the full wordmark sits above the navigation row. At 374px and below, the booking label shortens visually. The footer repeats navigation and external links.
 
 ### Project representations
 
@@ -160,9 +160,9 @@ Filters are hidden until JavaScript enables them, so every project remains avail
 
 ### Code gallery and tools directory
 
-The Work code gallery presents three output previews with linked headings, short scope descriptions, and repository links. A text-only portfolio-source entry spans the grid on a cool surface with (32px) padding. The grid uses (56px) row and (40px) column gaps, tightening before it becomes one column on phones. Output previews use a 4:3 crop anchored at the top with automatic image height; case-study output figures retain their natural aspect ratio and have an explanatory caption.
+The Work code gallery presents three equal-width output previews on desktop, then a text-only source entry across the width of the grid. The preview and its text sit side by side on tablets and stack on phones. Output previews use a 4:3 crop anchored at the top. Case-study output figures use their natural proportions with a width cap.
 
-The tools directory begins with a wrapping, underlined anchor navigation on a cool surface. Open-source repository rows link upstream; grouped applications, prior tools, and project stacks use plain lists. Headings and content share two columns with a (48px) gap on desktop, then stack with a (12px) gap on phones. The applications section uses the cool surface with generous inset space. These patterns reuse the existing square fields, type hierarchy, and link treatment.
+The Tools page uses four jump links and two prominent upstream repository cards with visible GitHub paths. Application and stack groups pair a short description with labeled tiles. Repository-backed stack tiles link to their upstream source. Tool labels stay visible beside locally served marks or initials. The cool background behind Applications spans the viewport, with its content aligned to the same edges as the other sections.
 
 ### Media and motion
 
