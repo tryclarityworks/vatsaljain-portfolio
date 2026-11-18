@@ -2,7 +2,7 @@
 
 Personal portfolio for Vatsal Jain, developed with AI assistance. This source repository contains the static-site builder, content, template, checks and public assets. The private career workspace is maintained separately.
 
-A concise, responsive personal portfolio for hiring teams. The homepage introduces Vatsal and previews selected projects. Dedicated Work, About, Notes & videos, and Contact pages organize six project stories, a biography and method, two notes, two public video links, work filters, and calendar/email/social links. Infnty is explicitly labeled under development. Content and personal photos are adapted from the user's Clarity Works website with explicit permission. Booking opens the verified Cal.com introductory-call page, with email retained as an alternative. There is no contact-form backend, account system, or database. Production pages use Vercel Web Analytics.
+A concise, responsive personal portfolio for hiring teams. The homepage introduces Vatsal and features outbound, GTM research and client follow-up, with a direct GitHub link. Dedicated Work, About, Notes & videos, and Contact pages organize seven retained/new case studies, six listed projects, a biography and method, three notes, two public video links, work filters, and calendar/email/social links. Infnty is explicitly labeled under development. Content and personal photos are adapted from the user's Clarity Works website with explicit permission. Booking opens the verified Cal.com introductory-call page, with email retained as an alternative. There is no contact-form backend, account system, or database. Production pages use Vercel Web Analytics.
 
 `content.json` holds the public `booking.url` and `booking.duration_minutes`. The navigation and contact section share these settings. The calendar is an ordinary link; no embedded widget or third-party calendar script loads on the portfolio. If `booking` is removed, those actions fall back to email.
 
@@ -37,7 +37,7 @@ The October 28 redesign pairs a larger portrait and personal introduction with p
 
 Typography uses self-hosted Manrope/DM Sans Latin WOFF2 fonts with system fallbacks. The shared head preloads both fonts and embeds the stylesheet, avoiding an external font/CSS request chain. Redistributed fonts retain SIL Open Font Licenses in `static/assets/fonts/`.
 
-Project filtering is keyboard accessible and announces the visible count. Filters appear only after JavaScript initializes; all six projects remain readable without JavaScript. Directional icons are authored inline SVG, hidden from screen readers and keyboard focus, so mobile browsers cannot replace them with emoji glyphs. The portrait settling and ordered workflow-step entrances add brief orientation. Surface-specific focus rings remain legible around both gold and dark actions; video links use play icons and short summaries. Reduced motion removes travel and animated clipping, including when changed during the visit; content remains visible without JavaScript.
+Project filtering is keyboard accessible and announces the visible count. Filters appear only after JavaScript initializes; all six listed projects remain readable without JavaScript. Directional icons are authored inline SVG, hidden from screen readers and keyboard focus, so mobile browsers cannot replace them with emoji glyphs. The portrait settling and ordered workflow-step entrances add brief orientation. Surface-specific focus rings remain legible around both gold and dark actions; video links use play icons and short summaries. Reduced motion removes travel and animated clipping, including when changed during the visit; content remains visible without JavaScript.
 
 Two photos come from [Clarity Works](https://www.tryclarityworks.com/about); the video thumbnails link to Vatsal's own published videos. These assets are reused with the owner's permission. Photos/thumbnails use responsive AVIF sources and WebP fallbacks, with original JPEGs retained. Below-fold images load lazily, and intrinsic dimensions reserve their layout space. Workflow diagrams are simplified explanatory views, not product screenshots.
 
@@ -60,3 +60,13 @@ Import this repository into Vercel with root directory `.` and framework preset 
 Attach `vatsaljain.com` and `www.vatsaljain.com` to the Vercel project, then use its returned DNS recommendations. Manage the primary-domain redirect in Vercel's Domains settings; do not add a reverse host redirect in `vercel.json`. The active domain configuration redirects the apex to `www`. Do not change mail or other unrelated DNS records.
 
 The portfolio manager keeps private operations and deployment records outside this repository. Historical hosting identity, Vercel local state, credentials, and generated output are ignored. No registrar or DNS credentials are stored here.
+
+## November 17 refresh
+
+`/uses/` publishes the supported tools/applications inventory and upstream Impeccable/Scrapling use links. It distinguishes prior experience and foundational TypeScript. About links to the complete directory; the shared footer includes Tools and GitHub. No contribution/maintainer claim is inferred from using a tool.
+
+`/work/gtm-intelligence/` describes the private local app and separate signal-research scripts. Its public code link is a bounded synthetic JavaScript adaptation, not the full app. Work provides direct outbound/GTM/newsletter/portfolio code links and genuine synthetic-output previews. The Capability Ladder page remains at its original URL but is reached through About's method instead of the project filter.
+
+The build now generates 16 content routes plus 404. Notes own publication/update labels. Featured selection, project names, role wording and proof links come from public content; private profile/career files remain outside the builder. The expired SF announcement is removed.
+
+See [asset provenance](ASSETS.md) for the three new output captures and their responsive image variants. Existing self-hosted fonts, production-only analytics and the Vercel project/domain routing remain in place.

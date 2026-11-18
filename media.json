@@ -219,6 +219,126 @@
         }
       ],
       "fallback": "/assets/optimized/workflow-selection-640w.87deb68bdd49.webp"
+    },
+    "/assets/gtm-demo.png": {
+      "width": 1280,
+      "height": 960,
+      "sizes": "(max-width: 620px) calc(100vw - 40px), (max-width: 1100px) 60vw, 800px",
+      "avif": [
+        {
+          "width": 480,
+          "src": "/assets/optimized/gtm-demo-480w.7b2ca1f88d53.avif",
+          "bytes": 9800
+        },
+        {
+          "width": 800,
+          "src": "/assets/optimized/gtm-demo-800w.ed54b5ea2640.avif",
+          "bytes": 19861
+        },
+        {
+          "width": 1280,
+          "src": "/assets/optimized/gtm-demo-1280w.f6b31ccb5320.avif",
+          "bytes": 24185
+        }
+      ],
+      "webp": [
+        {
+          "width": 480,
+          "src": "/assets/optimized/gtm-demo-480w.5ebdb5150e0c.webp",
+          "bytes": 12040
+        },
+        {
+          "width": 800,
+          "src": "/assets/optimized/gtm-demo-800w.903ff9995bf8.webp",
+          "bytes": 24084
+        },
+        {
+          "width": 1280,
+          "src": "/assets/optimized/gtm-demo-1280w.f44c3bdeaa50.webp",
+          "bytes": 41508
+        }
+      ],
+      "fallback": "/assets/optimized/gtm-demo-800w.903ff9995bf8.webp"
+    },
+    "/assets/outbound-demo.png": {
+      "width": 1280,
+      "height": 960,
+      "sizes": "(max-width: 620px) calc(100vw - 40px), (max-width: 1100px) 60vw, 800px",
+      "avif": [
+        {
+          "width": 480,
+          "src": "/assets/optimized/outbound-demo-480w.cf035b8c6b8d.avif",
+          "bytes": 8050
+        },
+        {
+          "width": 800,
+          "src": "/assets/optimized/outbound-demo-800w.a761e96cf2c9.avif",
+          "bytes": 16194
+        },
+        {
+          "width": 1280,
+          "src": "/assets/optimized/outbound-demo-1280w.af22e3748c77.avif",
+          "bytes": 19800
+        }
+      ],
+      "webp": [
+        {
+          "width": 480,
+          "src": "/assets/optimized/outbound-demo-480w.1d90d5414f8c.webp",
+          "bytes": 9658
+        },
+        {
+          "width": 800,
+          "src": "/assets/optimized/outbound-demo-800w.32334e09db78.webp",
+          "bytes": 19486
+        },
+        {
+          "width": 1280,
+          "src": "/assets/optimized/outbound-demo-1280w.09796ecfb56a.webp",
+          "bytes": 34078
+        }
+      ],
+      "fallback": "/assets/optimized/outbound-demo-800w.32334e09db78.webp"
+    },
+    "/assets/newsletter-demo.png": {
+      "width": 1280,
+      "height": 960,
+      "sizes": "(max-width: 620px) calc(100vw - 40px), (max-width: 1100px) 60vw, 800px",
+      "avif": [
+        {
+          "width": 480,
+          "src": "/assets/optimized/newsletter-demo-480w.516f69f9663e.avif",
+          "bytes": 7219
+        },
+        {
+          "width": 800,
+          "src": "/assets/optimized/newsletter-demo-800w.fff3127dc22d.avif",
+          "bytes": 15363
+        },
+        {
+          "width": 1280,
+          "src": "/assets/optimized/newsletter-demo-1280w.b5c0a7562b14.avif",
+          "bytes": 19442
+        }
+      ],
+      "webp": [
+        {
+          "width": 480,
+          "src": "/assets/optimized/newsletter-demo-480w.9737408ad04e.webp",
+          "bytes": 9996
+        },
+        {
+          "width": 800,
+          "src": "/assets/optimized/newsletter-demo-800w.3ecf99854312.webp",
+          "bytes": 21444
+        },
+        {
+          "width": 1280,
+          "src": "/assets/optimized/newsletter-demo-1280w.32b3af32916b.webp",
+          "bytes": 41942
+        }
+      ],
+      "fallback": "/assets/optimized/newsletter-demo-800w.3ecf99854312.webp"
     }
   },
   "fonts": {

@@ -289,7 +289,7 @@ h2{font-size:var(--heading)}h3{font-size:var(--lead)}
 /* Hallmark refinement: readable context, meaningful video controls, and surface-aware focus. */
 .stage-portrait figcaption>span:last-child{text-align:right}
 .meta-parts{display:flex;flex-wrap:wrap;gap:4px 16px}
-.meta-parts>span+span{border-left:1px solid currentColor;padding-left:16px}
+.meta-parts>span+span{padding-left:0}
 .skills-list dd{display:flex;flex-wrap:wrap;gap:8px 20px}
 .skills-list dd>span{display:inline-block}
 .play-icon{display:block;width:24px;height:24px}
@@ -312,3 +312,55 @@ h2{font-size:var(--heading)}h3{font-size:var(--lead)}
 @media(max-width:420px){.nav-call-suffix{display:none}}
 
 .about-portrait figcaption>span{display:block}
+
+/* November refresh: actual synthetic output, code links and the complete toolkit. */
+.project-cover>picture img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;object-position:top}
+.home-projects .project-cover>picture{background:var(--paper)}
+.code-section{padding-bottom:var(--section-space)}
+.code-examples{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:56px 40px}
+.code-example{min-width:0}
+.code-example>picture img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;object-position:top}
+.code-example>div{padding-top:24px}
+.code-example h3{font-size:28px}
+.code-example h3 a{display:inline-flex;align-items:start;gap:16px}
+.code-example p{max-width:58ch;margin-block:16px 8px}
+.code-example:not(:has(picture)){grid-column:1/-1;background:var(--surface);padding:32px}
+.code-example:not(:has(picture))>div{padding:0}
+.work-index:has(.project-compact):not(:has(.project-compact:not([hidden]))){display:none}
+.proof-links{margin-top:24px}
+.proof-links p{font-size:var(--small);max-width:65ch;margin-top:12px}
+.case-output{margin-block:48px}
+.case-output img{width:100%;height:auto}
+.case-output figcaption{font-size:var(--small);max-width:80ch;margin-top:16px}
+.uses-nav{display:flex;gap:12px 32px;flex-wrap:wrap;background:var(--surface);padding:20px 28px;margin-bottom:64px}
+.uses-nav a{display:inline-flex;align-items:center;min-height:44px;text-decoration:underline}
+.tools-section{padding-bottom:var(--section-space);scroll-margin-top:32px}
+.tools-section>h2{margin-bottom:24px}
+.tools-masthead p{font-size:18px}
+#applications{background:var(--surface);padding:40px;margin-bottom:var(--section-space)}
+.section-intro{max-width:70ch;margin-bottom:28px}
+.repository-row,.tool-group{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:48px;padding-block:28px}
+.repository-row h3{font-size:32px}
+.repository-row h3 a{display:inline-flex;align-items:center;gap:16px}
+.repository-row p,.tool-group p{max-width:65ch}
+.tool-group ul{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:10px 24px}
+.tool-group li{font-weight:600}
+.tool-group h3{font-size:24px}
+@media(max-width:800px){
+ .code-examples{gap:40px 28px}
+ .repository-row,.tool-group{gap:32px}
+}
+@media(max-width:620px){
+ .stage-portrait{margin-top:24px}
+ .stage-portrait img{height:260px}
+ .home-work{padding-top:48px}
+ .code-examples{grid-template-columns:minmax(0,1fr);gap:40px}
+ .code-example h3{font-size:25px}
+ .repository-row,.tool-group{grid-template-columns:minmax(0,1fr);gap:12px;padding-block:24px}
+ .repository-row h3{font-size:28px}
+ .uses-nav{gap:4px 24px;padding:16px 20px;margin-bottom:40px}
+ #applications{padding:28px 24px}
+ .tool-group ul{gap:8px 20px}
+ .case-output{margin-block:32px}
+ .meta-parts>span+span{padding-left:0}
+}

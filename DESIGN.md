@@ -104,7 +104,7 @@ The design is flat and rectangular. Project representations use real description
 - Square, flat fields and project-specific visual explanations.
 - Accessible navigation, visible focus, and restrained motion.
 
-Documented from the October 30, 2026 Hallmark refinement of the October 28 implementation in `static/style.css`, `static/app.js`, `build.py`, `templates/shell.html`, and `media.json`, checked against the final desktop and phone captures in `output/design/2026-10-28/redesign/final/`. Surface composition is recorded in `.impeccable/surfaces/templates-shell-html.md`.
+Documented from the October 30, 2026 Hallmark refinement of the October 28 implementation in `static/style.css`, `static/app.js`, `build.py`, `templates/shell.html`, and `media.json`, checked against the final desktop and phone captures in `output/design/2026-10-28/redesign/final/`. The November 17 extension retains this system and adds output captures, a code gallery, and a tools directory. Its final desktop, tablet, and phone captures are in the private workspace's `output/website-github-refresh/2026-11-17/final-home/` and `final-uses/`; `final-work/` contains desktop and phone captures. Route, filter, keyboard-focus, no-JavaScript, and reduced-motion verification is recorded in `output/website-github-refresh/2026-11-17/browser/local-checks.json`, with representative captures in `browser/`. Surface composition is recorded in `.impeccable/surfaces/templates-shell-html.md`.
 
 ## Colors
 
@@ -136,7 +136,7 @@ The frontmatter records the opening display and shared heading, title, body, and
 
 The centered container is capped at (1280px). Its side gutter is (40px), reducing to (32px), (24px), (20px), and (16px) at maximum widths of (1100px), (800px), (620px), and (360px). Base section spacing is (112px), then (88px), (72px), and (64px) at the first three breakpoints.
 
-On desktop, the home stage places the introduction and selected work beside a sticky portrait; the portrait releases with its parent. Featured work on the Work page uses alternating two-column rows followed by a compact dark index. About and case-study sections pair headings with text; notes and video collections use grids. At (620px) and below, these layouts stack, the portrait becomes static, and work entries flow naturally in reading order. The video grid is asymmetric on desktop and single-column on mobile.
+On desktop, the home stage places the introduction and selected work beside a sticky portrait; the portrait releases with its parent. Featured work on the Work page uses alternating two-column rows followed by a compact dark index and a two-column code gallery. The tools directory pairs repository or group headings with descriptions and lists. About and case-study sections pair headings with text; notes and video collections use grids. At (620px) and below, these layouts stack, the portrait becomes static with a (260px) image height, and work entries flow naturally in reading order. The video grid is asymmetric on desktop and single-column on mobile.
 
 ## Elevation & Depth
 
@@ -154,13 +154,19 @@ Primary actions are gold with ink text; inverse actions are ink with paper text 
 
 ### Project representations
 
-Featured entries combine a linked visual field, title, maturity, description, contribution, and a case-study link. The signal diagram states the 15-minute check and advisor review; the Infnty newsletter field explicitly labels itself illustrative; the outbound field shows research, enrichment, drafting and human approval. These are explanatory representations, not evidence of an actual product interface. The compact work index uses simple rows on plum.
+Featured entries combine a linked visual field, title, maturity, description, contribution, and a case-study link. Outbound and GTM entries use captures of actual credential-free synthetic demo output. The signal diagram explains the 15-minute check and advisor review; the Infnty newsletter field explicitly labels itself illustrative. The compact work index uses simple rows on plum.
 
 Filters are hidden until JavaScript enables them, so every project remains available without it. Buttons communicate selection with `aria-pressed`, and the result count is a polite live region. Notes use cool square panels; case facts, flow steps, status markers and tags use flat fields. The contact detail disclosure uses native `details` and `summary`.
 
+### Code gallery and tools directory
+
+The Work code gallery presents three output previews with linked headings, short scope descriptions, and repository links. A text-only portfolio-source entry spans the grid on a cool surface with (32px) padding. The grid uses (56px) row and (40px) column gaps, tightening before it becomes one column on phones. Output previews use a 4:3 crop anchored at the top with automatic image height; case-study output figures retain their natural aspect ratio and have an explanatory caption.
+
+The tools directory begins with a wrapping, underlined anchor navigation on a cool surface. Open-source repository rows link upstream; grouped applications, prior tools, and project stacks use plain lists. Headings and content share two columns with a (48px) gap on desktop, then stack with a (12px) gap on phones. The applications section uses the cool surface with generous inset space. These patterns reuse the existing square fields, type hierarchy, and link treatment.
+
 ### Media and motion
 
-Approved portrait photography and original public video thumbnails use responsive AVIF and WebP sources with a fallback from `media.json`; video art retains its 16:9 presentation. The shared shell preloads the local fonts. Preserve hashed filenames and their manifest references.
+Approved portrait photography, original public video thumbnails, and synthetic output captures use responsive AVIF and WebP sources with a fallback from `media.json`; video art retains its 16:9 presentation. `ASSETS.md` records the three output captures and their synthetic scope. The shared shell preloads the local fonts. Preserve hashed filenames and their manifest references.
 
 With motion allowed, the portrait settles from scale (1.04) over (1.1s); project artifact elements enter over (.65s), staggered by (70ms). Hover feedback changes action contrast, underlines linked titles, and shifts directional icons; photographs and project illustrations remain still. The shared easing is `cubic-bezier(.16,1,.3,1)`. Reduced motion disables entrance and transition effects, and all content remains visible without JavaScript. Links, buttons, and summaries expose visible keyboard focus; the skip link appears on focus.
 

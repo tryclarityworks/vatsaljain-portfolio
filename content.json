@@ -1,7 +1,7 @@
 {
   "name": "Vatsal Jain",
-  "title": "Applied AI, built around real work.",
-  "description": "Vatsal Jain builds applied AI systems and helps teams adopt them. Explore agent pipelines, real estate products, and AI enablement work.",
+  "title": "AI systems for real work.",
+  "description": "Vatsal Jain builds AI workflows for GTM and business operations. Explore Python/API systems, public code demos and a live client follow-up pilot.",
   "email": "vatsaljain27@gmail.com",
   "booking": {
     "url": "https://cal.com/vatsal-tryclarityworks/intro",
@@ -13,8 +13,143 @@
   "business": "https://www.tryclarityworks.com/",
   "projects": [
     {
+      "slug": "outbound-engine",
+      "name": "An outbound engine.",
+      "product": "Clarity Works outbound pipeline",
+      "category": "gtm",
+      "status": "Built & used",
+      "summary": "A seven-stage Python workflow connecting research, three LLM agents and human review. Personalized outreach grew from about 10 to 300 messages/day in my own operation, as reported November 6, 2026.",
+      "context": "GTM · Multi-agent orchestration",
+      "role": "Founder & builder, Clarity Works",
+      "outcome": "~10 → 300 personalized messages/day; reported Nov 6, 2026",
+      "stack": [
+        "Python",
+        "Claude / OpenRouter",
+        "Apify",
+        "Instantly",
+        "Google Sheets"
+      ],
+      "flow": [
+        "Lead research",
+        "Enrich · Route · Draft",
+        "Human review"
+      ],
+      "sections": [
+        {
+          "title": "The problem",
+          "paragraphs": [
+            "As a solo founder, researching accounts and writing relevant first messages competed with the time needed to build and deliver. I wanted more throughput while preserving account-specific context."
+          ]
+        },
+        {
+          "title": "What I built",
+          "paragraphs": [
+            "I built a seven-stage Python pipeline covering lead scraping, enrichment, routing, personalized drafting, and upload to Instantly. Three LLM agents handle enrichment, routing, and drafting, calling Claude through OpenRouter. Apify and Google Sheets connect the research and operating workflow.",
+            "The cold-email infrastructure is part of this system: the value comes from connecting those stages into an end-to-end process."
+          ]
+        },
+        {
+          "title": "The checks around the model",
+          "paragraphs": [
+            "Do-not-contact checks run at three stages. Email verification happens before sending, a cross-channel reply-stop prevents continued follow-up, and a human approval gate sits before messages ship. These controls live in the workflow and code."
+          ]
+        },
+        {
+          "title": "The result",
+          "paragraphs": [
+            "As reported November 6, 2026, personalized outreach in my own operation had grown from roughly 10 to 300 messages per day. The measurement period was not recorded; response quality, meetings and revenue need their own measurement.",
+            "The system is designed for 1,000+ personalized messages per day. That describes design capacity, not demonstrated operating throughput or a load-test result."
+          ]
+        }
+      ],
+      "proof_links": [
+        {
+          "label": "Explore the synthetic code demo",
+          "url": "https://github.com/tryclarityworks/outbound-orchestration-demo"
+        }
+      ],
+      "proof_note": "The public demo uses invented contacts and mocked services. Its hash-bound review and local ledger are showcase additions; it is not a production export or throughput benchmark.",
+      "image": "/assets/outbound-demo.png",
+      "image_caption": "Actual output from the public demo, using fictional contacts and a local upload simulation."
+    },
+    {
+      "slug": "gtm-intelligence",
+      "name": "Research, with evidence.",
+      "product": "GTM research workspace",
+      "category": "gtm",
+      "status": "Local prototype",
+      "summary": "An AI-assisted local workspace for source-linked account research, editable scoring, explicit unknowns and reviewed exports. A public synthetic demo makes a smaller part of the workflow runnable without keys.",
+      "context": "GTM · Research systems",
+      "role": "Builder · AI-assisted implementation",
+      "outcome": "Working local prototype; commercial outcomes unmeasured",
+      "stack": [
+        "TypeScript",
+        "Next.js / React",
+        "SQLite / libSQL",
+        "Drizzle",
+        "Zod",
+        "Vitest",
+        "Playwright"
+      ],
+      "flow": [
+        "Review evidence",
+        "Explain the score",
+        "Approve & export"
+      ],
+      "proof_links": [
+        {
+          "label": "Run the synthetic GTM demo",
+          "url": "https://github.com/tryclarityworks/gtm-intelligence-demo"
+        }
+      ],
+      "proof_note": "The public JavaScript demo adapts the local app’s earlier five-dimension scoring module. Its fictional campaign, CLI, HTML report and explicit review workflow were prepared for this showcase; it is not the full app.",
+      "image": "/assets/gtm-demo.png",
+      "image_caption": "Actual report from the public demo. Every account and source observation shown is fictional.",
+      "sections": [
+        {
+          "title": "The research problem",
+          "paragraphs": [
+            "An account can look promising while the evidence behind it remains thin. I wanted a workspace that keeps observations, hypotheses, unknowns and the next useful question separate, instead of compressing them into a confident-looking lead score."
+          ]
+        },
+        {
+          "title": "What I built",
+          "paragraphs": [
+            "The local app supports source review, editable assessments, separate fit and evidence coverage, account briefs, manual approval and exports. Synthetic records stay separate from real research. Changes to evidence or scoring inputs invalidate earlier approval.",
+            "I built it with AI assistance using TypeScript, Next.js and SQLite/libSQL. The November 11 local release recorded 77 unit/integration checks and nine Chrome production checks. These cover implementation behavior; model accuracy and commercial outcomes remain unmeasured."
+          ]
+        },
+        {
+          "title": "Make the reasoning visible",
+          "paragraphs": [
+            "A high score on the known dimensions can coexist with incomplete evidence. The workflow exposes that gap and keeps a research hypothesis distinct from an observed fact. The next action should resolve a decision-changing unknown rather than assume budget, urgency or buying intent."
+          ]
+        },
+        {
+          "title": "Related signal research",
+          "paragraphs": [
+            "In separate November 12–17 research, I examined integration hiring, clinic phone roles, internal AI-security responsibilities and CRM-change signals. The work combines source retrieval, explicit classification rubrics, quote checks and review of what a posting actually supports.",
+            "These are separate research scripts and reports, not integrated unattended monitoring inside the app. The dealership watcher uses Tavily and OpenRouter; the rough ATS scan uses public board feeds and a manual/AI-assisted classification step. Unreadable pages and weak observations remain visible rather than being guessed."
+          ]
+        },
+        {
+          "title": "A runnable public slice",
+          "paragraphs": [
+            "The linked repository runs locally without credentials or package installation. Four fictional accounts show how fit, evidence coverage, exclusion and unknowns differ. A reviewer can approve a brief, change a supported rating, and see the old approval become stale.",
+            "The scoring module is adapted from the local prototype. The compact CLI, synthetic fixtures, review checks and report are showcase work. Nothing is sent, no live provider is called, and no real prospect or founder research is included."
+          ]
+        },
+        {
+          "title": "Current limits",
+          "paragraphs": [
+            "The original workspace remains private and local. Hosted authentication, live CRM synchronization and automated sending are outside this release. Commercial demand, introductions, meetings, conversion and revenue have not been established by this work."
+          ]
+        }
+      ]
+    },
+    {
       "slug": "intent-signals",
-      "name": "From missed signals to a useful follow-up",
+      "name": "Follow-up, with context.",
       "product": "Real estate follow-up system",
       "category": "systems",
       "status": "Live client pilot",
@@ -103,66 +238,15 @@
       ]
     },
     {
-      "slug": "outbound-engine",
-      "name": "A small team’s outbound engine",
-      "product": "Clarity Works outbound pipeline",
-      "category": "systems",
-      "status": "Built & used",
-      "summary": "Seven stages, three LLM agents, and rules in code: do-not-contact checks at three stages, verification before send, and a human approval gate. Personalized outreach grew from about 10 to 300 messages per day.",
-      "context": "GTM · Multi-agent orchestration",
-      "role": "Founder & builder, Clarity Works",
-      "outcome": "~10 to 300 personalized messages / day",
-      "stack": [
-        "Python",
-        "Claude / OpenRouter",
-        "Apify",
-        "Instantly",
-        "Google Sheets"
-      ],
-      "flow": [
-        "Lead research",
-        "Enrich · Route · Draft",
-        "Human review"
-      ],
-      "sections": [
-        {
-          "title": "The problem",
-          "paragraphs": [
-            "As a solo founder, researching accounts and writing relevant first messages competed with the time needed to build and deliver. I wanted more throughput while preserving account-specific context."
-          ]
-        },
-        {
-          "title": "What I built",
-          "paragraphs": [
-            "I built a seven-stage Python pipeline covering lead scraping, enrichment, routing, personalized drafting, and upload to Instantly. Three LLM agents handle enrichment, routing, and drafting, calling Claude through OpenRouter. Apify and Google Sheets connect the research and operating workflow.",
-            "The cold-email infrastructure is part of this system: the value comes from connecting those stages into an end-to-end process."
-          ]
-        },
-        {
-          "title": "The checks around the model",
-          "paragraphs": [
-            "Do-not-contact checks run at three stages. Email verification happens before sending, a cross-channel reply-stop prevents continued follow-up, and a human approval gate sits before messages ship. These controls live in the workflow and code."
-          ]
-        },
-        {
-          "title": "The result",
-          "paragraphs": [
-            "Personalized outreach grew from roughly 10 to 300 messages per day in my own operation. Response quality, meetings, and revenue need their own measurement.",
-            "The system is designed to scale to 1,000+ personalized messages per day. That figure describes designed capacity; current operating volume is 300 per day."
-          ]
-        }
-      ]
-    },
-    {
       "slug": "infnty",
-      "name": "Infnty: AI for your work",
+      "name": "Infnty: AI for your work.",
       "product": "Personalized AI newsletter",
       "category": "systems",
       "status": "Under development",
-      "summary": "A personalized AI newsletter in development: one shared editorial workflow, reader-specific application, relevant news, and human review before delivery.",
+      "summary": "A personalized AI newsletter under development, combining a shared editorial workflow, reader-specific application and human review before delivery. Twenty early testers were onboarded as of October 27, 2026.",
       "context": "Product development · AI learning",
       "role": "Co-developer · Backend & delivery design",
-      "outcome": "20 early testers onboarded; beta under development",
+      "outcome": "20 early testers onboarded as of Oct 27, 2026; under development",
       "stack": [
         "TypeScript",
         "OpenRouter",
@@ -230,57 +314,10 @@
       }
     },
     {
-      "slug": "leadpulse",
-      "name": "Closing the lead-to-response gap",
-      "product": "LeadPulse",
-      "category": "systems",
-      "status": "Shipped",
-      "summary": "A B2B SaaS that sends automated SMS alerts for inbound real estate leads within five minutes, with failover logic.",
-      "context": "Real estate · B2B SaaS",
-      "role": "Builder",
-      "outcome": "Built and shipped",
-      "stack": [
-        "Twilio",
-        "SMS workflows",
-        "Failover logic"
-      ],
-      "flow": [
-        "Inbound lead",
-        "SMS alert",
-        "Agent response"
-      ],
-      "sections": [
-        {
-          "title": "The problem",
-          "paragraphs": [
-            "An inbound lead is only useful if someone notices it in time. LeadPulse focused on the handoff between a new enquiry and the agent who needs to respond."
-          ]
-        },
-        {
-          "title": "What I built",
-          "paragraphs": [
-            "I built and shipped a B2B SaaS providing automated SMS lead alerts within five minutes, with failover logic. The system was designed around a clear operational action: get the lead in front of an agent."
-          ]
-        },
-        {
-          "title": "Beyond the happy path",
-          "paragraphs": [
-            "Shipping included navigating Twilio A2P 10DLC registration and CASL requirements. Messaging infrastructure and the practical conditions for operating it were part of the product work."
-          ]
-        },
-        {
-          "title": "What this work demonstrates",
-          "paragraphs": [
-            "A bounded product with a concrete user, a time-sensitive workflow, and delivery concerns beyond the UI. I’m describing the shipped capability here; adoption and conversion results are not yet part of the public case study."
-          ]
-        }
-      ]
-    },
-    {
       "slug": "content-pipeline",
-      "name": "The content engine behind Clarity Works",
+      "name": "The content engine.",
       "product": "Clarity Works content pipeline",
-      "category": "systems",
+      "category": "content",
       "status": "In use",
       "summary": "A documented, seven-stage AI-assisted production line that connects one recording to published video, learning material, and repurposed content.",
       "context": "Media · Workflow orchestration",
@@ -359,8 +396,55 @@
       ]
     },
     {
+      "slug": "leadpulse",
+      "name": "LeadPulse.",
+      "product": "LeadPulse",
+      "category": "systems",
+      "status": "Shipped",
+      "summary": "A B2B SaaS that sends automated SMS alerts for inbound real estate leads within five minutes, with failover logic.",
+      "context": "Real estate · B2B SaaS",
+      "role": "Builder",
+      "outcome": "Built and shipped; current operation unverified",
+      "stack": [
+        "Twilio",
+        "SMS workflows",
+        "Failover logic"
+      ],
+      "flow": [
+        "Inbound lead",
+        "SMS alert",
+        "Agent response"
+      ],
+      "sections": [
+        {
+          "title": "The problem",
+          "paragraphs": [
+            "An inbound lead is only useful if someone notices it in time. LeadPulse focused on the handoff between a new enquiry and the agent who needs to respond."
+          ]
+        },
+        {
+          "title": "What I built",
+          "paragraphs": [
+            "I built and shipped a B2B SaaS providing automated SMS lead alerts within five minutes, with failover logic. The system was designed around a clear operational action: get the lead in front of an agent."
+          ]
+        },
+        {
+          "title": "Beyond the happy path",
+          "paragraphs": [
+            "Shipping included navigating Twilio A2P 10DLC registration and CASL requirements. Messaging infrastructure and the practical conditions for operating it were part of the product work."
+          ]
+        },
+        {
+          "title": "What this work demonstrates",
+          "paragraphs": [
+            "This project demonstrates a bounded product with a concrete user, a time-sensitive workflow and delivery concerns beyond the UI. It was built and shipped; current operating status, active users and measured reliability have not been established in this public account."
+          ]
+        }
+      ]
+    },
+    {
       "slug": "ai-capability",
-      "name": "Building AI capability that stays with the team",
+      "name": "Building AI capability.",
       "product": "Clarity Works · AI capability programs",
       "category": "enablement",
       "status": "Advisory practice",
@@ -429,7 +513,8 @@
           "label": "Phased Partner Program",
           "url": "https://www.tryclarityworks.com/partner"
         }
-      ]
+      ],
+      "listed": false
     }
   ],
   "notes": [
@@ -445,7 +530,9 @@
         "I want a working session to leave behind more than a promising demo. The team should be able to explain what the workflow does, recognize when it needs human judgment, and maintain the process as the work changes.",
         "For me, discovery and engineering belong in the same conversation. Understanding the process is how I decide what is worth building."
       ],
-      "home_title": "The SOP is architecture."
+      "home_title": "The SOP is architecture.",
+      "published": "October 2026",
+      "updated": "November 17, 2026"
     },
     {
       "slug": "checks-around-the-model",
@@ -459,7 +546,24 @@
         "The distinction shapes how I think about applied AI: use the model where interpretation helps, and make the boundaries around its output inspectable. A well-written prompt is one part of that design.",
         "The result I can point to today is throughput: personalized outreach grew from about 10 to 300 messages a day. To tell the full business story, response quality and downstream outcomes need their own measurement."
       ],
-      "home_title": "Checks around the model."
+      "home_title": "Checks around the model.",
+      "published": "October 2026",
+      "updated": "November 17, 2026"
+    },
+    {
+      "slug": "signals-and-buying-intent",
+      "title": "A signal is a starting point.",
+      "home_title": "Signals and buying intent.",
+      "tag": "GTM research",
+      "published": "November 17, 2026",
+      "summary": "What a hiring post can support, and what still needs a conversation.",
+      "paragraphs": [
+        "A company hiring someone to rebuild its CRM gives me a concrete research lead. It does not tell me the company wants an outside vendor, has a budget for one, or has chosen a buying timeline.",
+        "In my recent signal research, I separate a company changing its own systems from a vendor implementing systems for customers. Both can mention the same CRM products. The responsibility in the posting determines which interpretation is supported.",
+        "I keep the source passage with the classification, preserve partial matches, and record unreadable pages as unknown. A quote check establishes that words appear in the source; it does not establish that the source is current or that the interpretation is right.",
+        "The next step is a question that could change the decision: is this an internal build, an evaluation, or routine administration? A useful brief makes that uncertainty easy to see.",
+        "That is also why my GTM workspace separates fit from evidence coverage. A strong match on the dimensions I can support does not make missing information disappear."
+      ]
     }
   ],
   "production_origin": "https://vatsaljain.com",
@@ -468,6 +572,7 @@
     "lead": "My economics background made me curious about incentives and ownership. Building AI systems made that practical.",
     "paragraphs": [
       "I founded Clarity Works to help service-based businesses build AI capability inside their teams. I work from business context to workflow diagnosis, SOP improvement, and the first useful AI-assisted build.",
+      "Recent work includes a local GTM research workspace and separate hiring-signal research. I make the observations, unknowns and review decisions visible, and publish bounded synthetic code demos for inspection.",
       "That same method shapes my work: a live client follow-up system, my outbound engine, and the content pipeline behind my educational work. I publish the frameworks openly and use real builds to explain the decisions.",
       "I build with Claude Code and Codex, work with Python and SQL, and have foundational TypeScript experience. I care about understanding the logic, making failure modes visible, and leaving a workflow people can maintain."
     ],
@@ -497,13 +602,6 @@
       "description": "Add AI where it helps, keep review in the workflow, and transfer the capability."
     }
   ],
-  "announcement": {
-    "lead": "San Francisco / November 10 to 13.",
-    "text": "",
-    "link_label": "Say hello",
-    "subject": "San Francisco, Nov 10-13",
-    "until": "2026-11-15T00:00:00-08:00"
-  },
   "stack": [
     {
       "label": "Hands-on",
@@ -514,47 +612,31 @@
       ]
     },
     {
-      "label": "Foundational",
-      "items": [
-        "TypeScript"
-      ]
-    },
-    {
-      "label": "AI-assisted coding",
+      "label": "AI-assisted development",
       "items": [
         "Claude Code",
-        "OpenAI Codex"
+        "OpenAI Codex",
+        "Foundational TypeScript"
       ]
     },
     {
-      "label": "Models & services",
+      "label": "Research & GTM",
       "items": [
-        "Claude via OpenRouter",
         "Apify",
+        "Scrapling",
+        "Tavily",
         "Instantly",
-        "Twilio",
+        "Notion",
+        "Google Sheets"
+      ]
+    },
+    {
+      "label": "Delivery & reliability",
+      "items": [
         "Modal",
+        "Twilio",
         "Mailchimp",
-        "Formspark",
-        "Google Sheets",
-        "Gmail"
-      ]
-    },
-    {
-      "label": "Agent infrastructure",
-      "items": [
-        "Hermes",
-        "OpenClaw",
-        "Graphify",
-        "Cron scheduling"
-      ]
-    },
-    {
-      "label": "Reliability",
-      "items": [
         "Deterministic checks",
-        "Guardrails in code",
-        "Failure-mode analysis",
         "Heartbeat monitoring"
       ]
     }
@@ -576,9 +658,29 @@
     }
   ],
   "home": {
-    "intro": "From the first conversation to the working build.",
-    "availability": "Exploring AI solutions & enablement roles.",
+    "intro": "I build AI workflows for account research, outbound and client follow-up.",
+    "availability": "Exploring GTM/Growth engineering and applied AI implementation roles.",
     "projects": [
+      {
+        "slug": "outbound-engine",
+        "title": "The outbound engine.",
+        "description": "Research, three LLM agents and human review. From about 10 to 300 personalized messages a day in my own operation.",
+        "contribution": "Founder & builder · Clarity Works",
+        "detail": "Built & used · 300/day reported Nov 6",
+        "visual": "outbound",
+        "image": "/assets/outbound-demo.png",
+        "image_alt": "Synthetic outbound demo output showing blocked drafts and a local upload simulation"
+      },
+      {
+        "slug": "gtm-intelligence",
+        "title": "Research, with evidence.",
+        "description": "Account research with visible sources, editable scores and explicit unknowns. A synthetic code demo shows the review boundary.",
+        "contribution": "Builder · AI-assisted implementation",
+        "detail": "Local prototype · Public synthetic demo",
+        "visual": "gtm",
+        "image": "/assets/gtm-demo.png",
+        "image_alt": "Actual synthetic GTM report showing separate fit scores, evidence coverage and review states"
+      },
       {
         "slug": "intent-signals",
         "title": "Follow-up, with context.",
@@ -592,25 +694,11 @@
         "title": "AI news, made personal.",
         "description": "A personalized newsletter that connects AI developments to the reader’s work.",
         "contribution": "Co-developer · Backend & delivery",
-        "detail": "Under development · 20 early testers onboarded",
+        "detail": "Under development · 20 testers onboarded as of Oct 27",
         "visual": "newsletter"
-      },
-      {
-        "slug": "outbound-engine",
-        "title": "An outbound engine.",
-        "description": "Three LLM agents, seven stages, and human approval before anything sends. Personalized outreach grew from about 10 to 300 messages a day.",
-        "contribution": "Founder & builder · Clarity Works",
-        "detail": "Built & used",
-        "visual": "outbound"
       }
     ],
     "other_projects": [
-      {
-        "slug": "leadpulse",
-        "title": "LeadPulse",
-        "description": "Lead alerts by SMS",
-        "status": "Shipped"
-      },
       {
         "slug": "content-pipeline",
         "title": "The content engine",
@@ -618,10 +706,10 @@
         "status": "In use"
       },
       {
-        "slug": "ai-capability",
-        "title": "AI capability",
-        "description": "Build with the team",
-        "status": "Advisory practice"
+        "slug": "leadpulse",
+        "title": "LeadPulse",
+        "description": "Lead alerts by SMS",
+        "status": "Shipped; current operation unverified"
       }
     ],
     "about_title": "Economics to applied AI.",
@@ -632,11 +720,217 @@
     "practice": "Python & SQL · API orchestration · AI-assisted coding",
     "learning": "Foundational TypeScript",
     "contact_title": "Let’s build something useful.",
-    "contact_description": "Looking for someone who can connect the business problem to the build? Let’s talk."
+    "contact_description": "Have a commercial workflow to build or an AI implementation role to discuss? Let’s talk.",
+    "headline": [
+      "Hi, I’m Vatsal.",
+      "I build useful AI."
+    ],
+    "featured_slugs": [
+      "outbound-engine",
+      "gtm-intelligence",
+      "intent-signals"
+    ]
   },
   "work_context": {
     "citizenship": "Canadian citizen",
     "location": "Based in Vancouver, BC.",
     "preferences": "Remote preferred. Open to the US."
+  },
+  "github": "https://github.com/tryclarityworks",
+  "contact_paragraphs": [
+    "I’m exploring GTM/Growth engineering, Forward Deployed Engineer and Solutions Engineer roles, alongside scoped AI implementation work.",
+    "I’m a Canadian citizen based in Vancouver. Canada-based remote work is preferred; I’m open to US opportunities, with relocation authorization assessed per role. Contract work can be scoped through Clarity Works LLP, registered in British Columbia."
+  ],
+  "code_examples": [
+    {
+      "title": "Outbound orchestration",
+      "description": "Evidence-based routing, reviewed drafts and an idempotent local upload simulation. Synthetic fixtures; no sending.",
+      "url": "https://github.com/tryclarityworks/outbound-orchestration-demo",
+      "image": "/assets/outbound-demo.png",
+      "alt": "Rendered synthetic outbound demo report"
+    },
+    {
+      "title": "GTM research",
+      "description": "Fit versus evidence coverage, a cited brief and review invalidation. Four fictional accounts; no keys.",
+      "url": "https://github.com/tryclarityworks/gtm-intelligence-demo",
+      "image": "/assets/gtm-demo.png",
+      "alt": "Rendered synthetic GTM research report"
+    },
+    {
+      "title": "Newsletter pipeline",
+      "description": "Python scoring, structured generation, source checks and JSON repair with an offline fixture provider. Separate from Infnty.",
+      "url": "https://github.com/tryclarityworks/newsletter-pipeline-demo",
+      "image": "/assets/newsletter-demo.png",
+      "alt": "Actual HTML newsletter rendered from fictional article fixtures"
+    },
+    {
+      "title": "Portfolio source",
+      "description": "The Python static-site builder, shared templates, responsive assets and automated checks behind this site.",
+      "url": "https://github.com/tryclarityworks/vatsaljain-portfolio"
+    }
+  ],
+  "toolbox": {
+    "intro": "The tools behind my research, AI-assisted builds and day-to-day delivery. Project pages show how they fit together.",
+    "repositories": [
+      {
+        "name": "Impeccable",
+        "url": "https://github.com/pbakaus/impeccable",
+        "description": "Design guidance and review tooling in my AI-assisted frontend workflow."
+      },
+      {
+        "name": "Scrapling",
+        "url": "https://github.com/D4Vinci/Scrapling",
+        "description": "Web research and extraction tooling for working with public-page information."
+      }
+    ],
+    "groups": [
+      {
+        "label": "AI & development",
+        "description": "Assistants and editors I work with when building and explaining systems.",
+        "items": [
+          "Claude",
+          "Claude Cowork",
+          "Claude Code",
+          "OpenAI Codex",
+          "VS Code",
+          "OpenRouter"
+        ]
+      },
+      {
+        "label": "Research & outreach",
+        "description": "Research, verification and outbound workflow tools.",
+        "items": [
+          "Apify",
+          "Scrapling",
+          "Tavily",
+          "Instantly",
+          "Verifalia",
+          "Aimfox"
+        ]
+      },
+      {
+        "label": "Knowledge & operations",
+        "description": "Workspaces and records that support the operating workflow.",
+        "items": [
+          "Notion",
+          "Google Sheets",
+          "Gmail"
+        ]
+      },
+      {
+        "label": "Forms & messaging",
+        "description": "Services used in client or product workflows; the stack varies by project.",
+        "items": [
+          "Mailchimp",
+          "Formspark",
+          "Twilio",
+          "Tally"
+        ]
+      },
+      {
+        "label": "Hosting & monitoring",
+        "description": "Website delivery, scheduled Python work, agent hosting and heartbeat checks.",
+        "items": [
+          "Vercel",
+          "Modal",
+          "Hostinger",
+          "healthchecks.io"
+        ]
+      },
+      {
+        "label": "Content & collaboration",
+        "description": "Tools for content production, publishing, source control and conversations.",
+        "items": [
+          "Descript",
+          "ElevenLabs",
+          "YouTube",
+          "GitHub",
+          "Git",
+          "Cal.com",
+          "Google Meet",
+          "Telegram"
+        ]
+      },
+      {
+        "label": "Agents & design workflow",
+        "description": "Tools and skills used through my AI-assisted workflow.",
+        "items": [
+          "Hermes",
+          "OpenClaw",
+          "Graphify",
+          "Impeccable",
+          "Hallmark",
+          "design-taste-frontend"
+        ]
+      }
+    ],
+    "prior": [
+      {
+        "label": "Automation experience",
+        "description": "Earlier low-code work; n8n also appears in the Infnty delivery implementation under development.",
+        "items": [
+          "n8n",
+          "Make.com"
+        ]
+      },
+      {
+        "label": "Also worked with",
+        "description": "Additional tools named in my earlier work and resumes.",
+        "items": [
+          "ChatGPT",
+          "Gemini",
+          "Perplexity",
+          "Docker"
+        ]
+      },
+      {
+        "label": "Working knowledge",
+        "description": "Analytics and advertising-platform familiarity.",
+        "items": [
+          "GA4",
+          "Google advertising platforms",
+          "Meta advertising platforms",
+          "LinkedIn advertising platforms"
+        ]
+      }
+    ],
+    "technical": [
+      {
+        "label": "Languages & practice",
+        "description": "Hands-on Python and SQL; foundational TypeScript.",
+        "items": [
+          "Python",
+          "SQL",
+          "API orchestration",
+          "TypeScript (foundational)"
+        ]
+      },
+      {
+        "label": "Project frameworks",
+        "description": "Used in the AI-assisted local GTM prototype and the Infnty implementation under development.",
+        "items": [
+          "Next.js",
+          "React",
+          "Tailwind CSS",
+          "Zod",
+          "Drizzle",
+          "SQLite / libSQL",
+          "JSON Schema / Ajv",
+          "Handlebars"
+        ]
+      },
+      {
+        "label": "Runtime & validation",
+        "description": "Tools used for local builds and implementation checks.",
+        "items": [
+          "Node.js",
+          "pnpm",
+          "Python unittest",
+          "Vitest",
+          "Playwright",
+          "Google Chrome"
+        ]
+      }
+    ]
   }
 }
